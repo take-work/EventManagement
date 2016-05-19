@@ -12,15 +12,15 @@
   </div>
   <div class="form-group">
     {!! Form::label('eventName', 'イベント名:') !!}
-    {!! Form::text('text', null, ['class' => 'form-control']) !!}
+    {!! Form::text('eventName', null, ['class' => 'form-control']) !!}
   </div>
   <div class="form-group">
     {!! Form::label('host', '主催者:') !!}
-    {!! Form::text('text', null, ['class' => 'form-control']) !!}
+    {!! Form::text('host', null, ['class' => 'form-control']) !!}
   </div>
   <div class="form-group">
     {!! Form::label('price', '準備費用:') !!}
-    {!! Form::text('text', null, ['class' => 'form-control']) !!}
+    {!! Form::text('price', null, ['class' => 'form-control']) !!}
   </div><br/>
   <div class="form-group">
     {!! Form::submit('登録する', ['class' => 'btn btn-primary form-control']) !!}

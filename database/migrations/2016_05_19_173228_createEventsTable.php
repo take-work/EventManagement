@@ -19,6 +19,8 @@ class CreateEventsTable extends Migration
             $table->integer('price');
             $table->string('startDay');
             $table->string('endDay');
+            $table->date('updated_at');
+            $table->data('created_at');
         });
     }
 

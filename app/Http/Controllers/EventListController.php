@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 class EventListController extends Controller
 {
   public function events() {
-    return view('eventList');
+    return view('events/eventList');
   }
+
 }

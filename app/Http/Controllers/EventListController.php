@@ -12,10 +12,6 @@ use App\Event;
 
 class EventListController extends Controller
 {
-  public function events() {
-    return view('event.eventList');
-  }
-
   public function show() {
     $events = DB::select('select * from events');
 

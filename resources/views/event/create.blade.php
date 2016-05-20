@@ -17,7 +17,7 @@
     </tr>
 
     <tr>
-      <form id="formInput" name="formInput" method="post">
+      {!! Form::open() !!}
         <td align="center">
           西暦<input name="startYear" type="text" id="startYear" size="8" maxlength="10" />年 &nbsp;
           <input name="startMonth" type="text" id="startMonth" size="4" maxlength="4" />月 &nbsp;
@@ -46,7 +46,7 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input type="submit" value="登録する" />
         </td>
-      </form>
+      {!! Form::close() !!}
     </tr>
   </table>
 @endsection

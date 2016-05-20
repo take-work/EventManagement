@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>イベント管理</title>
+  <meta charset="utf-8">
+  <title> @yield('title') </title>
 </head>
 <body>
 

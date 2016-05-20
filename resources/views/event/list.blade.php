@@ -2,8 +2,9 @@
 
 @section('content')
   <h3>イベント一覧</h3>
+  <a href="{!! url('create') !!}">新規作成</a><br><br>
 
-  <hr/>
+  <hr><br>
 
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tbody>

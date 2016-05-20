@@ -21,8 +21,8 @@ class EventListController extends Controller
   }
 
   public function show() {
-    $events = DB::table('events')->get();
+    $events = DB::select('select * from events');
 
-    return view('event.list', compact($events));
+    return view('event.list', compact('events'));
   }
 }

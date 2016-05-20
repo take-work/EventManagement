@@ -15,8 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+ * イベント一覧に関連するルート
+ */
+
 Route::get('/eventList', 'EventListController@events');
-
-Route::get('/create', 'EventListController@create');
-
 Route::get('/list', 'EventListController@show');
+Route::get('/create', 'EventListController@create');
+Route::post('/create', 'EventListController@insert');

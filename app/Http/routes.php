@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('/eventList', 'EventListController@events');
 
 Route::get('/eventCreate', 'EventListController@create');
+
+Route::get('/list', 'EventListController@show');

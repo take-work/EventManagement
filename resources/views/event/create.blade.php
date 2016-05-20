@@ -6,7 +6,7 @@
 
 @section('content')
   <h3>イベント情報入力</h3>
-  <table width="1200" border="1" cellspacing="1" cellpadding="8">
+  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>
       <th>開始年月日</th>
       <th>終了年月日</th>
@@ -43,6 +43,7 @@
         </td>
 
         <td align="center">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input type="submit" value="登録する" />
         </td>
       </form>

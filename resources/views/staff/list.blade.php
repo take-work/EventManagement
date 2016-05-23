@@ -7,7 +7,7 @@
 @section('content')
 
   <h3>スタッフ一覧</h3>
-  <a href="{!! url('staffCreate') !!}">新規作成</a><br><br>
+  <a href="{!! url('staffCreate', [$id]) !!}">新規作成</a><br><br>
 
   <hr><br>
 

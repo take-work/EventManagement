@@ -8,7 +8,7 @@ use DB;
 class Event extends Model
 {
   /**
-   * モデルと関連しているテーブル
+   * イベントと関連しているテーブル
    *
    * @var string
    */

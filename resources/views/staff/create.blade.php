@@ -56,6 +56,7 @@
 
         <td align="center">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="id" value={{ $id }}>
           <input type="submit" value="登録する" />
         </td>
       {!! Form::close() !!}

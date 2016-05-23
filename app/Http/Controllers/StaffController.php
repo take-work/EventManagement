@@ -8,20 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
-use App\Staff;
+use App\Staffs\Staff;
 
 class StaffController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-      return view('staff.create');
-    }
-
     /**
      * Display the specified resource.
      *
@@ -31,7 +21,24 @@ class StaffController extends Controller
     public function show(Request $request, $id) {
       $staffs = DB::select('select * from staffs where event_id ='.$id);
 
-      return view('staff.list', compact('staffs'));
+      return view('staff.list', compact('staffs', 'id'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request, $id) {
+      return view('staff.create', compact('id'));
+    }
+
+    public function insert() {
+      $inputs = \Request::all();
+      $inserts = new Staff();
+      $inserts->insert($inputs);
+
+      return "登録しました。";
     }
 
     /**

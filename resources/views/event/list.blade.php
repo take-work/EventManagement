@@ -7,7 +7,7 @@
 @section('content')
 
   <h3>イベント一覧</h3>
-  <a href="{!! url('create') !!}">新規作成</a><br><br>
+  <a href="/create">新規作成</a><br><br>
 
   <hr><br>
 
@@ -46,7 +46,7 @@
           </td>
 
           <td align="center">
-            <p>未実装</p>
+            <a href="{!! url('/staffList', [$event->id]) !!}">スタッフ数</a>
           </td>
 
           <td align="center">

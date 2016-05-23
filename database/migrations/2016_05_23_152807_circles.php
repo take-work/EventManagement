@@ -11,18 +11,18 @@ class Circles extends Migration
      * @return void
      */
     public function up() {
-        Schema::create('circles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('event_id');
-            $table->integer('number');
-            $table->string('space');
-            $table->string('circle_name');
-            $table->string('host');
-            $table->integer('staff');
-            $table->integer('desk');
-            $table->integer('chair');
-            $table->timestamps();
-        });
+      Schema::create('circles', function (Blueprint $table) {
+        $table->increments('id');
+        $table->integer('event_id');
+        $table->integer('number');
+        $table->string('space');
+        $table->string('circle_name');
+        $table->string('host');
+        $table->integer('staff');
+        $table->integer('desk');
+        $table->integer('chair');
+        $table->timestamps();
+      });
     }
 
     /**

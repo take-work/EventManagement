@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-イベント登録
+イベント一覧
 @endsection
 
 @section('content')
@@ -50,7 +50,7 @@
           </td>
 
           <td align="center">
-            <p>未実装</p>
+            <a href="{!! url('/circleList', [$event->id]) !!}">サークル数</a>
           </td>
 
           <td align="center">

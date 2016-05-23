@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/list');
 });
 
 /*
@@ -28,7 +28,7 @@ Route::post('/create', 'EventListController@insert');
  */
 
 Route::get('/staffList/{id}', 'StaffController@show');
-Route::get('/staffCreate', 'StaffController@create');
+Route::get('/staffCreate/{id}', 'StaffController@create');
 
 /*
  * サークルに関連するルート

@@ -10,8 +10,7 @@ class CreateEventsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -19,8 +18,7 @@ class CreateEventsTable extends Migration
             $table->integer('price');
             $table->string('startDay');
             $table->string('endDay');
-            $table->date('updated_at');
-            $table->data('created_at');
+            $table->timestamps();
         });
     }
 
@@ -29,8 +27,7 @@ class CreateEventsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-    	Schema::drop('events');
+    public function down() {
+      Schema::drop('events');
     }
 }

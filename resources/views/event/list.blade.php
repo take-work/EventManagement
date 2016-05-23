@@ -7,7 +7,7 @@
 @section('content')
 
   <h3>イベント一覧</h3>
-  <a href="/create">新規作成</a><br><br>
+  <a href="{!! url('create') !!}">新規作成</a><br><br>
 
   <hr><br>
 

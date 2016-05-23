@@ -47,11 +47,21 @@
         </td>
 
         <td align="center">
-          {{ $staff->experience }}
+          @if ( $staff->experience == 1 )
+            <p>経験有</p>
+          @else
+            <p>経験無</p>
+          @endif
         </td>
 
         <td align="center">
-          {{ $staff->rank }}
+          @if ( $staff->rank == 1 )
+            <p>主催</p>
+          @elseif ( $staff->rank == 2 )
+            <p>副主催</p>
+          @elseif ( $staff->rank == 3 )
+            <p>その他</p>
+          @endif
         </td>
 
         <td align="center">

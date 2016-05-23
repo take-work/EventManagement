@@ -16,9 +16,15 @@ Route::get('/', function () {
 });
 
 /*
- * イベント一覧に関連するルート
+ * イベントに関連するルート
  */
 
 Route::get('/list', 'EventListController@show');
 Route::get('/create', 'EventListController@create');
 Route::post('/create', 'EventListController@insert');
+
+/*
+ * スタッフに関連するルート
+ */
+
+Route::get('/staff', 'StaffContller@show');

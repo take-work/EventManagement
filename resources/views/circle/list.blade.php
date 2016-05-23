@@ -7,6 +7,9 @@
 @section('content')
 
   <h3>サークル一覧</h3>
+  <a href="{!! url('circleCreate', [$id]) !!}">新規作成</a><br><br>
+
+  <hr><br>
 
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>

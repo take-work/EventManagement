@@ -30,7 +30,7 @@ class CircleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request, $id) {
-      return view('staff.create', compact('id'));
+      return view('circle.create', compact('id'));
     }
 
     public function insert() {

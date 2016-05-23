@@ -1,6 +1,11 @@
 @extends('layout')
 
+@section('title')
+イベント登録
+@endsection
+
 @section('content')
+
   <h3>イベント一覧</h3>
   <a href="{!! url('create') !!}">新規作成</a><br><br>
 

@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
-use App\Event;
+use App\Events\Event;
 
 class EventListController extends Controller
 {
@@ -25,20 +25,8 @@ class EventListController extends Controller
   public function insert() {
     $inputs = \Request::all();
 
-    $startDay = $inputs['startYear'] .'/'.$inputs['startMonth'].'/'.$inputs['startDay'];
-    $endDay = $inputs['endYear'] .'/'.$inputs['endMonth'].'/'.$inputs['endDay'];
-
-    $now = date("Y-m-d");
-
-    DB::table('events')->insert([
-      'name' => $inputs['eventName'],
-      'host' => $inputs['host'],
-      'price' => $inputs['price'],
-      'startDay' => $startDay,
-      'endDay' => $endDay,
-      'updated_at' => $now,
-      'created_at' => $now
-    ]);
+    $inserts = new Event();
+    $inserts->insert($inputs);
 
     return "登録しました。";
   }

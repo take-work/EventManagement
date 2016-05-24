@@ -66,7 +66,7 @@
           </td>
 
           <td align="center">
-            <p>未実装</p>
+            <a href="{!! url('/update', [$event->id]) !!}">編集する</a>
           </td>
 
           <td align="center">

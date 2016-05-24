@@ -7,18 +7,18 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use DB;
 use App\Models\Event;
 use App\Models\Staff;
 use App\Models\Circle;
 
-class EventListController extends Controller
-{
+class EventListController extends Controller {
+
   public function show() {
     $staff = new Staff();
     $circle = new Circle();
+    $event = new Event();
 
-    $events = DB::select('select * from events');
+    $events = $event->select();
 
     foreach ($events as $id) {
       $eventId = $id->id;
@@ -44,5 +44,21 @@ class EventListController extends Controller
     $inserts->insert($inputs);
 
     return "登録しました。";
+  }
+
+  public function updateConfirm($id) {
+    $event = new Event();
+
+    $events = $event->select($id);
+    return view('event.update', compact('events'));
+  }
+
+  public function update() {
+    $inputs = \Request::all();
+
+    $updates = new Event();
+    $updates->updateData($inputs);
+
+    return "更新しました。";
   }
 }

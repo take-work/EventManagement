@@ -10,11 +10,14 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Event;
 use App\Models\Staff;
+use App\Models\Circle;
 
 class EventListController extends Controller
 {
   public function show() {
     $staff = new Staff();
+    $circle = new Circle();
+
     $events = DB::select('select * from events');
 
     foreach ($events as $id) {
@@ -22,9 +25,12 @@ class EventListController extends Controller
 
       $staffCount = $staff->count($eventId);
       $staffCounter[$eventId] = $staffCount;
+
+      $circleCount = $circle->count($eventId);
+      $circleCounter[$eventId] = $circleCount;
     }
 
-    return view('event.list', compact('events', 'staffCounter'));
+    return view('event.list', compact('events', 'staffCounter', 'circleCounter'));
   }
 
   public function create() {

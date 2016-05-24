@@ -26,4 +26,13 @@ class Circle extends Model {
     return true;
   }
 
+  public function count($eventId) {
+    $counter = DB::table('circles')
+      ->select(DB::raw('count(*) as counter'))
+      ->where('event_id', $eventId)
+      ->get();
+  
+    return $counter;
+  }
+
 }

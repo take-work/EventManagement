@@ -50,7 +50,7 @@
           </td>
 
           <td align="center">
-            <a href="{!! url('/circleList', [$event->id]) !!}">サークル数</a>
+            <a href="{!! url('/circleList', [$event->id]) !!}">{{ $circleCounter[$event->id][0]->counter }}</a>
           </td>
 
           <td align="center">

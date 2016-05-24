@@ -38,3 +38,8 @@ Route::post('/staffCreate/{id}', 'StaffController@insert');
 Route::get('/circleList/{id}', 'CircleController@show');
 Route::get('/circleCreate/{id}', 'CircleController@create');
 Route::post('/circleCreate/{id}', 'CircleController@insert');
+
+/*
+ * 金額管理に関連するルート
+ */
+Route::get('/moneyCreate/{id}', 'MoneyController@create');

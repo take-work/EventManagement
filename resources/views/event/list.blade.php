@@ -58,7 +58,7 @@
           </td>
 
           <td align="center">
-            <p>未実装</p>
+            <a href="{!! url('/moneyCreate', [$event->id]) !!}">金額管理</a>
           </td>
 
           <td align="center">

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Staffs;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
@@ -30,5 +30,12 @@ class Staff extends Model {
     ]);
 
   return true;
+  }
+
+  public function count($id) {
+    $counter = DB::select('select * from staffs where event_id ='. $id);
+    $count = $counter->num_rows;
+
+    return $count;
   }
 }

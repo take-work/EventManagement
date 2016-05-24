@@ -7,8 +7,6 @@
 @section('content')
   <h3>スタッフ情報入力</h3>
 
-  <hr><br>
-
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>
       <th>氏名(HN)</th>
@@ -62,4 +60,7 @@
       {!! Form::close() !!}
     </tr>
   </table>
+
+  <br><hr><br>
+  <a href="{!! url('staffList', [$id]) !!}">スタッフ一覧に戻る</a><br><br>
 @endsection

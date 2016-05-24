@@ -74,4 +74,7 @@
       </tr>
     @endforeach
   </table>
+
+  <br><hr><br>
+  <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
 @endsection

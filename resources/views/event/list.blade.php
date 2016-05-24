@@ -28,7 +28,6 @@
       </tr>
 
       @foreach($events as $event)
-        <?php $eventId = $event->id; ?>
         <tr>
           <td align="center">
             {{ $event->startDay }}
@@ -47,7 +46,7 @@
           </td>
 
           <td align="center">
-            <a href="{!! url('/staffList', [$event->id]) !!}">{{ $staffCounter[$eventId][0]->counter }}</a>
+            <a href="{!! url('/staffList', [$event->id]) !!}">{{ $staffCounter[$event->id][0]->counter }}</a>
           </td>
 
           <td align="center">

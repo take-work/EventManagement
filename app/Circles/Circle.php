@@ -6,12 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 
 class Circle extends Model {
-  /**
-   * スタッフと関連しているテーブル
-   *
-   * @var string
-   */
-  protected $table = 'staffs';
 
   public function insert($inputs) {
     $now = date("Y-m-d");
@@ -31,4 +25,5 @@ class Circle extends Model {
 
     return true;
   }
+
 }

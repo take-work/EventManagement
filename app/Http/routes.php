@@ -43,3 +43,4 @@ Route::post('/circleCreate/{id}', 'CircleController@insert');
  * 金額管理に関連するルート
  */
 Route::get('/moneyCreate/{id}', 'MoneyController@create');
+Route::post('/moneyCreate/{id}', 'MoneyController@insert');

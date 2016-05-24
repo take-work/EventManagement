@@ -23,7 +23,7 @@ class MoneyController extends Controller
 
     public function insert() {
       $inputs = \Request::all();
-      $inserts = new Circle();
+      $inserts = new Money();
       $inserts->insert($inputs);
 
       return "登録しました。";

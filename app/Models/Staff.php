@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query;
 use DB;
 
 class Staff extends Model {
@@ -32,10 +33,12 @@ class Staff extends Model {
   return true;
   }
 
-  public function count($id) {
-    $counter = DB::select('select * from staffs where event_id ='. $id);
-    $count = $counter->num_rows;
+  public function count($eventId) {
+    $counter = DB::table('staffs')
+      ->select(DB::raw('count(*) as counter'))
+      ->where('event_id', $eventId)
+      ->get();
 
-    return $count;
+    return $counter;
   }
 }

@@ -65,11 +65,11 @@
         </td>
 
         <td align="center">
-          <a href="{!! url('/update', [$event->id]) !!}">編集する</a>
+          <a href="{!! url('/update', [$event->id]) !!}"><input type="button" value="編集する"></a>
         </td>
 
         <td align="center">
-          <p>未実装</p>
+          <a href="{!! url('/delete', [$event->id]) !!}"><input type="button" value="削除する"></a>
         </td>
       </tr>
     @endforeach

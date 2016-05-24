@@ -48,17 +48,31 @@ class EventListController extends Controller {
 
   public function updateConfirm($id) {
     $event = new Event();
-
     $events = $event->select($id);
+
     return view('event.update', compact('events'));
   }
 
   public function update() {
     $inputs = \Request::all();
-
     $event = new Event();
+
     $event->updateData($inputs);
 
     return "更新しました。";
+  }
+
+  public function deleteConfirm($id) {
+    $event = new Event();
+    $events = $event->select($id);
+
+    return view('event.delete', compact('events'));
+  }
+
+  public function delete($id) {
+    $event = new Event();
+    $event->deleteData($id);
+
+    return "削除しました。";
   }
 }

@@ -26,6 +26,9 @@ Route::post('/create', 'EventListController@insert');
 Route::get('/update/{id}', 'EventListController@updateConfirm');
 Route::post('/update/{id}', 'EventListController@update');
 
+Route::get('/delete/{id}', 'EventListController@deleteConfirm');
+Route::post('/delete/{id}', 'EventListController@delete');
+
 /*
  * スタッフに関連するルート
  */

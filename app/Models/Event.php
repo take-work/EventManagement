@@ -59,4 +59,10 @@ class Event extends Model {
 
     return true;
   }
+
+  public function deleteData($id) {
+    DB::delete('delete from events where id = '. $id);
+
+    return true;
+  }
 }

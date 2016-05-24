@@ -37,3 +37,4 @@ Route::post('/staffCreate/{id}', 'StaffController@insert');
 
 Route::get('/circleList/{id}', 'CircleController@show');
 Route::get('/circleCreate/{id}', 'CircleController@create');
+Route::post('/circleCreate/{id}', 'CircleController@insert');

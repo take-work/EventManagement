@@ -35,7 +35,7 @@ class CircleController extends Controller
 
     public function insert() {
       $inputs = \Request::all();
-      $inserts = new Staff();
+      $inserts = new Circle();
       $inserts->insert($inputs);
 
       return "登録しました。";

@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
-use App\Staffs\Staff;
+use App\Models\Staff;
 
 class StaffController extends Controller
 {

@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
-use App\Circles\Circle;
+use App\Models\Circle;
 
 class CircleController extends Controller
 {

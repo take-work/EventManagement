@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
-use App\Events\Event;
+use App\Models\Event;
 
 class EventListController extends Controller
 {

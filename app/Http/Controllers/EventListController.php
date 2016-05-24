@@ -40,8 +40,8 @@ class EventListController extends Controller {
   public function insert() {
     $inputs = \Request::all();
 
-    $inserts = new Event();
-    $inserts->insert($inputs);
+    $event = new Event();
+    $event->insert($inputs);
 
     return "登録しました。";
   }
@@ -56,8 +56,8 @@ class EventListController extends Controller {
   public function update() {
     $inputs = \Request::all();
 
-    $updates = new Event();
-    $updates->updateData($inputs);
+    $event = new Event();
+    $event->updateData($inputs);
 
     return "更新しました。";
   }

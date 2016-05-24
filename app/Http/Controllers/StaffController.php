@@ -19,7 +19,8 @@ class StaffController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id) {
-      $staffs = DB::select('select * from staffs where event_id ='.$id);
+      $staff = new Staff();
+      $staffs = $staff->select($id);
 
       return view('staff.list', compact('staffs', 'id'));
     }
@@ -48,9 +49,11 @@ class StaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function updateConfirm($id) {
+      $staff = new Staff();
+      $staffs = $staff->select($id);
+
+      return view('staff.update', compact('staffs'));
     }
 
     /**

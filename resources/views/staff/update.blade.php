@@ -1,16 +1,12 @@
 @extends('layout')
 
 @section('title')
-スタッフ一覧
+スタッフ情報編集
 @endsection
 
 @section('content')
 
-  <h3>スタッフ一覧</h3>
-  <a href="{!! url('staffCreate', [$id]) !!}">新規作成</a><br><br>
-
-  <hr><br>
-
+  <h3>スタッフ情報編集</h3>
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>
       <th>氏名(HN)</th>
@@ -21,33 +17,32 @@
       <th>経験</th>
       <th>役職</th>
       <th>データの編集</th>
-      <th>データの削除</th>
     </tr>
 
-    @foreach($staffs as $staff)
-      <tr>
+    <tr>
+      {!! Form::open() !!}
         <td align="center">
-          {{ $staff->name }}
+          {{ $staffs[0]->name }}
         </td>
 
         <td align="center">
-          {{ $staff->position }}
+          {{ $staffs[0]->position }}
         </td>
 
         <td align="center">
-          {{ $staff->mail }}
+          {{ $staffs[0]->mail }}
         </td>
 
         <td align="center">
-          {{ $staff->tel }}
+          {{ $staffs[0]->tel }}
         </td>
 
         <td align="center">
-          {{ $staff->twitter }}
+          {{ $staffs[0]->twitter }}
         </td>
 
         <td align="center">
-          @if ( $staff->experience == 1 )
+          @if ( $staffs[0]->experience == 1 )
             <p>経験有</p>
           @else
             <p>経験無</p>
@@ -55,24 +50,21 @@
         </td>
 
         <td align="center">
-          @if ( $staff->rank == 1 )
+          @if ( $staffs[0]->rank == 1 )
             <p>主催</p>
-          @elseif ( $staff->rank == 2 )
+          @elseif ( $staffs[0]->rank == 2 )
             <p>副主催</p>
-          @elseif ( $staff->rank == 3 )
+          @elseif ( $staffs[0]->rank == 3 )
             <p>その他</p>
           @endif
         </td>
 
         <td align="center">
-          <a href="{!! url('/staffUpdate', [$staff->id]) !!}"><input type="button" value="編集する"></a>
-        </td>
-
-        <td align="center">
           <p>未実装</p>
         </td>
+
       </tr>
-    @endforeach
+    {!! Form::close() !!}
   </table>
 
   <br><hr><br>

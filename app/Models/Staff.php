@@ -61,4 +61,10 @@ class Staff extends Model {
     return true;
   }
 
+  public function deleteData($id) {
+    DB::delete('delete from staffs where id = '. $id);
+
+    return true;
+  }
+
 }

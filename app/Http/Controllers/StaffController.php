@@ -62,14 +62,17 @@ class StaffController extends Controller {
     return "更新しました。";
   }
 
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
+  public function deleteConfirm($id) {
+    $staffs = DB::select('select * from staffs where id ='.$id);
+
+    return view('staff.delete', compact('staffs'));
   }
+
+  public function delete($id) {
+    $staff = new Staff();
+    $staff->deleteData($id);
+
+    return "削除しました。";
+  }
+
 }

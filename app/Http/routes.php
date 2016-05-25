@@ -40,6 +40,9 @@ Route::post('/staffCreate/{id}', 'StaffController@insert');
 Route::get('/staffUpdate/{id}', 'StaffController@updateConfirm');
 Route::post('/staffUpdate/{id}', 'StaffController@update');
 
+Route::get('/staffDelete/{id}', 'StaffController@deleteConfirm');
+Route::post('/staffDelete/{id}', 'StaffController@delete');
+
 /*
  * サークルに関連するルート
  */

@@ -69,7 +69,7 @@
         </td>
 
         <td align="center">
-          <p>未実装</p>
+          <a href="{!! url('/staffDelete', [$staff->id]) !!}"><input type="button" value="削除する"></a>
         </td>
       </tr>
     @endforeach

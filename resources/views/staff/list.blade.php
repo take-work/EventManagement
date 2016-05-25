@@ -4,24 +4,26 @@
 スタッフ一覧
 @endsection
 
+@if (Session::has('flash_message'))
+  <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
+@endif
+
 @section('content')
 
   <h3>スタッフ一覧</h3>
-  <a href="{!! url('staffCreate', [$id]) !!}">新規作成</a><br><br>
+  <a href="{!! url('staffCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br><br>
 
-  <hr><br>
-
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
+  <table class="table table-responsive table-bordered">
     <tr>
-      <th>氏名(HN)</th>
-      <th>担当 / 持ち場</th>
-      <th>メールアドレス</th>
-      <th>電話番号</th>
-      <th>Twitter</th>
-      <th>経験</th>
-      <th>役職</th>
-      <th>データの編集</th>
-      <th>データの削除</th>
+      <th><div class="text-center">氏名(HN)</div></th>
+      <th><div class="text-center">担当 / 持ち場</div></th>
+      <th><div class="text-center">メールアドレス</div></th>
+      <th><div class="text-center">電話番号</div></th>
+      <th><div class="text-center">Twitter</div></th>
+      <th><div class="text-center">経験</div></th>
+      <th><div class="text-center">役職</div></th>
+      <th><div class="text-center">データの編集</div></th>
+      <th><div class="text-center">データの削除</div></th>
     </tr>
 
     @foreach($staffs as $staff)
@@ -74,7 +76,5 @@
       </tr>
     @endforeach
   </table>
-
-  <br><hr><br>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
 @endsection

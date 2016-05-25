@@ -37,7 +37,9 @@ class StaffController extends Controller {
     $inserts = new Staff();
     $inserts->insert($inputs);
 
-    return "登録しました。";
+    \Session::flash('flash_title', 'スタッフ新規登録');
+    \Session::flash('flash_message', '新スタッフ「'. $inputs['name'] .'」さんを新規登録しました。');
+    return redirect('/staffList/'. $inputs['id']);
   }
 
   /**

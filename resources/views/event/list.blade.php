@@ -57,7 +57,11 @@
         </td>
 
         <td align="center">
-          <a href="{!! url('/moneyCreate', [$event->id]) !!}">\{{ $moneyCounter[$event->id] }}</a>
+          @if (! $moneyCounter[$event->id] == null )
+            <a href="{!! url('/moneyCreate', [$event->id]) !!}">\{{ $moneyCounter[$event->id] }}</a>
+          @else 
+            <a href="{!! url('/moneyCreate', [$event->id]) !!}">\0</a>
+          @endif
         </td>
 
         <td align="center">

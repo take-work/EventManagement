@@ -38,7 +38,7 @@ class Money extends Model {
 
       $total = $hundred + $five_hundred + $thousand + $five_thousand + $million;
     } else {
-      $total = 0;
+      $total = null;
     }
 
     return $total;

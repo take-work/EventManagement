@@ -7,6 +7,9 @@
 @section('content')
 
   <h3>スタッフ情報編集</h3>
+
+  <hr><br>
+
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>
       <th>氏名(HN)</th>
@@ -22,23 +25,23 @@
     <tr>
       {!! Form::open() !!}
         <td align="center">
-          <input name="name" type="text" id="name" size="16" value="{{ $staffs[0]->name }}" />
+          <input name="name" type="text" id="name" value="{{ $staffs[0]->name }}" />
         </td>
 
         <td align="center">
-          <input name="position" type="text" id="position" size="16" value="{{ $staffs[0]->position }}" />
+          <input name="position" type="text" id="position" value="{{ $staffs[0]->position }}" />
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" size="16" value="{{ $staffs[0]->mail }}" />
+          <input name="mail" type="text" id="mail" value="{{ $staffs[0]->mail }}" />
         </td>
 
         <td align="center">
-          <input name="tel" type="text" id="tel" size="16" value="{{ $staffs[0]->tel }}" />
+          <input name="tel" type="text" id="tel" value="{{ $staffs[0]->tel }}" />
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" size="16" value="{{ $staffs[0]->twitter }}" />
+          <input name="mail" type="text" id="mail" value="{{ $staffs[0]->twitter }}" />
         </td>
 
         <td align="center">
@@ -63,5 +66,6 @@
   </table>
 
   <br><hr><br>
-  <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
+  <a href="{!! url('/staffList', [$staffs[0]->event_id]) !!}">スタッフ一覧に戻る</a><br>
+  <a href="{!! url('list') !!}">イベント一覧に戻る</a><br>
 @endsection

@@ -7,6 +7,9 @@
 @section('content')
   <h3>金額情報入力</h3>
 
+  <hr><br>
+
+
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>
       <th>100円玉</th>

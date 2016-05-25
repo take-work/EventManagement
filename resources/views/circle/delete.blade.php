@@ -65,5 +65,6 @@
   </table>
 
   <br><hr><br>
+  <a href="{!! url('circleList', [$circles[0]->event_id]) !!}">サークル一覧に戻る</a><br>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
 @endsection

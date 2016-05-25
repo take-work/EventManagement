@@ -1,11 +1,13 @@
 @extends('layout')
 
 @section('title')
-スタッフ追加
+スタッフ登録
 @endsection
 
 @section('content')
   <h3>スタッフ情報入力</h3>
+
+  <hr><br>
 
   <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
     <tr>
@@ -54,7 +56,7 @@
 
         <td align="center">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id" value={{ $id }}>
+          <input type="hidden" name="id" value="{{ $id }}">
           <input type="submit" value="登録する" />
         </td>
       {!! Form::close() !!}
@@ -62,5 +64,6 @@
   </table>
 
   <br><hr><br>
-  <a href="{!! url('staffList', [$id]) !!}">スタッフ一覧に戻る</a><br><br>
+  <a href="{!! url('/staffList', [$id]) !!}">スタッフ一覧に戻る</a><br>
+  <a href="{!! url('/list') !!}">イベント一覧に戻る</a>
 @endsection

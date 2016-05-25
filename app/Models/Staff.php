@@ -14,16 +14,6 @@ class Staff extends Model {
    */
   protected $table = 'staffs';
 
-  public function select($id = 0) {
-    if ($id == 0) {
-      $staffs = DB::select('select * from staffs');
-    } else {
-      $staffs = DB::select('select * from staffs where event_id ='.$id);
-    }
-  
-    return $staffs;
-  }
-
   public function insert($inputs) {
     $now = date("Y-m-d");
 

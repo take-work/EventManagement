@@ -46,4 +46,13 @@ class CircleController extends Controller {
     return view('circle.update', compact('circles'));
   }
 
+  public function update() {
+    $inputs = \Request::all();
+    $circle = new Circle();
+
+    $circle->updateData($inputs);
+
+    return "更新しました。";
+  }
+
 }

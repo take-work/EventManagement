@@ -52,6 +52,7 @@ Route::get('/circleCreate/{id}', 'CircleController@create');
 Route::post('/circleCreate/{id}', 'CircleController@insert');
 
 Route::get('/circleUpdate/{id}', 'CircleController@updateConfirm');
+Route::post('/circleUpdate/{id}', 'CircleController@update');
 
 /*
  * 金額管理に関連するルート

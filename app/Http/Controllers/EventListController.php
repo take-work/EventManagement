@@ -10,13 +10,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Staff;
 use App\Models\Circle;
+use App\Models\Money;
 
 class EventListController extends Controller {
 
   public function show() {
-    $staff = new Staff();
+    $staff  = new Staff();
     $circle = new Circle();
-    $event = new Event();
+    $event  = new Event();
+    $money  = new Money();
 
     $events = $event->select();
 
@@ -28,9 +30,12 @@ class EventListController extends Controller {
 
       $circleCount = $circle->count($eventId);
       $circleCounter[$eventId] = $circleCount;
+
+      $totalMoney = $money->totalMpney($eventId);
+      $moneyCounter[$eventId] = $totalMoney;
     }
 
-    return view('event.list', compact('events', 'staffCounter', 'circleCounter'));
+    return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyCounter'));
   }
 
   public function create() {

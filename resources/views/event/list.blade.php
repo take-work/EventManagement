@@ -57,7 +57,7 @@
         </td>
 
         <td align="center">
-          <a href="{!! url('/moneyCreate', [$event->id]) !!}">金額管理</a>
+          <a href="{!! url('/moneyCreate', [$event->id]) !!}">\{{ $moneyCounter[$event->id] }}</a>
         </td>
 
         <td align="center">

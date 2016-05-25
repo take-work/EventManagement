@@ -23,4 +23,24 @@ class Money extends Model {
 
     return true;
   }
+
+  public function totalMpney($id) {
+    $money = DB::select('select * from money where event_id ='.$id);
+
+    if (!empty($money)) {
+      foreach ($money as $coin) {
+        $hundred       = $coin->hundred * 100;
+        $five_hundred  = $coin->five_hundred * 500;
+        $thousand      = $coin->thousand * 1000;
+        $five_thousand = $coin->five_thousand * 5000;
+        $million       = $coin->million * 10000;
+      }
+
+      $total = $hundred + $five_hundred + $thousand + $five_thousand + $million;
+    } else {
+      $total = 0;
+    }
+
+    return $total;
+  }
 }

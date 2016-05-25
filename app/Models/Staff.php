@@ -14,31 +14,51 @@ class Staff extends Model {
    */
   protected $table = 'staffs';
 
+  public function count($eventId) {
+    $counter = DB::table('staffs')
+                 ->select(DB::raw('count(*) as counter'))
+                 ->where('event_id', $eventId)
+                 ->get();
+
+    return $counter;
+  }
+
   public function insert($inputs) {
     $now = date("Y-m-d");
 
-    DB::table('staffs')->insert([
-      'event_id' => $inputs['id'],
-      'name' => $inputs['name'],
-      'position' => $inputs['position'],
-      'mail' => $inputs['mail'],
-      'tel' => $inputs['tel'],
-      'twitter' => $inputs['twitter'],
-      'experience' => $inputs['experience'],
-      'rank' => $inputs['rank'],
-      'updated_at' => $now,
-      'created_at' => $now
-    ]);
+    DB::table('staffs')
+      ->insert([
+        'event_id'   => $inputs['id'],
+        'name'       => $inputs['name'],
+        'position'   => $inputs['position'],
+        'mail'       => $inputs['mail'],
+        'tel'        => $inputs['tel'],
+        'twitter'    => $inputs['twitter'],
+        'experience' => $inputs['experience'],
+        'rank'       => $inputs['rank'],
+        'updated_at' => $now,
+        'created_at' => $now
+      ]);
 
   return true;
   }
 
-  public function count($eventId) {
-    $counter = DB::table('staffs')
-      ->select(DB::raw('count(*) as counter'))
-      ->where('event_id', $eventId)
-      ->get();
+  public function updateData($inputs) {
+    $now = date("Y-m-d");
 
-    return $counter;
+    DB::table('staffs')
+      ->where('id', $inputs['id'])
+      ->update([
+        'name'       => $inputs['name'],
+        'position'   => $inputs['position'],
+        'mail'       => $inputs['mail'],
+        'tel'        => $inputs['tel'],
+        'experience' => $inputs['experience'],
+        'rank'       => $inputs['rank'],
+        'updated_at' => $now
+      ]);
+
+    return true;
   }
+
 }

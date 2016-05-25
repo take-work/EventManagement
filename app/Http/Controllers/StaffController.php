@@ -53,6 +53,15 @@ class StaffController extends Controller {
     return view('staff.update', compact('staffs'));
   }
 
+  public function update() {
+    $inputs = \Request::all();
+    $staff = new Staff();
+
+    $staff->updateData($inputs);
+
+    return "更新しました。";
+  }
+
   /**
    * Remove the specified resource from storage.
    *

@@ -16,51 +16,46 @@
       <th>Twitter</th>
       <th>経験</th>
       <th>役職</th>
-      <th>データの編集</th>
+      <th>データの更新</th>
     </tr>
 
     <tr>
       {!! Form::open() !!}
         <td align="center">
-          {{ $staffs[0]->name }}
+          <input name="name" type="text" id="name" size="16" value="{{ $staffs[0]->name }}" />
         </td>
 
         <td align="center">
-          {{ $staffs[0]->position }}
+          <input name="position" type="text" id="position" size="16" value="{{ $staffs[0]->position }}" />
         </td>
 
         <td align="center">
-          {{ $staffs[0]->mail }}
+          <input name="mail" type="text" id="mail" size="16" value="{{ $staffs[0]->mail }}" />
         </td>
 
         <td align="center">
-          {{ $staffs[0]->tel }}
+          <input name="tel" type="text" id="tel" size="16" value="{{ $staffs[0]->tel }}" />
         </td>
 
         <td align="center">
-          {{ $staffs[0]->twitter }}
+          <input name="mail" type="text" id="mail" size="16" value="{{ $staffs[0]->twitter }}" />
         </td>
 
         <td align="center">
-          @if ( $staffs[0]->experience == 1 )
-            <p>経験有</p>
-          @else
-            <p>経験無</p>
-          @endif
+          <input name="experience" type="radio" id="experience1" value="1" <?php if ($staffs[0]->experience == 1) { ?> checked="checked" <?php } ?> /><label for="experience1">経験有</label><br>
+          <input name="experience" type="radio" id="experience2" value="2" <?php if ($staffs[0]->experience == 2) { ?> checked="checked" <?php } ?> /><label for="experience2">経験無</label>
         </td>
 
         <td align="center">
-          @if ( $staffs[0]->rank == 1 )
-            <p>主催</p>
-          @elseif ( $staffs[0]->rank == 2 )
-            <p>副主催</p>
-          @elseif ( $staffs[0]->rank == 3 )
-            <p>その他</p>
-          @endif
+          <input name="rank" type="radio" id="rank1" value="1" <?php if ($staffs[0]->rank == 1) { ?> checked="checked" <?php } ?>/><label for="rank1">主催</label><br>
+          <input name="rank" type="radio" id="rank2" value="2" <?php if ($staffs[0]->rank == 2) { ?> checked="checked" <?php } ?>/><label for="rank2">副主催</label><br>
+          <input name="rank" type="radio" id="rank3" value="3" <?php if ($staffs[0]->rank == 3) { ?> checked="checked" <?php } ?>/><label for="rank3">なし</label>
         </td>
 
         <td align="center">
-          <p>未実装</p>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="id" value="{{ $staffs[0]->id }}">
+          <input type="submit" value="変更する" />
         </td>
 
       </tr>

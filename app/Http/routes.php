@@ -38,6 +38,7 @@ Route::get('/staffCreate/{id}', 'StaffController@create');
 Route::post('/staffCreate/{id}', 'StaffController@insert');
 
 Route::get('/staffUpdate/{id}', 'StaffController@updateConfirm');
+Route::post('/staffUpdate/{id}', 'StaffController@update');
 
 /*
  * サークルに関連するルート

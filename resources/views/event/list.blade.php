@@ -65,7 +65,7 @@
         </td>
 
         <td align="center">
-          <p>未実装</p>
+          \{{ $moneyList[$event->id] }}
         </td>
 
         <td align="center">

@@ -60,4 +60,10 @@ class Money extends Model {
 
     return true;
   }
+
+  public function calculater($totalMoney = 0, $price = 0) {
+    $moneyCalc = $totalMoney - $price;
+
+    return $moneyCalc;
+  }
 }

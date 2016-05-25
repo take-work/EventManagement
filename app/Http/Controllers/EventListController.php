@@ -24,6 +24,7 @@ class EventListController extends Controller {
 
     foreach ($events as $id) {
       $eventId = $id->id;
+      $eventPrice = $id->price;
 
       $staffCount = $staff->count($eventId);
       $staffCounter[$eventId] = $staffCount;
@@ -33,9 +34,12 @@ class EventListController extends Controller {
 
       $totalMoney = $money->totalMpney($eventId);
       $moneyCounter[$eventId] = $totalMoney;
+
+      $moneyCalc = $money->calculater($totalMoney, $eventPrice);
+      $moneyList[$eventId] = $moneyCalc;
     }
 
-    return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyCounter'));
+    return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
   }
 
   public function create() {

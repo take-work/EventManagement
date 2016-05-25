@@ -18,7 +18,7 @@ class Staff extends Model {
     if ($id == 0) {
       $staffs = DB::select('select * from staffs');
     } else {
-      $staffs = DB::select('select * from staffs where id ='.$id);
+      $staffs = DB::select('select * from staffs where event_id ='.$id);
     }
   
     return $staffs;

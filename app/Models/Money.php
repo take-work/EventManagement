@@ -11,14 +11,14 @@ class Money extends Model {
     $now = date("Y-m-d");
 
     DB::table('money')->insert([
-      'event_id' => $inputs['id'],
-      'hundred' => $inputs['hundred'],
-      'five_hundred' => $inputs['five_hundred'],
-      'thousand' => $inputs['thousand'],
+      'event_id'      => $inputs['id'],
+      'hundred'       => $inputs['hundred'],
+      'five_hundred'  => $inputs['five_hundred'],
+      'thousand'      => $inputs['thousand'],
       'five_thousand' => $inputs['five_thousand'],
-      'million' => $inputs['million'],
-      'created_at' => $now,
-      'updated_at' => $now
+      'million'       => $inputs['million'],
+      'created_at'    => $now,
+      'updated_at'    => $now
     ]);
 
     return true;

@@ -31,11 +31,11 @@ class Event extends Model {
 
     DB::table('events')
       ->insert([
-        'name' => $inputs['eventName'],
-        'host' => $inputs['host'],
-        'price' => $inputs['price'],
-        'startDay' => $startDay,
-        'endDay' => $endDay,
+        'name'       => $inputs['eventName'],
+        'host'       => $inputs['host'],
+        'price'      => $inputs['price'],
+        'startDay'   => $startDay,
+        'endDay'     => $endDay,
         'created_at' => $now,
         'updated_at' => $now
       ]);
@@ -49,11 +49,11 @@ class Event extends Model {
     DB::table('events')
       ->where('id', $inputs['id'])
       ->update([
-        'name' => $inputs['eventName'],
-        'host' => $inputs['host'],
-        'price' => $inputs['price'],
-        'startDay' => $inputs['startDay'],
-        'endDay' => $inputs['endDay'],
+        'name'       => $inputs['eventName'],
+        'host'       => $inputs['host'],
+        'price'      => $inputs['price'],
+        'startDay'   => $inputs['startDay'],
+        'endDay'     => $inputs['endDay'],
         'updated_at' => $now
       ]);
 

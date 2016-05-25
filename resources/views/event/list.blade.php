@@ -58,7 +58,7 @@
 
         <td align="center">
           @if (! $moneyCounter[$event->id] == null )
-            <a href="{!! url('/moneyCreate', [$event->id]) !!}">\{{ $moneyCounter[$event->id] }}</a>
+            <a href="{!! url('/moneyUpdate', [$event->id]) !!}">\{{ $moneyCounter[$event->id] }}</a>
           @else 
             <a href="{!! url('/moneyCreate', [$event->id]) !!}">\0</a>
           @endif

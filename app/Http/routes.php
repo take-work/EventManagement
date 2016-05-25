@@ -62,3 +62,6 @@ Route::post('/circleDelete/{id}', 'CircleController@delete');
  */
 Route::get('/moneyCreate/{id}', 'MoneyController@create');
 Route::post('/moneyCreate/{id}', 'MoneyController@insert');
+
+Route::get('/moneyUpdate/{id}', 'MoneyController@updateConfirm');
+Route::post('/moneyUpdate/{id}', 'MoneyController@update');

@@ -43,4 +43,21 @@ class Money extends Model {
 
     return $total;
   }
+
+  public function updateData($inputs) {
+    $now = date("Y-m-d");
+
+    DB::table('money')
+      ->where('id', $inputs['id'])
+      ->update([
+        'hundred'       => $inputs['hundred'],
+        'five_hundred'  => $inputs['five_hundred'],
+        'thousand'      => $inputs['thousand'],
+        'five_thousand' => $inputs['five_thousand'],
+        'million'       => $inputs['million'],
+        'updated_at'    => $now
+      ]);
+
+    return true;
+  }
 }

@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-金額管理(追加)
+金額情報入力
 @endsection
 
 @section('content')

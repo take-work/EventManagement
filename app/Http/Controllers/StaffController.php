@@ -18,7 +18,7 @@ class StaffController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function show(Request $request, $id) {
-    $staffs = DB::select('select * from staffs where event_id ='.$id);
+    $staffs = DB::select('select * from staffs where event_id = '. $id .' order by rank');
 
     return view('staff.list', compact('staffs', 'id'));
   }

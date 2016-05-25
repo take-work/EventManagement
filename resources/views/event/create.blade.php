@@ -20,15 +20,11 @@
     <tr>
       {!! Form::open() !!}
         <td align="center">
-          西暦<input name="startYear" type="text" id="startYear" size="8" maxlength="10" />年 &nbsp;
-          <input name="startMonth" type="text" id="startMonth" size="4" maxlength="4" />月 &nbsp;
-          <input name="startDay" type="text" id="startDay" size="4" maxlength="4" />日
+          <input name="startDay" type="text" id="startDay" maxlength="4" />
         </td>
 
         <td align="center">
-          西暦<input name="endYear" type="text" id="endYear" size="8" maxlength="10" />年 &nbsp;
-          <input name="endMonth" type="text" id="endMonth" size="4" maxlength="4" />月 &nbsp;
-          <input name="endDay" type="text" id="endDay" size="4" maxlength="4" />日
+          <input name="endDay" type="text" id="endDay" maxlength="4" />
         </td>
 
         <td align="center">

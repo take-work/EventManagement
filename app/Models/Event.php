@@ -24,9 +24,6 @@ class Event extends Model {
   }
 
   public function insert($inputs) {
-    $startDay = $inputs['startYear'] .'/'.$inputs['startMonth'].'/'.$inputs['startDay'];
-    $endDay = $inputs['endYear'] .'/'.$inputs['endMonth'].'/'.$inputs['endDay'];
-
     $now = date("Y-m-d");
 
     DB::table('events')
@@ -34,8 +31,8 @@ class Event extends Model {
         'name'       => $inputs['eventName'],
         'host'       => $inputs['host'],
         'price'      => $inputs['price'],
-        'startDay'   => $startDay,
-        'endDay'     => $endDay,
+        'startDay'   => $inputs['startDay'],
+        'endDay'     => $inputs['endDay'],
         'created_at' => $now,
         'updated_at' => $now
       ]);

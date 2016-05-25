@@ -65,7 +65,13 @@
         </td>
 
         <td align="center">
-          \{{ $moneyList[$event->id] }}
+          @if ( $moneyList[$event->id] < 0 )
+            <font color="red"><b>\{{ $moneyList[$event->id] }}</b></font>
+          @elseif ( $moneyList[$event->id] > 0 )
+            \{{ $moneyList[$event->id] }}
+          @else
+            <font color="#1f90ff">\{{ $moneyList[$event->id] }}</font>
+          @endif
         </td>
 
         <td align="center">

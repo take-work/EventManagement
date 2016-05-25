@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 /*
- * イベントに関連するルート
+ * イベント管理に関連するルート
  */
 
 Route::get('/list', 'EventListController@show');
@@ -30,7 +30,7 @@ Route::get('/delete/{id}', 'EventListController@deleteConfirm');
 Route::post('/delete/{id}', 'EventListController@delete');
 
 /*
- * スタッフに関連するルート
+ * スタッフ管理に関連するルート
  */
 
 Route::get('/staffList/{id}', 'StaffController@show');
@@ -44,7 +44,7 @@ Route::get('/staffDelete/{id}', 'StaffController@deleteConfirm');
 Route::post('/staffDelete/{id}', 'StaffController@delete');
 
 /*
- * サークルに関連するルート
+ * サークル管理に関連するルート
  */
 
 Route::get('/circleList/{id}', 'CircleController@show');
@@ -53,6 +53,9 @@ Route::post('/circleCreate/{id}', 'CircleController@insert');
 
 Route::get('/circleUpdate/{id}', 'CircleController@updateConfirm');
 Route::post('/circleUpdate/{id}', 'CircleController@update');
+
+Route::get('/circleDelete/{id}', 'CircleController@deleteConfirm');
+Route::post('/circleDelete/{id}', 'CircleController@delete');
 
 /*
  * 金額管理に関連するルート

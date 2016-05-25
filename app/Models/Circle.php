@@ -51,7 +51,13 @@ class Circle extends Model {
         'chair'       => $inputs['chair'],
         'updated_at'  => $now
       ]);
-  
+
+    return true;
+  }
+
+  public function deleteData($id) {
+    DB::delete('delete from circles where id = '. $id);
+
     return true;
   }
 

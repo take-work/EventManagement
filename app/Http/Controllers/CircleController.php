@@ -55,4 +55,17 @@ class CircleController extends Controller {
     return "更新しました。";
   }
 
+  public function deleteConfirm($id) {
+    $circles = DB::select('select * from circles where id ='.$id);
+
+    return view('circle.delete', compact('circles'));
+  }
+
+  public function delete($id) {
+    $circle = new Circle();
+    $circle->deleteData($id);
+
+    return "削除しました。";
+  }
+
 }

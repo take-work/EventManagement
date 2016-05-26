@@ -5,22 +5,24 @@
 @endsection
 
 @section('content')
+
   <h3>金額情報編集</h3>
 
-  <hr><br>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr>
+        <th>100円玉</th>
+        <th>500円玉</th>
+        <th>1000円札</th>
+        <th>5000円札</th>
+        <th>10000円札</th>
+        <th>データの更新</th>
+      </tr>
+    </thead>
 
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>100円玉</th>
-      <th>500円玉</th>
-      <th>1000円札</th>
-      <th>5000円札</th>
-      <th>10000円札</th>
-      <th>データの更新</th>
-    </tr>
-
-    <tr>
-      {!! Form::open() !!}
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           <input name="hundred" type="text" id="hundred" size="6" value="{{ $moneyList[0]->hundred }}" align="center" />
         </td>
@@ -46,10 +48,12 @@
           <input type="hidden" name="id" value="{{ $moneyList[0]->id }}">
           <input type="submit" value="更新する" />
         </td>
-      {!! Form::close() !!}
-    </tr>
+      </tr>
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
 
-  <br><hr><br>
-  <a href="{!! url('/list') !!}">イベント一覧に戻る</a><br><br>
+  <hr>
+  <a href="{!! url('/list') !!}">イベント一覧に戻る</a>
 @endsection

@@ -12,8 +12,6 @@ use App\Models\Staff;
 use App\Models\Circle;
 use App\Models\Money;
 
-use DB;
-
 class EventListController extends Controller {
 
   public function show() {
@@ -48,10 +46,12 @@ class EventListController extends Controller {
     return view('event.create');
   }
 
-  public function insert() {
-    $inputs = \Request::all();
-
+  public function insert(Request $request) {
     $event = new Event();
+
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
+
     $event->insert($inputs);
 
     \Session::flash('flash_message', '新イベント「'. $inputs['eventName'] .'」を新規登録しました。');
@@ -92,5 +92,17 @@ class EventListController extends Controller {
 
     \Session::flash('flash_message', $name .'を削除しました。');
     return redirect('/list');
+  }
+
+  public function validationRules() {
+    $rules = [
+      'startDay'  => 'required',
+      'endDay'    => 'required',
+      'eventName' => 'required',
+      'host'      => 'required',
+      'price'     => 'required | integer'
+    ];
+
+    return $rules;
   }
 }

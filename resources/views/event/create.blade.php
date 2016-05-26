@@ -24,19 +24,19 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="startDay" type="text" id="startDay" maxlength="4" />
+          <input name="startDay" type="text" id="startDay" />
         </td>
 
         <td align="center">
-          <input name="endDay" type="text" id="endDay" maxlength="4" />
+          <input name="endDay" type="text" id="endDay" />
         </td>
 
         <td align="center">
-          <input name="eventName" type="text" id="eventName" size="20" maxlength="255" />
+          <input name="eventName" type="text" id="eventName" size="20" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" size="20" maxlength="255" />
+          <input name="host" type="text" id="host" size="20" />
         </td>
 
         <td align="center">

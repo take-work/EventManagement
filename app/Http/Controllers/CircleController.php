@@ -37,7 +37,8 @@ class CircleController extends Controller {
     $inserts = new Circle();
     $inserts->insert($inputs);
 
-    return "登録しました。";
+    \Session::flash('flash_message', '新サークル「'. $inputs['name'] .'」を新規登録しました。');
+    return redirect('/circleList/'. $inputs['id']);
   }
 
   public function updateConfirm(Request $request, $id) {
@@ -52,7 +53,10 @@ class CircleController extends Controller {
 
     $circle->updateData($inputs);
 
-    return "更新しました。";
+    $circles = DB::select('select * from circles where id = '. $inputs['id']);
+
+    \Session::flash('flash_message', $circles[0]->circle_name .'の情報を更新しました。');
+    return redirect('/circleList/'. $circles[0]->event_id);
   }
 
   public function deleteConfirm($id) {
@@ -63,9 +67,14 @@ class CircleController extends Controller {
 
   public function delete($id) {
     $circle = new Circle();
+
+    $circles = DB::select('select * from circles where id = '. $id);
+    $name = $circles[0]->circle_name;
+    $eventId = $circles[0]->event_id;
+
     $circle->deleteData($id);
 
-    return "削除しました。";
-  }
+    \Session::flash('flash_message', $name .'の情報を削除しました。');
+    return redirect('/circleList/'. $eventId);  }
 
 }

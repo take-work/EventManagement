@@ -21,43 +21,45 @@
     </tr>
 
   {!! Form::open() !!}
+  @foreach($circles as $circle)
     <tbody>
       <tr>
         <td align="center">
-          <input name="number" type="text" id="number" value="{{ $circles[0]->number }}" />
+          <input name="number" type="text" id="number" value="{{ $circle->number }}" />
         </td>
 
         <td align="center">
-          <input name="space" type="text" id="space" value="{{ $circles[0]->space }}" />
+          <input name="space" type="text" id="space" value="{{ $circle->space }}" />
         </td>
 
         <td align="center">
-          <input name="name" type="text" id="name" maxlength="255" value="{{ $circles[0]->circle_name }}" />
+          <input name="name" type="text" id="name" maxlength="255" value="{{ $circle->circle_name }}" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" maxlength="255" value="{{ $circles[0]->host }}" />
+          <input name="host" type="text" id="host" maxlength="255" value="{{ $circle->host }}" />
         </td>
 
         <td align="center">
-          <input name="staff" type="text" id="staff" maxlength="10" size="6" value="{{ $circles[0]->staff }}" />人
+          <input name="staff" type="text" id="staff" maxlength="10" size="6" value="{{ $circle->staff }}" />人
         </td>
 
         <td align="center">
-          <input name="desk" type="text" id="desk" maxlength="10" size="6" value="{{ $circles[0]->desk }}" />個
+          <input name="desk" type="text" id="desk" maxlength="10" size="6" value="{{ $circle->desk }}" />個
         </td>
 
         <td align="center">
-          <input name="chair" type="text" id="chair" maxlength="10" size="6" value="{{ $circles[0]->chair }}" />個
+          <input name="chair" type="text" id="chair" maxlength="10" size="6" value="{{ $circle->chair }}" />個
         </td>
 
         <td align="center">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id" value="{{ $circles[0]->id }}">
+          <input type="hidden" name="id" value="{{ $circle->id }}">
           <input type="submit" value="更新する" />
         </td>
       </tr>
     </tbody>
+  @endforeach
   {!! Form::close() !!}
 
   </table>

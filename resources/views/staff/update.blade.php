@@ -21,46 +21,48 @@
     </tr>
 
   {!! Form::open() !!}
+  @foreach($staffs as $staff)
     <tbody>
       <tr>
         <td align="center">
-          <input name="name" type="text" id="name" value="{{ $staffs[0]->name }}" />
+          <input name="name" type="text" id="name" value="{{ $staff->name }}" />
         </td>
 
         <td align="center">
-          <input name="position" type="text" id="position" value="{{ $staffs[0]->position }}" />
+          <input name="position" type="text" id="position" value="{{ $staff->position }}" />
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" value="{{ $staffs[0]->mail }}" />
+          <input name="mail" type="text" id="mail" value="{{ $staff->mail }}" />
         </td>
 
         <td align="center">
-          <input name="tel" type="text" id="tel" value="{{ $staffs[0]->tel }}" />
+          <input name="tel" type="text" id="tel" value="{{ $staff->tel }}" />
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" value="{{ $staffs[0]->twitter }}" />
+          <input name="mail" type="text" id="mail" value="{{ $staff->twitter }}" />
         </td>
 
         <td align="center">
-          <input name="experience" type="radio" id="experience1" value="1" <?php if ($staffs[0]->experience == 1) { ?> checked="checked" <?php } ?> /><label for="experience1">経験有</label><br>
-          <input name="experience" type="radio" id="experience2" value="2" <?php if ($staffs[0]->experience == 2) { ?> checked="checked" <?php } ?> /><label for="experience2">経験無</label>
+          <input name="experience" type="radio" id="experience1" value="1" <?php if ($staff->experience == 1) { ?> checked="checked" <?php } ?> /><label for="experience1">経験有</label><br>
+          <input name="experience" type="radio" id="experience2" value="2" <?php if ($staff->experience == 2) { ?> checked="checked" <?php } ?> /><label for="experience2">経験無</label>
         </td>
 
         <td align="center">
-          <input name="rank" type="radio" id="rank1" value="1" <?php if ($staffs[0]->rank == 1) { ?> checked="checked" <?php } ?>/><label for="rank1">主催</label><br>
-          <input name="rank" type="radio" id="rank2" value="2" <?php if ($staffs[0]->rank == 2) { ?> checked="checked" <?php } ?>/><label for="rank2">副主催</label><br>
-          <input name="rank" type="radio" id="rank3" value="3" <?php if ($staffs[0]->rank == 3) { ?> checked="checked" <?php } ?>/><label for="rank3">なし</label>
+          <input name="rank" type="radio" id="rank1" value="1" <?php if ($staff->rank == 1) { ?> checked="checked" <?php } ?>/><label for="rank1">主催</label><br>
+          <input name="rank" type="radio" id="rank2" value="2" <?php if ($staff->rank == 2) { ?> checked="checked" <?php } ?>/><label for="rank2">副主催</label><br>
+          <input name="rank" type="radio" id="rank3" value="3" <?php if ($staff->rank == 3) { ?> checked="checked" <?php } ?>/><label for="rank3">なし</label>
         </td>
 
         <td align="center">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id" value="{{ $staffs[0]->id }}">
+          <input type="hidden" name="id" value="{{ $staff->id }}">
           <input type="submit" value="変更する" />
         </td>
       </tr>
     </tbody>
+  @endforeach
   {!! Form::close() !!}
 
   </table>

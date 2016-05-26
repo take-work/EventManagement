@@ -21,35 +21,37 @@
     </thead>
 
   {!! Form::open() !!}
+  @foreach($events as $event)
     <tbody>
       <tr>
         <td align="center">
-          <input name="startDay" type="text" id="startYear" size="16" value="{{ $events[0]->startDay }}" />
+          <input name="startDay" type="text" id="startYear" size="16" value="{{ $event->startDay }}" />
         </td>
 
         <td align="center">
-          <input name="endDay" type="text" id="endDay" size="16" value="{{ $events[0]->endDay }}" />
+          <input name="endDay" type="text" id="endDay" size="16" value="{{ $event->endDay }}" />
         </td>
 
         <td align="center">
-          <input name="eventName" type="text" id="eventName" value="{{ $events[0]->name }}" />
+          <input name="eventName" type="text" id="eventName" value="{{ $event->name }}" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" value="{{ $events[0]->host }}" />
+          <input name="host" type="text" id="host" value="{{ $event->host }}" />
         </td>
 
         <td align="center">
-          <input name="price" type="text" id="price" size="10" value="{{ $events[0]->price }}" />円
+          <input name="price" type="text" id="price" size="10" value="{{ $event->price }}" />円
         </td>
 
         <td align="center">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id" value="{{ $events[0]->id }}">
+          <input type="hidden" name="id" value="{{ $event->id }}">
           <input type="submit" value="変更する" />
         </td>
       </tr>
     </tbody>
+  @endforeach
   {!! Form::close() !!}
 
   </table>

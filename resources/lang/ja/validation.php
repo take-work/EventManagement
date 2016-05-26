@@ -34,7 +34,7 @@ return [
     'different'            => 'The :attribute and :other must be different.',
     'digits'               => 'The :attribute must be :digits digits.',
     'digits_between'       => 'The :attribute must be between :min and :max digits.',
-    'email'                => 'The :attribute must be a valid email address.',
+    'email'                => 'メールアドレスは正しい形式で入力してください。',
     'filled'               => 'The :attribute field is required.',
     'exists'               => 'The selected :attribute is invalid.',
     'image'                => 'The :attribute must be an image.',
@@ -116,7 +116,12 @@ return [
       'circleLeader' => '代表者',
       'staff'        => 'スタッフ数',
       'desk'         => '机の数',
-      'chair'        => '椅子の数'
+      'chair'        => '椅子の数',
+
+      // スタッフ登録・更新
+      'staffName'  => '名前(HN)',
+      'experience' => '経験有 / 経験無',
+      'rank'       => '役職',
     ],
 
 ];

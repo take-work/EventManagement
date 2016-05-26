@@ -28,17 +28,20 @@ class StaffController extends Controller {
    *
    * @return \Illuminate\Http\Response
    */
-  public function create(Request $request, $id) {
+  public function create($id) {
     return view('staff.create', compact('id'));
   }
 
-  public function insert() {
-    $inputs = \Request::all();
-    $inserts = new Staff();
-    $inserts->insert($inputs);
+  public function insert(Request $request) {
+    $staff = new Staff();
 
-    \Session::flash('flash_message', '新スタッフ「'. $inputs['name'] .'」さんを新規登録しました。');
-    return redirect('/staffList/'. $inputs['id']);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
+
+    $staff->insert($request);
+
+    \Session::flash('flash_message', '新スタッフ「'. $request['staffName'] .'」さんを新規登録しました。');
+    return redirect('/staffList/'. $request['id']);
   }
 
   /**
@@ -54,14 +57,16 @@ class StaffController extends Controller {
     return view('staff.update', compact('staffs'));
   }
 
-  public function update() {
-    $inputs = \Request::all();
+  public function update(Request $request) {
     $staff = new Staff();
 
-    $staffs = DB::select('select * from staffs where id = '. $inputs['id']);
-    $staff->updateData($inputs);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
 
-    \Session::flash('flash_message', $inputs['name'] .'さんの情報を更新しました。');
+    $staffs = DB::select('select * from staffs where id = '. $request['id']);
+    $staff->updateData($request);
+
+    \Session::flash('flash_message', $request['staffName'] .'さんの情報を更新しました。');
     return redirect('/staffList/'. $staffs[0]->event_id);
   }
 
@@ -84,4 +89,14 @@ class StaffController extends Controller {
     return redirect('/staffList/'. $eventId);
   }
 
+  public function validationRules() {
+    $rules = [
+      'staffName'  => 'required',
+      'mail'       => 'email',
+      'experience' => 'required',
+      'rank'       => 'required'
+    ];
+
+    return $rules;
+  }
 }

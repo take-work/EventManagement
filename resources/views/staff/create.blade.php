@@ -26,11 +26,11 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="name" type="text" id="name"/>
+          <input name="staffName" type="text" id="staffName" />
         </td>
 
         <td align="center">
-          <input name="position" type="text" id="position"/>
+          <input name="position" type="text" id="position" />
         </td>
 
         <td align="center">

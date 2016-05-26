@@ -25,7 +25,7 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="name" type="text" id="name" value="{{ $staff->name }}" />
+          <input name="staffName" type="text" id="staffName" value="{{ $staff->name }}" />
         </td>
 
         <td align="center">
@@ -41,7 +41,7 @@
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" value="{{ $staff->twitter }}" />
+          <input name="twitter" type="text" id="twitter" value="{{ $staff->twitter }}" />
         </td>
 
         <td align="center">

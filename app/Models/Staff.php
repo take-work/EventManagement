@@ -29,7 +29,7 @@ class Staff extends Model {
     DB::table('staffs')
       ->insert([
         'event_id'   => $inputs['id'],
-        'name'       => $inputs['name'],
+        'name'       => $inputs['staffName'],
         'position'   => $inputs['position'],
         'mail'       => $inputs['mail'],
         'tel'        => $inputs['tel'],
@@ -49,10 +49,11 @@ class Staff extends Model {
     DB::table('staffs')
       ->where('id', $inputs['id'])
       ->update([
-        'name'       => $inputs['name'],
+        'name'       => $inputs['staffName'],
         'position'   => $inputs['position'],
         'mail'       => $inputs['mail'],
         'tel'        => $inputs['tel'],
+        'twitter'    => $inputs['twitter'],
         'experience' => $inputs['experience'],
         'rank'       => $inputs['rank'],
         'updated_at' => $now

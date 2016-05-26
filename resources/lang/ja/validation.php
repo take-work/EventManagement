@@ -122,6 +122,13 @@ return [
       'staffName'  => '名前(HN)',
       'experience' => '経験有 / 経験無',
       'rank'       => '役職',
+
+      // 金額登録・更新
+      'hundred'       => '100円玉',
+      'five_hundred'  => '500円玉',
+      'thousand'      => '1000円札',
+      'five_thousand' => '5000円札',
+      'million'       => '10000円札'
     ],
 
 ];

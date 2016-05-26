@@ -20,13 +20,15 @@ class MoneyController extends Controller {
     return view('money.create', compact('id'));
   }
 
-  public function insert() {
-    $inputs = \Request::all();
+  public function insert(Request $request) {
     $inserts = new Money();
 
-    $eventName = DB::select('select * from events where id ='.$inputs['id']);
+    $eventName = DB::select('select * from events where id ='.$request['id']);
 
-    $inserts->insert($inputs);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
+
+    $inserts->insert($request);
 
     \Session::flash('flash_message', $eventName[0]->name .'の金額情報を新規登録しました。');
     return redirect('/list');
@@ -46,17 +48,31 @@ class MoneyController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function update(Request $request, $id) {
-    $inputs = \Request::all();
     $money = new Money();
 
-    $moneyId = DB::select('select * from money where id ='.$inputs['id']);
+    $moneyId = DB::select('select * from money where id ='.$request['id']);
     $eventId = $moneyId[0]->event_id;
 
     $eventName = DB::select('select * from events where id ='.$eventId);
 
-    $money->updateData($inputs);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
+
+    $money->updateData($request);
 
     \Session::flash('flash_message', $eventName[0]->name .'の金額情報を更新しました。');
     return redirect('/list');
+  }
+
+  public function validationRules() {
+    $rules = [
+      'hundred'       => 'required | integer',
+      'five_hundred'  => 'required | integer',
+      'thousand'      => 'required | integer',
+      'five_thousand' => 'required | integer',
+      'million'       => 'required | integer'
+    ];
+
+    return $rules;
   }
 }

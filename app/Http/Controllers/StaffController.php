@@ -73,9 +73,15 @@ class StaffController extends Controller {
 
   public function delete($id) {
     $staff = new Staff();
+
+    $staffs = DB::select('select * from staffs where id = '. $id);
+    $name = $staffs[0]->name;
+    $eventId = $staffs[0]->event_id;
+
     $staff->deleteData($id);
 
-    return "削除しました。";
+    \Session::flash('flash_message', $name .'さんの情報を削除しました。');
+    return redirect('/staffList/'. $eventId);
   }
 
 }

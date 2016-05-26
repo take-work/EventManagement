@@ -65,13 +65,15 @@ class EventListController extends Controller {
     return view('event.update', compact('events'));
   }
 
-  public function update() {
-    $inputs = \Request::all();
+  public function update(Request $request) {
     $event = new Event();
 
-    $event->updateData($inputs);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
 
-    \Session::flash('flash_message', $inputs['eventName'] .'の情報を更新しました。');
+    $event->updateData($request);
+
+    \Session::flash('flash_message', $request['eventName'] .'の情報を更新しました。');
     return redirect('/list');
   }
 

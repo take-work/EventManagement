@@ -103,14 +103,20 @@ return [
     */
 
     'attributes' => [
-      /*
-       * イベント登録・更新
-       */
+      // イベント登録・更新
       'startDay'  => '開始日',
       'endDay'    => '終了日',
       'eventName' => 'イベント名',
       'host'      => '主催者',
-      'price'     => '準備費用'
+      'price'     => '準備費用',
+
+      // サークル登録・更新
+      'number'       => 'ナンバー',
+      'circleName'   => 'サークル名',
+      'circleLeader' => '代表者',
+      'staff'        => 'スタッフ数',
+      'desk'         => '机の数',
+      'chair'        => '椅子の数'
     ],
 
 ];

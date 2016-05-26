@@ -34,11 +34,11 @@
         </td>
 
         <td align="center">
-          <input name="name" type="text" id="name" maxlength="255" />
+          <input name="circleName" type="text" id="circleName" maxlength="255" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" maxlength="255" />
+          <input name="circleLeader" type="text" id="circleLeader" maxlength="255" />
         </td>
 
         <td align="center">

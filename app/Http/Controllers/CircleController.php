@@ -32,13 +32,16 @@ class CircleController extends Controller {
     return view('circle.create', compact('id'));
   }
 
-  public function insert() {
-    $inputs = \Request::all();
+  public function insert(Request $request) {
     $inserts = new Circle();
-    $inserts->insert($inputs);
 
-    \Session::flash('flash_message', '新サークル「'. $inputs['name'] .'」を新規登録しました。');
-    return redirect('/circleList/'. $inputs['id']);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
+
+    $inserts->insert($request);
+
+    \Session::flash('flash_message', '新サークル「'. $request['circleName'] .'」を新規登録しました。');
+    return redirect('/circleList/'. $request['id']);
   }
 
   public function updateConfirm(Request $request, $id) {
@@ -47,13 +50,15 @@ class CircleController extends Controller {
     return view('circle.update', compact('circles'));
   }
 
-  public function update() {
-    $inputs = \Request::all();
+  public function update(Request $request) {
     $circle = new Circle();
 
-    $circle->updateData($inputs);
+    $rules = $this->validationRules();
+    $this->validate($request, $rules);
 
-    $circles = DB::select('select * from circles where id = '. $inputs['id']);
+    $circle->updateData($request);
+
+    $circles = DB::select('select * from circles where id = '. $request['id']);
 
     \Session::flash('flash_message', $circles[0]->circle_name .'の情報を更新しました。');
     return redirect('/circleList/'. $circles[0]->event_id);
@@ -77,4 +82,16 @@ class CircleController extends Controller {
     \Session::flash('flash_message', $name .'の情報を削除しました。');
     return redirect('/circleList/'. $eventId);  }
 
+  public function validationRules() {
+    $rules = [
+      'number'       => 'integer',
+      'circleName'   => 'required',
+      'circleLeader' => 'required',
+      'staff'        => 'integer',
+      'desk'         => 'integer',
+      'chair'        => 'integer'
+    ];
+
+    return $rules;
+  }
 }

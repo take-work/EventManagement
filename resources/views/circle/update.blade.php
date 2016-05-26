@@ -13,7 +13,7 @@
       <th>ナンバー</th>
       <th>スペース</th>
       <th>サークル名</th>
-      <th>リーダー</th>
+      <th>代表者</th>
       <th>スタッフ数</th>
       <th>机の数</th>
       <th>椅子の数</th>
@@ -33,11 +33,11 @@
         </td>
 
         <td align="center">
-          <input name="name" type="text" id="name" maxlength="255" value="{{ $circle->circle_name }}" />
+          <input name="circleName" type="text" id="circleName" maxlength="255" value="{{ $circle->circle_name }}" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" maxlength="255" value="{{ $circle->host }}" />
+          <input name="circleLeader" type="text" id="circleLeader" maxlength="255" value="{{ $circle->host }}" />
         </td>
 
         <td align="center">

@@ -4,10 +4,6 @@
 スタッフ一覧
 @endsection
 
-@if (Session::has('flash_message'))
-  <div class="alert alert-success">{{ Session::get('flash_message') }}</div>
-@endif
-
 @section('content')
 
   <h3>スタッフ一覧</h3>

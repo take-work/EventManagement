@@ -1,16 +1,14 @@
 @extends('layout')
 
 @section('title')
-サークル情報編集
+サークル編集
 @endsection
 
 @section('content')
 
-  <h3>サークル情報編集</h3>
+  <h3>サークル編集</h3>
 
-  <hr><br>
-
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
+  <table class="table table-responsive table-bordered">
     <tr>
       <th>ナンバー</th>
       <th>スペース</th>
@@ -22,8 +20,9 @@
       <th>データの更新</th>
     </tr>
 
-    <tr>
-      {!! Form::open() !!}
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           <input name="number" type="text" id="number" value="{{ $circles[0]->number }}" />
         </td>
@@ -57,11 +56,13 @@
           <input type="hidden" name="id" value="{{ $circles[0]->id }}">
           <input type="submit" value="更新する" />
         </td>
-      {!! Form::close() !!}
-    </tr>
+      </tr>
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
 
-  <br><hr><br>
+  <hr>
   <a href="{!! url('circleList', [$circles[0]->event_id]) !!}">サークル一覧に戻る</a><br>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a>
 @endsection

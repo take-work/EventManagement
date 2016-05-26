@@ -1,16 +1,14 @@
 @extends('layout')
 
 @section('title')
-スタッフ情報編集
+スタッフ編集
 @endsection
 
 @section('content')
 
-  <h3>スタッフ情報編集</h3>
+  <h3>スタッフ編集</h3>
 
-  <hr><br>
-
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
+  <table class="table table-responsive table-bordered">
     <tr>
       <th>氏名(HN)</th>
       <th>担当 / 持ち場</th>
@@ -22,8 +20,9 @@
       <th>データの更新</th>
     </tr>
 
-    <tr>
-      {!! Form::open() !!}
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           <input name="name" type="text" id="name" value="{{ $staffs[0]->name }}" />
         </td>
@@ -60,12 +59,13 @@
           <input type="hidden" name="id" value="{{ $staffs[0]->id }}">
           <input type="submit" value="変更する" />
         </td>
-
       </tr>
-    {!! Form::close() !!}
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
 
-  <br><hr><br>
+  <hr>
   <a href="{!! url('/staffList', [$staffs[0]->event_id]) !!}">スタッフ一覧に戻る</a><br>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br>
 @endsection

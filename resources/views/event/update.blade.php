@@ -1,23 +1,28 @@
 @extends('layout')
 
 @section('title')
-イベント情報編集
+イベント編集
 @endsection
 
 @section('content')
-  <h3>イベント情報編集</h3>
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>開始年月日</th>
-      <th>終了年月日</th>
-      <th>イベント名</th>
-      <th>主催者</th>
-      <th>準備費用</th>
-      <th>データの変更</th>
-    </tr>
 
-    <tr>
-      {!! Form::open() !!}
+  <h3>イベント編集</h3>
+
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="active">
+        <th>開始年月日</th>
+        <th>終了年月日</th>
+        <th>イベント名</th>
+        <th>主催者</th>
+        <th>準備費用</th>
+        <th>データの変更</th>
+      </tr>
+    </thead>
+
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           <input name="startDay" type="text" id="startYear" size="16" value="{{ $events[0]->startDay }}" />
         </td>
@@ -43,10 +48,12 @@
           <input type="hidden" name="id" value="{{ $events[0]->id }}">
           <input type="submit" value="変更する" />
         </td>
-      {!! Form::close() !!}
-    </tr>
+      </tr>
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
 
-  <br><hr><br>
+  <hr>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a>
 @endsection

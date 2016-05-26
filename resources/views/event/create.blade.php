@@ -5,20 +5,24 @@
 @endsection
 
 @section('content')
+
   <h3>イベント情報入力</h3>
 
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>開始年月日</th>
-      <th>終了年月日</th>
-      <th>イベント名</th>
-      <th>主催者</th>
-      <th>準備費用</th>
-      <th>データの登録</th>
-    </tr>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="active">
+        <th>開始年月日</th>
+        <th>終了年月日</th>
+        <th>イベント名</th>
+        <th>主催者</th>
+        <th>準備費用</th>
+        <th>データの登録</th>
+      </tr>
+    </thead>
 
-    <tr>
-      {!! Form::open() !!}
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           <input name="startDay" type="text" id="startDay" maxlength="4" />
         </td>
@@ -43,10 +47,12 @@
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
           <input type="submit" value="登録する" />
         </td>
-      {!! Form::close() !!}
-    </tr>
+      </tr>
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
 
-  <br><hr><br>
+  <hr>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a>
 @endsection

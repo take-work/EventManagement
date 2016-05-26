@@ -5,24 +5,26 @@
 @endsection
 
 @section('content')
+
   <h3>サークル情報入力</h3>
 
-  <hr><br>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="active">
+        <th>ナンバー</th>
+        <th>スペース</th>
+        <th>サークル名</th>
+        <th>代表者</th>
+        <th>スタッフ数</th>
+        <th>机の数</th>
+        <th>椅子の数</th>
+        <th>データの登録</th>
+      </tr>
+    </thead>
 
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>ナンバー</th>
-      <th>スペース</th>
-      <th>サークル名</th>
-      <th>リーダー</th>
-      <th>スタッフ数</th>
-      <th>机の数</th>
-      <th>椅子の数</th>
-      <th>データの登録</th>
-    </tr>
-
-    <tr>
-      {!! Form::open() !!}
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           <input name="number" type="text" id="number" />
         </td>
@@ -53,14 +55,16 @@
 
         <td align="center">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input type="hidden" name="id" value={{ $id }}>
+          <input type="hidden" name="id" value="{{ $id }}">
           <input type="submit" value="登録する" />
         </td>
-      {!! Form::close() !!}
-    </tr>
+      </tr>
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
 
-  <br><hr><br>
+  <hr>
   <a href="{!! url('circleList', [$id]) !!}">サークル一覧に戻る</a><br>
   <a href="{!! url('/list') !!}">イベント一覧に戻る</a>
 @endsection

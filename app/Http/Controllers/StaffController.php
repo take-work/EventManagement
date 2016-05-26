@@ -58,10 +58,11 @@ class StaffController extends Controller {
     $inputs = \Request::all();
     $staff = new Staff();
 
+    $staffs = DB::select('select * from staffs where id = '. $inputs['id']);
     $staff->updateData($inputs);
 
     \Session::flash('flash_message', $inputs['name'] .'さんの情報を更新しました。');
-    return redirect('/staffList/'. $inputs['id']);
+    return redirect('/staffList/'. $staffs[0]->event_id);
   }
 
   public function deleteConfirm($id) {

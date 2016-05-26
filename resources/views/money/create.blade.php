@@ -6,6 +6,18 @@
 
 @section('content')
 
+<script language="JavaScript">
+<!--
+  function plus(chk){
+    chk.value++;
+  }
+
+  function minus(chk){
+    chk.value--;
+  }
+-->
+</script>
+
   <h3>金額情報入力</h3>
 
   <table class="table table-responsive table-bordered">
@@ -24,23 +36,33 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="hundred" type="text" id="hundred" size="6" align="center" />
+          <input type="button" value=" ー " onClick="minus(this.form.hundred)">
+          <input name="hundred" type="text" id="hundred" size="6" align="center" value="0" />
+          <input type="button" value=" ＋ " onClick="plus(this.form.hundred)">
         </td>
 
         <td align="center">
-          <input name="five_hundred" type="text" id="five_hundred" size="6" align="center" />
+          <input type="button" value=" ー " onClick="minus(this.form.five_hundred)">
+          <input name="five_hundred" type="text" id="five_hundred" size="6" align="center" value="0" />
+          <input type="button" value=" ＋ " onClick="plus(this.form.five_hundred)">
         </td>
 
         <td align="center">
-          <input name="thousand" type="text" id="thousand" size="6" align="center" />
+          <input type="button" value=" ー " onClick="minus(this.form.thousand)">
+          <input name="thousand" type="text" id="thousand" size="6" align="center" value="0" />
+          <input type="button" value=" ＋ " onClick="plus(this.form.thousand)">
         </td>
 
         <td align="center">
-          <input name="five_thousand" type="text" id="five_thousand" size="6" align="center" />
+          <input type="button" value=" ー " onClick="minus(this.form.five_thousand)">
+          <input name="five_thousand" type="text" id="five_thousand" size="6" align="center" value="0" />
+          <input type="button" value=" ＋ " onClick="plus(this.form.five_thousand)">
         </td>
 
         <td align="center">
-          <input name="million" type="text" id="million" size="6" align="center" />
+          <input type="button" value=" ー " onClick="minus(this.form.million)">
+          <input name="million" type="text" id="million" size="6" align="center" value="0" />
+          <input type="button" value=" ＋ " onClick="plus(this.form.million)">
         </td>
 
         <td align="center">

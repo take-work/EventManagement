@@ -37,7 +37,6 @@ class StaffController extends Controller {
     $inserts = new Staff();
     $inserts->insert($inputs);
 
-    \Session::flash('flash_title', 'スタッフ新規登録');
     \Session::flash('flash_message', '新スタッフ「'. $inputs['name'] .'」さんを新規登録しました。');
     return redirect('/staffList/'. $inputs['id']);
   }
@@ -61,7 +60,8 @@ class StaffController extends Controller {
 
     $staff->updateData($inputs);
 
-    return "更新しました。";
+    \Session::flash('flash_message', $inputs['name'] .'さんの情報を更新しました。');
+    return redirect('/staffList/'. $inputs['id']);
   }
 
   public function deleteConfirm($id) {

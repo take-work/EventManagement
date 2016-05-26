@@ -52,7 +52,8 @@ class EventListController extends Controller {
     $event = new Event();
     $event->insert($inputs);
 
-    return "登録しました。";
+    \Session::flash('flash_message', '新イベント「'. $inputs['eventName'] .'」を新規登録しました。');
+    return redirect('/list');
   }
 
   public function updateConfirm($id) {

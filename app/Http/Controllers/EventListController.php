@@ -12,6 +12,8 @@ use App\Models\Staff;
 use App\Models\Circle;
 use App\Models\Money;
 
+use DB;
+
 class EventListController extends Controller {
 
   public function show() {
@@ -69,7 +71,8 @@ class EventListController extends Controller {
 
     $event->updateData($inputs);
 
-    return "更新しました。";
+    \Session::flash('flash_message', $inputs['eventName'] .'の情報を更新しました。');
+    return redirect('/list');
   }
 
   public function deleteConfirm($id) {
@@ -81,8 +84,13 @@ class EventListController extends Controller {
 
   public function delete($id) {
     $event = new Event();
+
+    $events = $event->select($id);
+    $name = $events[0]->name;
+
     $event->deleteData($id);
 
-    return "削除しました。";
+    \Session::flash('flash_message', $name .'を削除しました。');
+    return redirect('/list');
   }
 }

@@ -52,9 +52,9 @@ class EventListController extends Controller {
     $rules = $this->validationRules();
     $this->validate($request, $rules);
 
-    $event->insert($inputs);
+    $event->insert($request);
 
-    \Session::flash('flash_message', '新イベント「'. $inputs['eventName'] .'」を新規登録しました。');
+    \Session::flash('flash_message', '新イベント「'. $request['eventName'] .'」を新規登録しました。');
     return redirect('/list');
   }
 

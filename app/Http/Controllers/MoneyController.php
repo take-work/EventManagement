@@ -23,9 +23,13 @@ class MoneyController extends Controller {
   public function insert() {
     $inputs = \Request::all();
     $inserts = new Money();
+
+    $eventName = DB::select('select * from events where id ='.$inputs['id']);
+
     $inserts->insert($inputs);
 
-    return "登録しました。";
+    \Session::flash('flash_message', $eventName[0]->name .'の金額情報を新規登録しました。');
+    return redirect('/list');
   }
 
   public function updateConfirm($id) {
@@ -45,8 +49,14 @@ class MoneyController extends Controller {
     $inputs = \Request::all();
     $money = new Money();
 
+    $moneyId = DB::select('select * from money where id ='.$inputs['id']);
+    $eventId = $moneyId[0]->event_id;
+
+    $eventName = DB::select('select * from events where id ='.$eventId);
+
     $money->updateData($inputs);
 
-    return "更新しました。";
+    \Session::flash('flash_message', $eventName[0]->name .'の金額情報を更新しました。');
+    return redirect('/list');
   }
 }

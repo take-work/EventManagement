@@ -6,24 +6,27 @@
 
 @section('content')
 
-  <h3>イベント一覧</h3>
+  <h3>イベント削除確認</h3>
   <p>下記のデータを削除しますか?<br>
-  よろしければ「データの削除」から「削除する」ボタンをクリックしてください</p>
+  よろしければ「データの削除」から「削除する」ボタンをクリックしてください。</p>
 
-  <hr><br>
+  <hr>
 
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>開始日</th>
-      <th>終了日</th>
-      <th>イベント名</th>
-      <th>主催者</th>
-      <th>準備費用</th>
-      <th>データの削除</th>
-    </tr>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr>
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>イベント名</th>
+        <th>主催者</th>
+        <th>準備費用</th>
+        <th>データの削除</th>
+      </tr>
+    </thead>
 
-    <tr>
-     {!! Form::open() !!}
+  {!! Form::open() !!}
+    <tbody>
+      <tr>
         <td align="center">
           {{ $events[0]->startDay }}
         </td>
@@ -48,7 +51,12 @@
           <input type="hidden" name="id" value="{{ $events[0]->id }}">
           <input type="submit" value="削除する" />
         </td>
-      {!! Form::open() !!}
-    </tr>
+      </tr>
+    </tbody>
+  {!! Form::close() !!}
+
   </table>
+
+  <hr>
+  <a href="{!! url('list') !!}">イベント一覧に戻る</a>
 @endsection

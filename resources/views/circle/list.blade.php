@@ -7,24 +7,25 @@
 @section('content')
 
   <h3>サークル一覧</h3>
-  <a href="{!! url('circleCreate', [$id]) !!}">新規作成</a><br><br>
+  <a href="{!! url('circleCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br><br>
 
-  <hr><br>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr>
+        <th>ナンバー</th>
+        <th>スペース</th>
+        <th>サークル名</th>
+        <th>代表者</th>
+        <th>参加人数</th>
+        <th>机の数</th>
+        <th>椅子の数</th>
+        <th>データの編集</th>
+        <th>データの削除</th>
+      </tr>
+    </thead>
 
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>ナンバー</th>
-      <th>スペース</th>
-      <th>サークル名</th>
-      <th>代表者</th>
-      <th>参加人数</th>
-      <th>机の数</th>
-      <th>椅子の数</th>
-      <th>データの編集</th>
-      <th>データの削除</th>
-    </tr>
-
-    @foreach($circles as $circle)
+  @foreach($circles as $circle)
+    <tbody>
       <tr>
         <td align="center">
           {{ $circle->number }}
@@ -54,17 +55,17 @@
           {{ $circle->chair }}
         </td>
 
-        <td align="center">
+        <td align="center" class="col-md-1">
           <a href="{!! url('/circleUpdate', [$circle->id]) !!}"><input type="button" value="編集する"></a>
         </td>
 
-        <td align="center">
+        <td align="center" class="col-md-1">
           <a href="{!! url('/circleDelete', [$circle->id]) !!}"><input type="button" value="削除する"></a>
         </td>
       </tr>
-    @endforeach
+    </tbody>
+  @endforeach
   </table>
 
-  <br><hr><br>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
 @endsection

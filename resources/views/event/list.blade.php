@@ -7,26 +7,27 @@
 @section('content')
 
   <h3>イベント一覧</h3>
-  <a href="{!! url('create') !!}">新規作成</a><br><br>
+  <a href="{!! url('create') !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br><br>
 
-  <hr><br>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="active">
+        <th>開始日</th>
+        <th>終了日</th>
+        <th>イベント名</th>
+        <th>主催者</th>
+        <th>スタッフ数</th>
+        <th>サークル数</th>
+        <th>準備費用</th>
+        <th>合計売上</th>
+        <th>純利益</th>
+        <th>データの編集</th>
+        <th>データの削除</th>
+      </tr>
+    </thead>
 
-  <table width="1300" border="10" cellspacing="0" cellpadding="8" bordercolor="#ffd700">
-    <tr>
-      <th>開始日</th>
-      <th>終了日</th>
-      <th>イベント名</th>
-      <th>主催者</th>
-      <th>スタッフ数</th>
-      <th>サークル数</th>
-      <th>準備費用</th>
-      <th>合計売上</th>
-      <th>純利益</th>
-      <th>データの編集</th>
-      <th>データの削除</th>
-    </tr>
-
-    @foreach($events as $event)
+  @foreach($events as $event)
+    <tbody>
       <tr>
         <td align="center">
           {{ $event->startDay }}
@@ -58,33 +59,33 @@
 
         <td align="center">
           @if (! $moneyCounter[$event->id] == null )
-            <a href="{!! url('/moneyUpdate', [$event->id]) !!}">\{{ $moneyCounter[$event->id] }}</a>
+            <a href="{!! url('/moneyUpdate', [$event->id]) !!}">￥{{ $moneyCounter[$event->id] }}</a>
           @else 
-            <a href="{!! url('/moneyCreate', [$event->id]) !!}">\0</a>
+            <a href="{!! url('/moneyCreate', [$event->id]) !!}">￥0</a>
           @endif
         </td>
 
         <td align="center">
           @if ( $moneyList[$event->id] < 0 )
-            <font color="red"><b>\{{ $moneyList[$event->id] }}</b></font>
+            <font color="red"><b>￥{{ $moneyList[$event->id] }}</b></font>
           @elseif ( $moneyList[$event->id] > 0 )
-            \{{ $moneyList[$event->id] }}
+            ￥{{ $moneyList[$event->id] }}
           @else
-            <font color="#1f90ff">\{{ $moneyList[$event->id] }}</font>
+            <font color="#1f90ff">￥{{ $moneyList[$event->id] }}</font>
           @endif
         </td>
 
-        <td align="center">
+        <td align="center" class="col-md-1">
           <a href="{!! url('/update', [$event->id]) !!}"><input type="button" value="編集する"></a>
         </td>
 
-        <td align="center">
+        <td align="center" class="col-md-1">
           <a href="{!! url('/delete', [$event->id]) !!}"><input type="button" value="削除する"></a>
         </td>
       </tr>
-    @endforeach
+    </tbody>
+  @endforeach
   </table>
 
-  <br><hr>
-  <p>* スタッフの管理は「スタッフ数」から、サークルの管理は「サークル数」から、金額の管理は「合計金額」から行えます。</p>
+  <p>※ スタッフの管理は「スタッフ数」から、サークルの管理は「サークル数」から、金額の管理は「合計売上」から行えます。</p>
 @endsection

@@ -10,20 +10,23 @@
   <a href="{!! url('staffCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br><br>
 
   <table class="table table-responsive table-bordered">
-    <tr>
-      <th><div class="text-center">氏名(HN)</div></th>
-      <th><div class="text-center">担当 / 持ち場</div></th>
-      <th><div class="text-center">メールアドレス</div></th>
-      <th><div class="text-center">電話番号</div></th>
-      <th><div class="text-center">Twitter</div></th>
-      <th><div class="text-center">経験</div></th>
-      <th><div class="text-center">役職</div></th>
-      <th><div class="text-center">データの編集</div></th>
-      <th><div class="text-center">データの削除</div></th>
-    </tr>
+    <thead>
+      <tr class="active">
+        <th>氏名(HN)</th>
+        <th>担当 / 持ち場</th>
+        <th>メールアドレス</th>
+        <th>電話番号</th>
+        <th>Twitter</th>
+        <th>経験</th>
+        <th>役職</th>
+        <th>データの編集</th>
+        <th>データの削除</th>
+      </tr>
+    </thead>
 
-    @foreach($staffs as $staff)
-      <tr>
+  @foreach($staffs as $staff)
+    <tbody>
+      <tr class="something">
         <td align="center">
           {{ $staff->name }}
         </td>
@@ -62,15 +65,17 @@
           @endif
         </td>
 
-        <td align="center">
+        <td align="center" class="col-md-1">
           <a href="{!! url('/staffUpdate', [$staff->id]) !!}"><input type="button" value="編集する"></a>
         </td>
 
-        <td align="center">
+        <td align="center" class="col-md-1">
           <a href="{!! url('/staffDelete', [$staff->id]) !!}"><input type="button" value="削除する"></a>
         </td>
       </tr>
-    @endforeach
+    </tbody>
+  @endforeach
   </table>
-  <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
+
+  <a href="{!! url('list') !!}">イベント一覧に戻る</a>
 @endsection

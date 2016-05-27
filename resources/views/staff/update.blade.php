@@ -25,34 +25,49 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="staffName" type="text" id="staffName" value="{{ $staff->name }}" />
+          <input name="staffName" type="text" id="staffName"
+            value="{{ $staff->name }}" />
         </td>
 
         <td align="center">
-          <input name="position" type="text" id="position" value="{{ $staff->position }}" />
+          <input name="position" type="text" id="position"
+            value="{{ $staff->position }}" />
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" value="{{ $staff->mail }}" />
+          <input name="mail" type="text" id="mail"
+            value="{{ $staff->mail }}" />
         </td>
 
         <td align="center">
-          <input name="tel" type="text" id="tel" value="{{ $staff->tel }}" />
+          <input name="tel" type="text" id="tel"
+            value="{{ $staff->tel }}" />
         </td>
 
         <td align="center">
-          <input name="twitter" type="text" id="twitter" value="{{ $staff->twitter }}" />
+          <input name="twitter" type="text" id="twitter"
+            value="{{ $staff->twitter }}" />
         </td>
 
         <td align="center">
-          <input name="experience" type="radio" id="experience1" value="1" <?php if ($staff->experience == 1) { ?> checked="checked" <?php } ?> /><label for="experience1">経験有</label><br>
-          <input name="experience" type="radio" id="experience2" value="2" <?php if ($staff->experience == 2) { ?> checked="checked" <?php } ?> /><label for="experience2">経験無</label>
+          <input name="experience" type="radio" id="experience1" value="1"
+            @if ($staff->experience == "1") checked="checked" @endif />
+            <label for="experience1">経験有</label><br>
+          <input name="experience" type="radio" id="experience2" value="2" 
+            @if ($staff->experience == "2") checked="checked" @endif />
+            <label for="experience2">経験無</label>
         </td>
 
         <td align="center">
-          <input name="rank" type="radio" id="rank1" value="1" <?php if ($staff->rank == 1) { ?> checked="checked" <?php } ?>/><label for="rank1">主催</label><br>
-          <input name="rank" type="radio" id="rank2" value="2" <?php if ($staff->rank == 2) { ?> checked="checked" <?php } ?>/><label for="rank2">副主催</label><br>
-          <input name="rank" type="radio" id="rank3" value="3" <?php if ($staff->rank == 3) { ?> checked="checked" <?php } ?>/><label for="rank3">なし</label>
+          <input name="rank" type="radio" id="rank1" value="1"
+            @if ($staff->rank == "1") checked="checked" @endif />
+            <label for="rank1">主催</label><br>
+          <input name="rank" type="radio" id="rank2" value="2"
+            @if ($staff->rank == "2") checked="checked" @endif />
+            <label for="rank2">副主催</label><br>
+          <input name="rank" type="radio" id="rank3" value="3" 
+            @if ($staff->rank == "3") checked="checked" @endif />
+            <label for="rank3">なし</label>
         </td>
 
         <td align="center">

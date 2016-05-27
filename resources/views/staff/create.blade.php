@@ -26,34 +26,39 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="staffName" type="text" id="staffName" />
+          <input name="staffName" type="text" id="staffName" value="{{ Input::old('staffName') }}" />
         </td>
 
         <td align="center">
-          <input name="position" type="text" id="position" />
+          <input name="position" type="text" id="position" value="{{ Input::old('position') }}" />
         </td>
 
         <td align="center">
-          <input name="mail" type="text" id="mail" maxlength="255" />
+          <input name="mail" type="text" id="mail" value="{{ Input::old('mail') }}" />
         </td>
 
         <td align="center">
-          <input name="tel" type="text" id="tel" maxlength="255" />
+          <input name="tel" type="text" id="tel" value="{{ Input::old('tel') }}" />
         </td>
 
         <td align="center">
-          <input name="twitter" type="text" id="twitter" maxlength="10" />
+          <input name="twitter" type="text" id="twitter" value="{{ Input::old('twitter') }}" />
         </td>
 
         <td align="center">
-          <input name="experience" type="radio" id="experience1" value="1" /><label for="experience1">経験有</label><br>
-          <input name="experience" type="radio" id="experience2" value="2" /><label for="experience2">経験無</label>
+          <input name="experience" type="radio" id="experience1" value="1" @if (Input::old('experience') == "1" ) checked @endif />
+            <label for="experience1">経験有</label><br>
+          <input name="experience" type="radio" id="experience2" value="2" @if (Input::old('experience') == "2" ) checked @endif />
+            <label for="experience2">経験無</label>
         </td>
 
         <td align="center">
-          <input name="rank" type="radio" id="rank1" value="1" /><label for="rank1">主催</label><br>
-          <input name="rank" type="radio" id="rank2" value="2" /><label for="rank2">副主催</label><br>
-          <input name="rank" type="radio" id="rank3" value="3" /><label for="rank3">なし</label>
+          <input name="rank" type="radio" id="rank1" value="1" @if (Input::old('rank') == "1" ) checked @endif />
+            <label for="rank1">主催</label><br>
+          <input name="rank" type="radio" id="rank2" value="2" @if (Input::old('rank') == "2" ) checked @endif />
+            <label for="rank2">副主催</label><br>
+          <input name="rank" type="radio" id="rank3" value="3" @if (Input::old('rank') == "3" ) checked @endif />
+            <label for="rank3">なし</label>
         </td>
 
         <td align="center">

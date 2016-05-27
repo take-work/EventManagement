@@ -26,27 +26,27 @@
       <tr>
         <td align="center">
           <input name="startDay" type="text" id="startYear" size="16"
-            value="@if(!empty($errors)){{ Input::old('startDay') }}@else{{ $event->startDay }}@endif" />
+            value="{{ $event->startDay }}" />
         </td>
 
         <td align="center">
           <input name="endDay" type="text" id="endDay" size="16"
-            value="@if(!empty($errors)){{ Input::old('endDay') }}@else{{ $event->endDay }}@endif" />
+            value="{{ $event->endDay }}" />
         </td>
 
         <td align="center">
           <input name="eventName" type="text" id="eventName"
-            value="@if(!empty($errors)){{ Input::old('eventName') }}@else{{ $event->name }}@endif" />
+            value="{{ $event->name }}" />
         </td>
 
         <td align="center">
           <input name="host" type="text" id="host"
-            value="@if(!empty($errors)){{ Input::old('host') }}@else{{ $event->host }}@endif" />
+            value="{{ $event->host }}" />
         </td>
 
         <td align="center">
           <input name="price" type="text" id="price" size="10"
-            value="@if(!empty($errors)){{ Input::old('price') }}@else{{ $event->price }}@endif" />円
+            value="{{ $event->price }}" />円
         </td>
 
         <td align="center">

@@ -7,7 +7,12 @@
 @section('content')
 
   <h3>サークル一覧</h3>
-  <a href="{!! url('circleCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br><br>
+
+  <hr>
+
+  <a href="{!! url('circleCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
+
+  <hr>
 
   <table class="table table-responsive table-bordered">
     <thead>
@@ -66,6 +71,8 @@
     </tbody>
   @endforeach
   </table>
+
+  <hr>
 
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
 @endsection

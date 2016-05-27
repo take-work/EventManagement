@@ -7,7 +7,12 @@
 @section('content')
 
   <h3>イベント一覧</h3>
-  <a href="{!! url('create') !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br><br>
+
+  <hr>
+
+  <a href="{!! url('create') !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
+
+  <hr>
 
   <table class="table table-responsive table-bordered">
     <thead>
@@ -86,6 +91,8 @@
     </tbody>
   @endforeach
   </table>
+
+  <hr>
 
   <p>※ スタッフの管理は「スタッフ数」から、サークルの管理は「サークル数」から、金額の管理は「合計売上」から行えます。</p>
 @endsection

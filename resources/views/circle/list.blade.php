@@ -11,14 +11,14 @@
 
   <table class="table table-responsive table-bordered">
     <thead>
-      <tr>
+      <tr class="active">
         <th>ナンバー</th>
         <th>スペース</th>
         <th>サークル名</th>
         <th>代表者</th>
         <th>参加人数</th>
-        <th>机の数</th>
-        <th>椅子の数</th>
+        <th>机の数(総数：{{ $desk }}個)</th>
+        <th>椅子の数(総数：{{ $chair }}個)</th>
         <th>データの編集</th>
         <th>データの削除</th>
       </tr>

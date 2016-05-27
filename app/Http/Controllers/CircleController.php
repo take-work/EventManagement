@@ -17,10 +17,14 @@ class CircleController extends Controller {
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function show(Request $request, $id) {
+  public function show($id) {
+    $circle = new Circle();
     $circles = DB::select('select * from circles where event_id ='.$id);
 
-    return view('circle.list', compact('circles', 'id'));
+    $desk = $circle->deskCounter($circles);
+    $chair = $circle->chairCounter($circles);
+
+    return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
   }
 
   /**

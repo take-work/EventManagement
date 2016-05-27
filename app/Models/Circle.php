@@ -16,6 +16,38 @@ class Circle extends Model {
     return $counter;
   }
 
+  public function deskCounter($circles) {
+    $first = true;
+    $desk = 0;
+
+    foreach ($circles as $circleData) {
+      if ($first == true) {
+        $desk = $circleData->desk;
+        $first = false;
+      } elseif($first == false) {
+        $desk += $circleData->desk;
+      }
+    }
+
+    return $desk;
+  }
+
+  public function chairCounter($circles) {
+    $first = true;
+    $chair = 0;
+
+    foreach ($circles as $circleData) {
+      if ($first == true) {
+        $chair = $circleData->chair;
+        $first = false;
+      } else {
+        $chair += $circleData->chair;
+      }
+    }
+
+    return $chair;
+  }
+
   public function insert($inputs) {
     $now = date("Y-m-d");
 

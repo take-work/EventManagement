@@ -54,12 +54,12 @@
         </td>
 
         <td align="center">
-          {{ $event->price }}
+          {{ number_format($event->price) }}
         </td>
 
         <td align="center">
           @if (! $moneyCounter[$event->id] == null )
-            <a href="{!! url('/moneyUpdate', [$event->id]) !!}">￥{{ $moneyCounter[$event->id] }}</a>
+            <a href="{!! url('/moneyUpdate', [$event->id]) !!}">￥{{ number_format($moneyCounter[$event->id]) }}</a>
           @else 
             <a href="{!! url('/moneyCreate', [$event->id]) !!}">￥0</a>
           @endif
@@ -67,11 +67,11 @@
 
         <td align="center">
           @if ( $moneyList[$event->id] < 0 )
-            <font color="red"><b>￥{{ $moneyList[$event->id] }}</b></font>
+            <font color="red"><b>￥{{ number_format($moneyList[$event->id]) }}</b></font>
           @elseif ( $moneyList[$event->id] > 0 )
-            ￥{{ $moneyList[$event->id] }}
+            ￥{{ number_format($moneyList[$event->id]) }}
           @else
-            <font color="#1f90ff">￥{{ $moneyList[$event->id] }}</font>
+            <font color="#1f90ff">￥0</font>
           @endif
         </td>
 

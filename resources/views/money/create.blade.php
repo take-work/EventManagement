@@ -77,7 +77,6 @@
     </table>
   {!! Form::close() !!}
 
-
   <hr>
   <a href="{!! url('/list') !!}">イベント一覧に戻る</a>
 @endsection

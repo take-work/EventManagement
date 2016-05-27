@@ -25,23 +25,28 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="startDay" type="text" id="startYear" size="16" value="{{ $event->startDay }}" />
+          <input name="startDay" type="text" id="startYear" size="16"
+            value="@if(!empty($errors)){{ Input::old('startDay') }}@else{{ $event->startDay }}@endif" />
         </td>
 
         <td align="center">
-          <input name="endDay" type="text" id="endDay" size="16" value="{{ $event->endDay }}" />
+          <input name="endDay" type="text" id="endDay" size="16"
+            value="@if(!empty($errors)){{ Input::old('endDay') }}@else{{ $event->endDay }}@endif" />
         </td>
 
         <td align="center">
-          <input name="eventName" type="text" id="eventName" value="{{ $event->name }}" />
+          <input name="eventName" type="text" id="eventName"
+            value="@if(!empty($errors)){{ Input::old('eventName') }}@else{{ $event->name }}@endif" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" value="{{ $event->host }}" />
+          <input name="host" type="text" id="host"
+            value="@if(!empty($errors)){{ Input::old('host') }}@else{{ $event->host }}@endif" />
         </td>
 
         <td align="center">
-          <input name="price" type="text" id="price" size="10" value="{{ $event->price }}" />円
+          <input name="price" type="text" id="price" size="10"
+            value="@if(!empty($errors)){{ Input::old('price') }}@else{{ $event->price }}@endif" />円
         </td>
 
         <td align="center">

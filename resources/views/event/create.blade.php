@@ -24,23 +24,23 @@
     <tbody>
       <tr>
         <td align="center">
-          <input name="startDay" type="text" id="startDay" />
+          <input name="startDay" type="text" id="startDay" value="{{ Input::old('startDay') }}" />
         </td>
 
         <td align="center">
-          <input name="endDay" type="text" id="endDay" />
+          <input name="endDay" type="text" id="endDay" value="{{ Input::old('endDay') }}" />
         </td>
 
         <td align="center">
-          <input name="eventName" type="text" id="eventName" size="20" />
+          <input name="eventName" type="text" id="eventName" size="20" value="{{ Input::old('eventName') }}" />
         </td>
 
         <td align="center">
-          <input name="host" type="text" id="host" size="20" />
+          <input name="host" type="text" id="host" size="20" value="{{ Input::old('host') }}" />
         </td>
 
         <td align="center">
-          <input name="price" type="text" id="price" size="10" maxlength="10" />円
+          <input name="price" type="text" id="price" size="10" value="{{ Input::old('price') }}" />円
         </td>
 
         <td align="center">

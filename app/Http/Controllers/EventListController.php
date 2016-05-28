@@ -54,7 +54,7 @@ class EventListController extends Controller {
 
     $event->insert($request);
 
-    \Session::flash('flash_message', '新イベント「'. $request['eventName'] .'」を新規登録しました。');
+    \Session::flash('flash_message', 'イベント「'. $request['eventName'] .'」を新規登録しました。');
     return redirect('/list');
   }
 

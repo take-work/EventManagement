@@ -14,7 +14,7 @@
 
   <table class="table table-responsive table-bordered">
     <thead>
-      <tr>
+      <tr class="active">
         <th>氏名(HN)</th>
         <th>担当 / 持ち場</th>
         <th>メールアドレス</th>

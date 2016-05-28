@@ -59,7 +59,7 @@
         </td>
 
         <td align="center">
-          {{ number_format($event->price) }}
+          ￥{{ number_format($event->price) }}
         </td>
 
         <td align="center">

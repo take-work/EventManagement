@@ -98,8 +98,8 @@ class EventListController extends Controller {
 
   public function validationRules() {
     $rules = [
-      'startDay'  => 'required',
-      'endDay'    => 'required',
+      'startDay'  => 'required | digits:8',
+      'endDay'    => 'required | digits:8',
       'eventName' => 'required',
       'host'      => 'required',
       'price'     => 'required | integer'

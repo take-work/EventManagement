@@ -88,7 +88,6 @@ class CircleController extends Controller {
 
   public function validationRules() {
     $rules = [
-      'number'       => 'integer',
       'circleName'   => 'required',
       'circleLeader' => 'required',
       'staff'        => 'integer',

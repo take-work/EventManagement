@@ -8,6 +8,8 @@
 
   <h3>イベント情報入力</h3>
 
+  <hr>
+
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
@@ -52,6 +54,9 @@
   {!! Form::close() !!}
 
   </table>
+
+  <p>※ 開始日・終了日は8桁の半角数字で入力してください。<br>
+  例：2016年1月1日 → 20160101</p>
 
   <hr>
   <a href="{!! url('list') !!}">イベント一覧に戻る</a>

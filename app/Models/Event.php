@@ -26,13 +26,27 @@ class Event extends Model {
   public function insert($inputs) {
     $now = date("Y-m-d");
 
+    $start = $inputs['startDay'];
+    $end   = $inputs['endDay'];
+
+    $startYear  = mb_substr($start, 0, 4);
+    $startMonth = mb_substr($start, 4, 2);
+    $startDays  = mb_substr($start, 6, 2);
+
+    $endYear  = mb_substr($end, 0, 4);
+    $endMonth = mb_substr($end, 4, 2);
+    $endDays  = mb_substr($end, 6, 2);
+
+    $startDay = $startYear .'/'. $startMonth .'/'. $startDays;
+    $endDay   = $endYear .'/'. $endMonth .'/'. $endDays;
+
     DB::table('events')
       ->insert([
         'name'       => $inputs['eventName'],
         'host'       => $inputs['host'],
         'price'      => $inputs['price'],
-        'startDay'   => $inputs['startDay'],
-        'endDay'     => $inputs['endDay'],
+        'startDay'   => $startDay,
+        'endDay'     => $endDay,
         'created_at' => $now,
         'updated_at' => $now
       ]);

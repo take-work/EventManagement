@@ -11,6 +11,7 @@ use ZendPdf\PdfDocument;
 use ZendPdf\Font;
 use ZendPdf\Page;
 
+use DB;
 use App\Models\Event;
 
 class staffPDFController extends Controller {
@@ -33,6 +34,24 @@ class staffPDFController extends Controller {
     $firstPage->drawText($getEvent[0]->startDay, 150, 655, 'UTF-8');
     $firstPage->drawText($getEvent[0]->endDay, 369, 655, 'UTF-8');
 
+    $staffs = $this->getStaffs($id);
+
+    $y = 588;
+    foreach ($staffs as $staff) {
+      $firstPage->setFont($font , 12);
+
+      $firstPage->drawText($staff->name, 77, $y, 'UTF-8');
+      $firstPage->drawText($staff->position, 150, $y, 'UTF-8');
+
+      $firstPage->setFont($font , 8);
+
+      $firstPage->drawText($staff->mail, 215, $y, 'UTF-8');
+      $firstPage->drawText($staff->tel, 320, $y, 'UTF-8');
+      $firstPage->drawText($staff->twitter, 420, $y, 'UTF-8');
+
+      $y = $y - 28;
+    }
+
     // ファイルとして保存、ブラウザに出力
     header ('Content-Type:', 'application/pdf');
     header ('Content-Disposition:', 'inline;');
@@ -44,6 +63,12 @@ class staffPDFController extends Controller {
     $getEvent = $event->select($id);
 
     return $getEvent;
+  }
+
+  public function getStaffs($id) {
+    $staffs = DB::select('select * from staffs where event_id = '. $id);
+
+    return $staffs;
   }
 
 }

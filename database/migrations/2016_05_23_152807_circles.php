@@ -14,7 +14,7 @@ class Circles extends Migration
       Schema::create('circles', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('event_id');
-        $table->integer('number');
+        $table->string('number');
         $table->string('space');
         $table->string('circle_name');
         $table->string('host');

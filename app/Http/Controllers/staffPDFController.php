@@ -30,24 +30,24 @@ class staffPDFController extends Controller {
 
     // 出力する文字と位置、文字コードの指定
     $getEvent = $this->getEvent($id);
-    $firstPage->drawText($getEvent[0]->name, 150, 680, 'UTF-8');
-    $firstPage->drawText($getEvent[0]->startDay, 150, 655, 'UTF-8');
-    $firstPage->drawText($getEvent[0]->endDay, 369, 655, 'UTF-8');
+    $firstPage->drawText($getEvent[0]->name, 150, 458, 'UTF-8');
+    $firstPage->drawText($getEvent[0]->startDay, 150, 432, 'UTF-8');
+    $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
 
     $staffs = $this->getStaffs($id);
 
-    $y = 588;
+    $y = 345;
     foreach ($staffs as $staff) {
       $firstPage->setFont($font , 12);
 
-      $firstPage->drawText($staff->name, 77, $y, 'UTF-8');
-      $firstPage->drawText($staff->position, 150, $y, 'UTF-8');
+      $firstPage->drawText($staff->name, 80, $y, 'UTF-8');
+      $firstPage->drawText($staff->position, 215, $y, 'UTF-8');
 
       $firstPage->setFont($font , 8);
 
-      $firstPage->drawText($staff->mail, 215, $y, 'UTF-8');
-      $firstPage->drawText($staff->tel, 320, $y, 'UTF-8');
-      $firstPage->drawText($staff->twitter, 420, $y, 'UTF-8');
+      $firstPage->drawText($staff->mail, 370, $y, 'UTF-8');
+      $firstPage->drawText($staff->tel, 535, $y, 'UTF-8');
+      $firstPage->drawText($staff->twitter, 620, $y, 'UTF-8');
 
       $y = $y - 28;
     }

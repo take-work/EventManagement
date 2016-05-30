@@ -10,7 +10,8 @@
   <h3>スタッフ一覧</h3>
 @endsection
 
-  <a href="{!! url('staffCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
+  <a href="{!! url('staffCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a> &nbsp;
+  <a href="{!! url('staffPdf') !!}"><button type="button" class="btn btn-primary">PDFで保存</button></a>
 
   <hr>
 

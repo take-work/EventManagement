@@ -6,9 +6,9 @@
 
 @section('content')
 
+@section('subTitle')
   <h3>サークル一覧</h3>
-
-  <hr>
+@endsection
 
   <a href="{!! url('circleCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
 

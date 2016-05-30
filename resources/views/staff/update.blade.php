@@ -6,7 +6,9 @@
 
 @section('content')
 
+@section('subTitle')
   <h3>スタッフ編集</h3>
+@endsection
 
   <table class="table table-responsive table-bordered">
     <tr>

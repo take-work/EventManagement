@@ -6,9 +6,9 @@
 
 @section('content')
 
+@section('subTitle')
   <h3>スタッフ一覧</h3>
-
-  <hr>
+@endsection
 
   <a href="{!! url('staffCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
 

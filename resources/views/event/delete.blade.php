@@ -14,9 +14,9 @@
 
   <table class="table table-responsive table-bordered">
     <thead>
-      <tr>
-        <th>開始日</th>
-        <th>終了日</th>
+      <tr class="active">
+        <th>開始年月日</th>
+        <th>終了年月日</th>
         <th>イベント名</th>
         <th>主催者</th>
         <th>準備費用</th>

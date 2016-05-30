@@ -11,7 +11,7 @@
 @endsection
 
   <table class="table table-responsive table-bordered">
-    <tr>
+    <tr class="active">
       <th>ナンバー</th>
       <th>スペース</th>
       <th>サークル名</th>

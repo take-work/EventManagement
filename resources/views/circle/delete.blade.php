@@ -14,7 +14,7 @@
 
   <table class="table table-responsive table-bordered">
     <thead>
-      <tr>
+      <tr class="active">
         <th>ナンバー</th>
         <th>スペース</th>
         <th>サークル名</th>

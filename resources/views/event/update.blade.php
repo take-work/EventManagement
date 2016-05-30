@@ -25,13 +25,15 @@
     <tbody>
       <tr>
         <td align="center">
+          <?php $start = str_replace("/", "", "$event->startDay"); ?>
           <input name="startDay" type="text" id="startYear" size="16"
-            value="{{ $event->startDay }}" />
+            value="{{ $start }}" />
         </td>
 
         <td align="center">
+          <?php $end = str_replace("/", "", "$event->endDay"); ?>
           <input name="endDay" type="text" id="endDay" size="16"
-            value="{{ $event->endDay }}" />
+            value="{{ $end }}" />
         </td>
 
         <td align="center">

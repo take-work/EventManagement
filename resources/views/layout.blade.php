@@ -22,6 +22,10 @@
     </div>
   @endif
 
+  @yield('subTitle')
+
+  <hr>
+
   @yield('content')
 
 </body>

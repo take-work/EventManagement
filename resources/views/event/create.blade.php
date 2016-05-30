@@ -6,9 +6,9 @@
 
 @section('content')
 
+@section('subTitle')
   <h3>イベント情報入力</h3>
-
-  <hr>
+@endsection
 
   <table class="table table-responsive table-bordered">
     <thead>

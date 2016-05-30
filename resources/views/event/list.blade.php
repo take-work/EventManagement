@@ -6,9 +6,9 @@
 
 @section('content')
 
+@section('subTitle')
   <h3>イベント一覧</h3>
-
-  <hr>
+@endsection
 
   <a href="{!! url('create') !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
 

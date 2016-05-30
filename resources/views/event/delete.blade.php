@@ -6,11 +6,11 @@
 
 @section('content')
 
+@section('subTitle')
   <h3>イベント削除確認</h3>
   <p>下記のデータを削除しますか?<br>
   よろしければ「データの削除」から「削除する」ボタンをクリックしてください。</p>
-
-  <hr>
+@endsection
 
   <table class="table table-responsive table-bordered">
     <thead>

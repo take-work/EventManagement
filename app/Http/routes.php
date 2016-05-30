@@ -59,6 +59,8 @@ Route::post('/circleUpdate/{id}', 'CircleController@update');
 Route::get('/circleDelete/{id}', 'CircleController@deleteConfirm');
 Route::post('/circleDelete/{id}', 'CircleController@delete');
 
+Route::get('/circlePdf/{id}','circlePDFController@pdfCreate');
+
 /*
  * 金額管理に関連するルート
  */

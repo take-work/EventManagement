@@ -10,7 +10,8 @@
   <h3>サークル一覧</h3>
 @endsection
 
-  <a href="{!! url('circleCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a><br>
+  <a href="{!! url('circleCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a> &nbsp;
+  <a href="{!! url('circlePdf', [$id]) !!}"><button type="button" class="btn btn-primary">PDFで保存</button></a>
 
   <hr>
 

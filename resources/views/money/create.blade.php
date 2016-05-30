@@ -18,10 +18,9 @@
 -->
 </script>
 
+@section('subTitle')
   <h3>金額情報入力</h3>
-
-  <hr>
-  <p>※ 数字は半角数字で入力してください。</p>
+@endsection
 
   {!! Form::open() !!}
     <table class="table table-responsive table-bordered">
@@ -78,6 +77,7 @@
       </tr>
 
     </table>
+  <p>※ 数字は半角数字で入力してください。</p>
   {!! Form::close() !!}
 
   <hr>

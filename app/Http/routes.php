@@ -43,7 +43,7 @@ Route::post('/staffUpdate/{id}', 'StaffController@update');
 Route::get('/staffDelete/{id}', 'StaffController@deleteConfirm');
 Route::post('/staffDelete/{id}', 'StaffController@delete');
 
-Route::get('/staffPdf','staffPDFController@pdfCreate');
+Route::get('/staffPdf/{id}','staffPDFController@pdfCreate');
 
 /*
  * サークル管理に関連するルート

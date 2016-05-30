@@ -11,7 +11,7 @@
 @endsection
 
   <a href="{!! url('staffCreate', [$id]) !!}"><button type="button" class="btn btn-primary">新規作成</button></a> &nbsp;
-  <a href="{!! url('staffPdf') !!}"><button type="button" class="btn btn-primary">PDFで保存</button></a>
+  <a href="{!! url('staffPdf', [$id]) !!}"><button type="button" class="btn btn-primary">PDFで保存</button></a>
 
   <hr>
 

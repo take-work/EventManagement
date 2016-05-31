@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use ZendPdf\PdfDocument;
 use ZendPdf\Font;
 use ZendPdf\Page;
+use ZendPdf\Resource\Extractor;
 
 use DB;
 use App\Models\Event;
@@ -17,15 +18,24 @@ use App\Models\Event;
 class staffPDFController extends Controller {
 
   public function pdfCreate($id) {
-    $pdf = new PdfDocument();
+    $pdfDocument = new PdfDocument();
+    $extractor = new Extractor();
 
     // 1ページ目のPDF
-    $pdf = PdfDocument::load('PDF/staffList.pdf');
-    $firstPage = $pdf->pages[0];
+    $files = ['PDF/staffList.pdf', 'PDF/staffListTwo.pdf'];
+
+    foreach ($files as $file) {
+      $pdf = PdfDocument::load($file);
+
+      foreach ($pdf->pages as $page) {
+        $pdfExtract = $extractor->clonePage($page);
+        $pdfDocument->pages[] = $pdfExtract;
+      }
+    }
+    $firstPage = $pdfDocument->pages[0];
 
     $font = Font::fontWithPath('fonts/HanaMinA.ttf');
 
-    // フォントと文字のサイズを指定
     $firstPage->setFont($font , 18);
 
     // 出力する文字と位置、文字コードの指定
@@ -55,7 +65,7 @@ class staffPDFController extends Controller {
     // ファイルとして保存、ブラウザに出力
     header ('Content-Type:', 'application/pdf');
     header ('Content-Disposition:', 'inline;');
-    echo $pdf->render();
+    echo $pdfDocument->render();
   }
 
   public function getEvent($id) {

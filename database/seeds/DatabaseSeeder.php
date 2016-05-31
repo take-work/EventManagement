@@ -3,10 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-use Illuminate\Support\Facades\DB;
-
 use Faker\Factory as Faker;
-use Carbon\Carbon;
 use App\Models\Staff;
 
 class DatabaseSeeder extends Seeder {
@@ -31,7 +28,7 @@ class StaffsTableSeeder extends Seeder {
 
     for ($i = 0; $i < 50; $i++) {  // ⑥
       Staff::create([
-        'event_id'   => '1',
+        'event_id'   => '2',
         'name'       => '凛ちゃん',
         'position'   => 'Hello,星を数えて',
         'mail'       => 'Rinchan@example.com',

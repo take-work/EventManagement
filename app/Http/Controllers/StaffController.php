@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -18,7 +19,8 @@ class StaffController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function show(Request $request, $id) {
-    $staffs = DB::select('select * from staffs where event_id = '. $id .' order by rank');
+    // $staffs = DB::select('select * from staffs where event_id = '. $id .' order by rank');
+    $staffs = Staff::where('event_id', $id)->orderBy('rank','asc')->paginate(20);
 
     return view('staff.list', compact('staffs', 'id'));
   }

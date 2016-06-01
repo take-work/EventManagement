@@ -15,6 +15,8 @@
 
   <hr>
 
+{!! $staffs->render() !!}
+
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
@@ -85,6 +87,7 @@
       </tr>
     </tbody>
   @endforeach
+
   </table>
 
   <hr>

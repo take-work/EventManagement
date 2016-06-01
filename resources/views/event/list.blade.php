@@ -14,6 +14,10 @@
 
   <hr>
 
+  <div class="pull-right">
+    {!! $events->render() !!}
+  </div>
+
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
@@ -91,6 +95,10 @@
     </tbody>
   @endforeach
   </table>
+
+  <div class="pull-right">
+    {!! $events->render() !!}
+  </div>
 
   <hr>
 

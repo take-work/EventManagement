@@ -15,9 +15,9 @@ class Event extends Model {
 
   public function select($id = 0) {
     if ($id == 0) {
-      $events = DB::select('select * from events');
+      $events = DB::table('events')->paginate(10);
     } else {
-      $events = DB::select('select * from events where id ='.$id);
+      $events = Event::where('id', $id)->get();
     }
 
     return $events;

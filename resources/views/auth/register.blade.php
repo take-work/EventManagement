@@ -51,5 +51,5 @@
   </table>
 
   <hr>
-  <a href="{!! '/login' !!}">ログイン画面に戻る</a>
+  <a href="{!! '/auth/login' !!}">ログイン画面に戻る</a>
 @endsection

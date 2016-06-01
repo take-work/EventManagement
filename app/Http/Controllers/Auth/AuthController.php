@@ -23,7 +23,7 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers;
 
     protected $redirectPath = '/list';
-    protected $loginPath = '/login';
+    protected $loginPath = '/auth/login';
 
     /**
      * 新しい認証コントローラインスタンスの生成

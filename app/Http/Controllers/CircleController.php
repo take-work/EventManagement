@@ -21,8 +21,8 @@ class CircleController extends Controller {
     $circle = new Circle();
     $circles = Circle::where('event_id', $id)->paginate(20);
 
-    $desk = $circle->deskCounter($circles);
-    $chair = $circle->chairCounter($circles);
+    $desk = $circle->deskCounter($id);
+    $chair = $circle->chairCounter($id);
 
     return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
   }

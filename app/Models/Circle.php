@@ -16,7 +16,9 @@ class Circle extends Model {
     return $counter;
   }
 
-  public function deskCounter($circles) {
+  public function deskCounter($id) {
+    $circles = Circle::where('event_id', $id)->get();
+
     $first = true;
     $desk = 0;
 
@@ -32,7 +34,9 @@ class Circle extends Model {
     return $desk;
   }
 
-  public function chairCounter($circles) {
+  public function chairCounter($id) {
+    $circles = Circle::where('event_id', $id)->get();
+
     $first = true;
     $chair = 0;
 

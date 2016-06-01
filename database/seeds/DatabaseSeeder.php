@@ -3,8 +3,8 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-use Faker\Factory as Faker;
 use App\Models\Staff;
+use App\Models\Circle;
 
 class DatabaseSeeder extends Seeder {
   /**
@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder {
   public function run() {
     Model::unguard();
 
-    $this->call('StaffsTableSeeder');
+    // $this->call('StaffsTableSeeder');
+    $this->call('CirclesTableSeeder');
 
     Model::reguard();
   }
@@ -24,9 +25,7 @@ class DatabaseSeeder extends Seeder {
 class StaffsTableSeeder extends Seeder {
 
   public function run() {
-    $faker = Faker::create('en_US');  // ⑤
-
-    for ($i = 0; $i < 50; $i++) {  // ⑥
+    for ($i = 0; $i < 50; $i++) {
       Staff::create([
         'event_id'   => '2',
         'name'       => '凛ちゃん',
@@ -39,4 +38,23 @@ class StaffsTableSeeder extends Seeder {
       ]);
     }
   }
+}
+
+class CirclesTableSeeder extends Seeder {
+
+  public function run() {
+    for ($i = 0; $i < 50; $i++) {
+      Circle::create([
+        'event_id'    => '1',
+        'number'      => 'あ-A',
+        'space'       => '北エリア',
+        'circle_name' => '恋のシグナル',
+        'host'        => 'RinRinRin',
+        'staff'       => '1',
+        'desk'        => '1',
+        'chair'       => '1'
+      ]);
+    }
+  }
+
 }

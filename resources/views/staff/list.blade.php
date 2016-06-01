@@ -15,7 +15,9 @@
 
   <hr>
 
-{!! $staffs->render() !!}
+  <div class="pull-right">
+    {!! $staffs->render() !!}
+  </div>
 
   <table class="table table-responsive table-bordered">
     <thead>
@@ -89,6 +91,10 @@
   @endforeach
 
   </table>
+
+  <div class="pull-right">
+    {!! $staffs->render() !!}
+  </div>
 
   <hr>
 

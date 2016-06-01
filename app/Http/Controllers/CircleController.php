@@ -19,7 +19,7 @@ class CircleController extends Controller {
    */
   public function show($id) {
     $circle = new Circle();
-    $circles = DB::select('select * from circles where event_id ='.$id);
+    $circles = Circle::where('event_id', $id)->get();
 
     $desk = $circle->deskCounter($circles);
     $chair = $circle->chairCounter($circles);
@@ -62,22 +62,22 @@ class CircleController extends Controller {
 
     $circle->updateData($request);
 
-    $circles = DB::select('select * from circles where id = '. $request['id']);
+    $circles = Circle::where('id', $request['id'])->get();
 
     \Session::flash('flash_message', $circles[0]->circle_name .'の情報を更新しました。');
     return redirect('/circleList/'. $circles[0]->event_id);
   }
 
   public function deleteConfirm($id) {
-    $circles = DB::select('select * from circles where id ='.$id);
+    $circles = Circle::where('id', $id)->get();
 
     return view('circle.delete', compact('circles'));
   }
 
   public function delete($id) {
     $circle = new Circle();
+    $circles = Circle::where('id', $id)->get();
 
-    $circles = DB::select('select * from circles where id = '. $id);
     $name = $circles[0]->circle_name;
     $eventId = $circles[0]->event_id;
 

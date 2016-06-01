@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Event;
 use App\Models\Staff;
 use App\Models\Circle;
 
@@ -15,10 +16,26 @@ class DatabaseSeeder extends Seeder {
   public function run() {
     Model::unguard();
 
+    $this->call('EventsTableSeeder');
     // $this->call('StaffsTableSeeder');
-    $this->call('CirclesTableSeeder');
+    // $this->call('CirclesTableSeeder');
 
     Model::reguard();
+  }
+}
+
+class EventsTableSeeder extends Seeder {
+
+  public function run() {
+    for ($i = 0; $i < 50; $i++) {
+      Event::create([
+        'name'     => 'LoveLive!',
+        'host'     => 'えみつん',
+        'price'    => '10000',
+        'startDay' => '2016/06/01',
+        'endDay'   => '2016/06/02'
+      ]);
+    }
   }
 }
 

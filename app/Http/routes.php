@@ -20,17 +20,29 @@ Route::get('/', function () {
  */
 
 Route::get('/list', [
-        'middleware' => 'auth',
-        'uses' => 'EventListController@show'
-]);
+         'middleware' => 'auth',
+         'uses'       => 'EventListController@show'
+       ]);
 
-Route::get('/create', 'EventListController@create');
+Route::get('/create', [
+         'middleware' => 'auth',
+         'uses'       => 'EventListController@create'
+       ]);
+
 Route::post('/create', 'EventListController@insert');
 
-Route::get('/update/{id}', 'EventListController@updateConfirm');
+Route::get('/update/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'EventListController@updateConfirm'
+       ]);
+
 Route::post('/update/{id}', 'EventListController@update');
 
-Route::get('/delete/{id}', 'EventListController@deleteConfirm');
+Route::get('/delete/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'EventListController@deleteConfirm'
+       ]);
+
 Route::post('/delete/{id}', 'EventListController@delete');
 
 /*

@@ -19,7 +19,6 @@ class StaffController extends Controller {
    * @return \Illuminate\Http\Response
    */
   public function show(Request $request, $id) {
-    // $staffs = DB::select('select * from staffs where event_id = '. $id .' order by rank');
     $staffs = Staff::where('event_id', $id)->orderBy('rank','asc')->paginate(20);
 
     return view('staff.list', compact('staffs', 'id'));
@@ -65,7 +64,8 @@ class StaffController extends Controller {
     $rules = $this->validationRules();
     $this->validate($request, $rules);
 
-    $staffs = DB::select('select * from staffs where id = '. $request['id']);
+    $staffs = Staff::where('id', $request['id'])->get();
+
     $staff->updateData($request);
 
     \Session::flash('flash_message', $request['staffName'] .'さんの情報を更新しました。');
@@ -81,7 +81,8 @@ class StaffController extends Controller {
   public function delete($id) {
     $staff = new Staff();
 
-    $staffs = DB::select('select * from staffs where id = '. $id);
+    $staffs = Staff::where('id', $id)->get();
+
     $name = $staffs[0]->name;
     $eventId = $staffs[0]->event_id;
 

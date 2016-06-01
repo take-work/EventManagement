@@ -5,31 +5,51 @@
 @endsection
 
 @section('content')
-<form method="POST" action="/auth/register">
-  {!! csrf_field() !!}
 
-  <div>
-  ユーザー名
-    <input type="text" name="name" value="{{ old('name') }}">
-  </div>
+@section('subTitle')
+  <h3>ユーザー登録ページ</h3>
+@endsection
 
-  <div>
-    メールアドレス
-    <input type="email" name="email" value="{{ old('email') }}">
-  </div>
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="active">
+        <th>ユーザー名</th>
+        <th>メールアドレス</th>
+        <th>パスワード</th>
+        <th>パスワード確認</th>
+        <th>登録</th>
+      </tr>
+    </thead>
 
-  <div>
-    パスワード
-    <input type="password" name="password">
-  </div>
+    {!! Form::open() !!}
+    {!! csrf_field() !!}
+    <tbody>
+      <tr>
+        <td align="center">
+          <input type="text" name="name" value="{{ old('name') }}">
+        </td>
 
-  <div>
-    パスワード確認
-    <input type="password" name="password_confirmation">
-  </div>
+        <td align="center">
+          <input type="email" name="email" value="{{ old('email') }}">
+        </td>
 
-  <div>
-    <button type="submit">登録</button>
-  </div>
-</form>
+        <td align="center">
+          <input type="password" name="password">
+        </td>
+
+        <td align="center">
+          <input type="password" name="password_confirmation">
+        </td>
+
+        <td align="center">
+          <button type="submit">登録</button>
+        </td>
+
+      </tr>
+    </tbody>
+    {!! Form::close() !!}
+  </table>
+
+  <hr>
+  <a href="{!! '/auth/login' !!}">ログイン画面に戻る</a>
 @endsection

@@ -42,7 +42,7 @@
         </td>
 
         <td align="center">
-          <button type="submit">登録</button>
+          <button type="submit">登録する</button>
         </td>
 
       </tr>
@@ -51,5 +51,5 @@
   </table>
 
   <hr>
-  <a href="{!! '/auth/login' !!}">ログイン画面に戻る</a>
+  <a href="{!! '/login' !!}">ログイン画面に戻る</a>
 @endsection

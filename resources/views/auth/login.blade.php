@@ -5,25 +5,42 @@
 @endsection
 
 @section('content')
-<form method="POST" action="/auth/login">
+
+@section('subTitle')
+  <h3>ログイン</h3>
+@endsection
+
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr class="active">
+        <th>メールアドレス</th>
+        <th>パスワード</th>
+        <th>継続</th>
+        <th>ログイン</th>
+      </tr>
+    </thead>
+
+  {!! Form::open() !!}
   {!! csrf_field() !!}
+  <tbody>
+    <tr>
+      <td align="center">
+        <input type="email" name="email" value="{{ old('email') }}">
+      </td>
 
-  <div>
-    メールアドレス
-    <input type="email" name="email" value="{{ old('email') }}">
-  </div>
+      <td align="center">
+        <input type="password" name="password" id="password">
+      </td>
 
-  <div>
-    パスワード
-    <input type="password" name="password" id="password">
-  </div>
+      <td align="center">
+        <input type="checkbox" name="remember"> ログインを継続する
+      </td>
 
-  <div>
-    <input type="checkbox" name="remember"> ログインを継続する
-  </div>
+      <td align="center">
+        <button type="submit">ログインする</button>
+      </td>
 
-  <div>
-    <button type="submit">ログイン</button>
-  </div>
-</form>
+    </tr>
+  </tbody>
+  {!! Form::close() !!}
 @endsection

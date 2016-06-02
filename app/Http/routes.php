@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return redirect('/list');
+  return redirect('/list');
 });
 
 /*
@@ -28,38 +28,52 @@ Route::get('/create', [
          'middleware' => 'auth',
          'uses'       => 'EventListController@create'
        ]);
-
 Route::post('/create', 'EventListController@insert');
 
 Route::get('/update/{id}', [
          'middleware' => 'auth',
          'uses'       => 'EventListController@updateConfirm'
        ]);
-
 Route::post('/update/{id}', 'EventListController@update');
 
 Route::get('/delete/{id}', [
          'middleware' => 'auth',
          'uses'       => 'EventListController@deleteConfirm'
        ]);
-
 Route::post('/delete/{id}', 'EventListController@delete');
 
 /*
  * スタッフ管理に関連するルート
  */
 
-Route::get('/staffList/{id}', 'StaffController@show');
-Route::get('/staffCreate/{id}', 'StaffController@create');
+Route::get('/staffList/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'StaffController@show'
+]);
+
+Route::get('/staffCreate/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'StaffController@create'
+]);
 Route::post('/staffCreate/{id}', 'StaffController@insert');
 
-Route::get('/staffUpdate/{id}', 'StaffController@updateConfirm');
+Route::get('/staffUpdate/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'StaffController@updateConfirm'
+]);
 Route::post('/staffUpdate/{id}', 'StaffController@update');
 
-Route::get('/staffDelete/{id}', 'StaffController@deleteConfirm');
+Route::get('/staffDelete/{id}', [
+         'middleware' => 'auth',
+         'StaffController@deleteConfirm'
+]);
+
 Route::post('/staffDelete/{id}', 'StaffController@delete');
 
-Route::get('/staffPdf/{id}','staffPDFController@pdfCreate');
+Route::get('/staffPdf/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'staffPDFController@pdfCreate'
+]);
 
 /*
  * サークル管理に関連するルート

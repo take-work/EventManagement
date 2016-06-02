@@ -24,6 +24,9 @@
 
   @yield('subTitle')
 
+  @if (! strstr(Request::url(), '/auth/login'))
+    <a href="/auth/logout">ログアウト</a>
+  @endif
   <hr>
 
   @yield('content')

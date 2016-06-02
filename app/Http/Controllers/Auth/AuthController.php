@@ -56,8 +56,9 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
+      \Session::flash('flash_message', 'ユーザー「'. $data['name'] .'」さんを新規登録しました。');
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

@@ -33,7 +33,7 @@
       </td>
 
       <td align="center">
-        <input type="checkbox" name="remember"> ログインを継続する
+        <input type="checkbox" name="remember" id="remember"><label for="remember"> ログインを継続する </label>
       </td>
 
       <td align="center">

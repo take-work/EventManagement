@@ -28,7 +28,7 @@ return [
         'array'   => 'The :attribute must have between :min and :max items.',
     ],
     'boolean'              => 'The :attribute field must be true or false.',
-    'confirmed'            => 'The :attribute confirmation does not match.',
+    'confirmed'            => '「:attribute」と「パスワード確認」に入力された値が一致しません。',
     'date'                 => 'The :attribute is not a valid date.',
     'date_format'          => 'The :attribute does not match the format :format.',
     'different'            => 'The :attribute and :other must be different.',
@@ -51,7 +51,7 @@ return [
     'min'                  => [
         'numeric' => 'The :attribute must be at least :min.',
         'file'    => 'The :attribute must be at least :min kilobytes.',
-        'string'  => 'The :attribute must be at least :min characters.',
+        'string'  => ':attribute は :min 桁以上で入力してください。',
         'array'   => 'The :attribute must have at least :min items.',
     ],
     'not_in'               => 'The selected :attribute is invalid.',
@@ -128,7 +128,12 @@ return [
       'five_hundred'  => '500円玉',
       'thousand'      => '1000円札',
       'five_thousand' => '5000円札',
-      'million'       => '10000円札'
+      'million'       => '10000円札',
+
+      // ユーザー登録
+      'name'     => 'ユーザー名',
+      'email'    => 'メールアドレス',
+      'password' => 'パスワード'
     ],
 
 ];

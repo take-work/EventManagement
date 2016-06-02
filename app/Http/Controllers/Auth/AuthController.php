@@ -23,6 +23,7 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers;
 
     protected $redirectPath = '/list';
+    protected $redirectTo = '/list';
     protected $loginPath = '/auth/login';
 
     /**

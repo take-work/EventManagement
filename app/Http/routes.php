@@ -79,25 +79,47 @@ Route::get('/staffPdf/{id}', [
  * サークル管理に関連するルート
  */
 
-Route::get('/circleList/{id}', 'CircleController@show');
-Route::get('/circleCreate/{id}', 'CircleController@create');
+Route::get('/circleList/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'CircleController@show'
+]);
+
+Route::get('/circleCreate/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'CircleController@create'
+]);
 Route::post('/circleCreate/{id}', 'CircleController@insert');
 
-Route::get('/circleUpdate/{id}', 'CircleController@updateConfirm');
+Route::get('/circleUpdate/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'CircleController@updateConfirm'
+]);
 Route::post('/circleUpdate/{id}', 'CircleController@update');
 
-Route::get('/circleDelete/{id}', 'CircleController@deleteConfirm');
+Route::get('/circleDelete/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'CircleController@deleteConfirm'
+]);
 Route::post('/circleDelete/{id}', 'CircleController@delete');
 
-Route::get('/circlePdf/{id}','circlePDFController@pdfCreate');
+Route::get('/circlePdf/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'circlePDFController@pdfCreate'
+]);
 
 /*
  * 金額管理に関連するルート
  */
-Route::get('/moneyCreate/{id}', 'MoneyController@create');
+Route::get('/moneyCreate/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'MoneyController@create'
+]);
 Route::post('/moneyCreate/{id}', 'MoneyController@insert');
 
-Route::get('/moneyUpdate/{id}', 'MoneyController@updateConfirm');
+Route::get('/moneyUpdate/{id}', [
+         'middleware' => 'auth',
+         'uses'       => 'MoneyController@updateConfirm'
+]);
 Route::post('/moneyUpdate/{id}', 'MoneyController@update');
 
 /*

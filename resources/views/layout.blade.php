@@ -26,6 +26,7 @@
 
   @if (! strstr(Request::url(), '/auth/login'))
     <a href="/auth/logout">ログアウト</a>
+    <a href="/auth/register">ユーザー登録</a>
   @endif
   <hr>
 

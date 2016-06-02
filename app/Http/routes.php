@@ -15,6 +15,10 @@ Route::get('/', function () {
   return redirect('/list');
 });
 
+Route::get('/home', function () {
+  return redirect('/list');
+});
+
 /*
  * イベント管理に関連するルート
  */

@@ -15,14 +15,10 @@
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
-        <th>氏名(HN)</th>
-        <th>担当 / 持ち場</th>
-        <th>メールアドレス</th>
-        <th>電話番号</th>
-        <th>Twitter</th>
-        <th>経験</th>
-        <th>役職</th>
-        <th>データの削除</th>
+        @foreach ($staffContents as $contents => $content)
+          <th><div class="text-center">{{ $content }}</div></th>
+        @endforeach
+        <th><div class="text-center">データの削除</div></th>
       </tr>
     </thead>
 

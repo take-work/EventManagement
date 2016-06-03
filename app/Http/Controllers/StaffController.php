@@ -12,25 +12,18 @@ use DB;
 use App\Models\Staff;
 
 class StaffController extends Controller {
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function show(Request $request, $id) {
-    $staffs = Staff::where('event_id', $id)->orderBy('rank','asc')->paginate(20);
 
-    return view('staff.list', compact('staffs', 'id'));
+  public function show($id) {
+    $staffs = Staff::where('event_id', $id)->orderBy('rank','asc')->paginate(20);
+    $staffContents = $this->staffContents();
+
+    return view('staff.list', compact('staffs', 'id', 'staffContents'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
   public function create($id) {
-    return view('staff.create', compact('id'));
+    $staffContents = $this->staffContents();
+
+    return view('staff.create', compact('id', 'staffContents'));
   }
 
   public function insert(Request $request) {
@@ -45,17 +38,11 @@ class StaffController extends Controller {
     return redirect('/staffList/'. $request['id']);
   }
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
   public function updateConfirm($id) {
     $staffs = DB::select('select * from staffs where id ='.$id);
+    $staffContents = $this->staffContents();
 
-    return view('staff.update', compact('staffs'));
+    return view('staff.update', compact('staffs', 'staffContents'));
   }
 
   public function update(Request $request) {
@@ -74,8 +61,9 @@ class StaffController extends Controller {
 
   public function deleteConfirm($id) {
     $staffs = DB::select('select * from staffs where id ='.$id);
+    $staffContents = $this->staffContents();
 
-    return view('staff.delete', compact('staffs'));
+    return view('staff.delete', compact('staffs', 'staffContents'));
   }
 
   public function delete($id) {
@@ -101,5 +89,19 @@ class StaffController extends Controller {
     ];
 
     return $rules;
+  }
+
+  public function staffContents() {
+    $staffContents = [
+      'staffName' => '氏名(HN)',
+      'position' => '担当 / 持ち場',
+      'mail' => 'メールアドレス',
+      'tel' => '電話番号',
+      'twitter' => 'Twitter',
+      'experience' => '経験',
+      'rank' => '役職'
+    ];
+
+    return $staffContents;
   }
 }

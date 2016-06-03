@@ -69,7 +69,7 @@ Route::post('/staffUpdate/{id}', 'StaffController@update');
 
 Route::get('/staffDelete/{id}', [
          'middleware' => 'auth',
-         'StaffController@deleteConfirm'
+         'uses'       => 'StaffController@deleteConfirm'
 ]);
 
 Route::post('/staffDelete/{id}', 'StaffController@delete');

@@ -74,8 +74,8 @@ class Circle extends Model {
     public function insert($inputs) {
         $now = date("Y-m-d");
 
-        DB::table('circles')->
-            insert([
+        DB::table('circles')
+            ->insert([
                 'event_id'    => $inputs['id'],
                 'number'      => $inputs['number'],
                 'space'       => $inputs['space'],

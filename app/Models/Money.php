@@ -7,6 +7,13 @@ use DB;
 
 class Money extends Model {
 
+    /**
+     * 金額管理と関連しているテーブル
+     *
+     * @var string
+     */
+    protected $table = 'money';
+
   public function insert($inputs) {
     $now = date("Y-m-d");
 

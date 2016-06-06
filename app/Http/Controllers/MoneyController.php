@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use DB;
 use App\Models\Money;
+use App\Models\Event;
 
 class MoneyController extends Controller {
 
@@ -25,7 +25,7 @@ class MoneyController extends Controller {
     public function insert(Request $request) {
         $inserts = new Money();
 
-        $eventName = DB::select('select * from events where id ='.$request['id']);
+        $eventName = Event::where('id', $request['id'])->get();
 
         $rules = $this->validationRules();
         $this->validate($request, $rules);
@@ -40,7 +40,7 @@ class MoneyController extends Controller {
      * 金額情報の更新ページにアクセスするための関数
      */
     public function updateConfirm($id) {
-        $moneyList = DB::select('select * from money where event_id ='.$id);
+        $moneyList = Money::where('event_id', $id)->get();
 
         return view('money.update', compact('moneyList'));
     }
@@ -51,10 +51,10 @@ class MoneyController extends Controller {
     public function update(Request $request, $id) {
         $money = new Money();
 
-        $moneyId = DB::select('select * from money where id ='.$request['id']);
+        $moneyId = Money::where('id', $request['id'])->get();
         $eventId = $moneyId[0]->event_id;
 
-        $eventName = DB::select('select * from events where id ='.$eventId);
+        $eventName = Event::where('id', $eventId)->get();
 
         $rules = $this->validationRules();
         $this->validate($request, $rules);

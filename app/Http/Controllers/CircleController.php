@@ -107,7 +107,7 @@ class CircleController extends Controller {
     /*
      * バリデーションのルールを設定するための関数
      */
-    public function validationRules() {
+    private function validationRules() {
         $rules = [
             'circleName'   => 'required',
             'circleLeader' => 'required',
@@ -122,7 +122,7 @@ class CircleController extends Controller {
     /*
      * view ファイルで表示するテーブルの項目を設定するための関数
      */
-    public function circleContents() {
+    private function circleContents() {
         $circleContents = [
             'number'     => 'ナンバー',
             'space'      => 'スペース',

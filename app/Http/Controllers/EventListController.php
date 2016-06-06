@@ -127,7 +127,7 @@ class EventListController extends Controller {
     /*
      * バリデーションのルールを設定する関数
      */
-    public function validationRules() {
+    private function validationRules() {
         $rules = [
             'startDay'  => 'required | digits:8',
             'endDay'    => 'required | digits:8',
@@ -142,7 +142,7 @@ class EventListController extends Controller {
     /*
      * イベント一覧ページで表示するテーブルの項目を渡す関数
      */
-    public function eventContents() {
+    private function eventContents() {
         $eventContents = [
             'startDay'  => '開始年月日',
             'endDay'    => '終了年月日',
@@ -161,7 +161,7 @@ class EventListController extends Controller {
     /*
      * イベントの新規作成・更新・削除ページで表示するテーブルの項目を渡す関数
      */
-    public function inputContents() {
+    private function inputContents() {
         $inputContents = [
             'startDay'  => '開始年月日',
             'endDay'    => '終了年月日',

@@ -68,7 +68,7 @@ class MoneyController extends Controller {
     /*
      * バリデーションルールを設定するための関数
      */
-    public function validationRules() {
+    private function validationRules() {
         $rules = [
             'hundred'       => 'required | integer',
             'five_hundred'  => 'required | integer',

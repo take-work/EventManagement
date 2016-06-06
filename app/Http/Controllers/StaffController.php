@@ -103,7 +103,7 @@ class StaffController extends Controller {
     /*
      * バリデーションを設定するための関数
      */
-    public function validationRules() {
+    private function validationRules() {
         $rules = [
             'staffName'  => 'required',
             'mail'       => 'email',
@@ -117,7 +117,7 @@ class StaffController extends Controller {
     /*
      * view ファイルで表示するテーブルの項目を設定するための関数
      */
-    public function staffContents() {
+    private function staffContents() {
         $staffContents = [
             'staffName' => '氏名(HN)',
             'position' => '担当 / 持ち場',

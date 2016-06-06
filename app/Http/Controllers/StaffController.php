@@ -77,7 +77,7 @@ class StaffController extends Controller {
      * スタッフの削除確認ページにアクセスするための関数
      */
     public function deleteConfirm($id) {
-        $staffs = DB::select('select * from staffs where id ='.$id);
+        $staffs = Staff::where('id', $id)->get();
         $staffContents = $this->staffContents();
 
         return view('staff.delete', compact('staffs', 'staffContents'));

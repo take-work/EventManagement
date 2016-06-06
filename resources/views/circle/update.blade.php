@@ -12,14 +12,10 @@
 
   <table class="table table-responsive table-bordered">
     <tr class="active">
-      <th>ナンバー</th>
-      <th>スペース</th>
-      <th>サークル名</th>
-      <th>代表者</th>
-      <th>スタッフ数</th>
-      <th>机の数</th>
-      <th>椅子の数</th>
-      <th>データの更新</th>
+        @foreach ($circleContents as $contents => $content)
+          <th><div class="text-center">{{ $content }}</div></th>
+        @endforeach
+      <th><div class="text-center">データの更新</div></th>
     </tr>
 
   {!! Form::open() !!}

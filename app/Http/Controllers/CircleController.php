@@ -11,12 +11,7 @@ use DB;
 use App\Models\Circle;
 
 class CircleController extends Controller {
-  /**
-   * Display the specified resource.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
+
   public function show($id) {
     $circle = new Circle();
     $circles = Circle::where('event_id', $id)->paginate(20);
@@ -27,13 +22,10 @@ class CircleController extends Controller {
     return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
   }
 
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create(Request $request, $id) {
-    return view('circle.create', compact('id'));
+  public function create($id) {
+    $circleContents = $this->circleContents();
+
+    return view('circle.create', compact('id', 'circleContents'));
   }
 
   public function insert(Request $request) {
@@ -51,7 +43,9 @@ class CircleController extends Controller {
   public function updateConfirm(Request $request, $id) {
     $circles = DB::select('select * from circles where id ='.$id);
 
-    return view('circle.update', compact('circles'));
+    $circleContents = $this->circleContents();
+
+    return view('circle.update', compact('circles', 'circleContents'));
   }
 
   public function update(Request $request) {
@@ -71,7 +65,9 @@ class CircleController extends Controller {
   public function deleteConfirm($id) {
     $circles = Circle::where('id', $id)->get();
 
-    return view('circle.delete', compact('circles'));
+    $circleContents = $this->circleContents();
+
+    return view('circle.delete', compact('circles', 'circleContents'));
   }
 
   public function delete($id) {
@@ -96,5 +92,19 @@ class CircleController extends Controller {
     ];
 
     return $rules;
+  }
+
+  public function circleContents() {
+    $circleContents = [
+      'number'     => 'ナンバー',
+      'space'      => 'スペース',
+      'circleName' => 'サークル名',
+      'host'       => '代表者',
+      'staffs'      => 'スタッフの数',
+      'desks'       => '机の数',
+      'chairs'      => '椅子の数'
+    ];
+
+    return $circleContents;
   }
 }

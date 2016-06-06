@@ -13,12 +13,10 @@
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
-        <th>開始年月日</th>
-        <th>終了年月日</th>
-        <th>イベント名</th>
-        <th>主催者</th>
-        <th>準備費用</th>
-        <th>データの変更</th>
+        @foreach ($inputContents as $contents => $content)
+          <th><div class="text-center">{{ $content }}</div></th>
+        @endforeach
+        <th><div class="text-center">データの変更</div></th>
       </tr>
     </thead>
 

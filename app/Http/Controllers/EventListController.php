@@ -44,7 +44,9 @@ class EventListController extends Controller {
   }
 
   public function create() {
-    return view('event.create');
+    $inputContents = $this->inputContents();
+
+    return view('event.create', compact('inputContents'));
   }
 
   public function insert(Request $request) {
@@ -63,7 +65,9 @@ class EventListController extends Controller {
     $event = new Event();
     $events = $event->select($id);
 
-    return view('event.update', compact('events'));
+    $inputContents = $this->inputContents();
+
+    return view('event.update', compact('events', 'inputContents'));
   }
 
   public function update(Request $request) {
@@ -82,7 +86,9 @@ class EventListController extends Controller {
     $event = new Event();
     $events = $event->select($id);
 
-    return view('event.delete', compact('events'));
+    $inputContents = $this->inputContents();
+
+    return view('event.delete', compact('events', 'inputContents'));
   }
 
   public function delete($id) {
@@ -123,5 +129,17 @@ class EventListController extends Controller {
     ];
 
     return $eventContents;
+  }
+
+  public function inputContents() {
+    $inputContents = [
+      'startDay'  => '開始年月日',
+      'endDay'    => '終了年月日',
+      'eventName' => 'イベント名',
+      'host'      => '主催者',
+      'price'     => '準備費用'
+    ];
+
+    return $inputContents;
   }
 }

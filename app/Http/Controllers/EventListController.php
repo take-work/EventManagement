@@ -20,6 +20,7 @@ class EventListController extends Controller {
     $event  = new Event();
     $money  = new Money();
 
+    $eventContents = $this->eventContents();
     $events = $event->select();
 
     foreach ($events as $id) {
@@ -39,7 +40,7 @@ class EventListController extends Controller {
       $moneyList[$eventId] = $moneyCalc;
     }
 
-    return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+    return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
   }
 
   public function create() {
@@ -106,5 +107,21 @@ class EventListController extends Controller {
     ];
 
     return $rules;
+  }
+
+  public function eventContents() {
+    $eventContents = [
+      'startDay'  => '開始年月日',
+      'endDay'    => '終了年月日',
+      'eventName' => 'イベント名',
+      'host'      => '主催者',
+      'staffs'    => 'スタッフ数',
+      'circles'   => 'サークル数',
+      'price'     => '準備費用',
+      'moneyCalc' => '合計金額',
+      'moneyList' => '純利益'
+    ];
+
+    return $eventContents;
   }
 }

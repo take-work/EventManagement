@@ -21,17 +21,11 @@
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
-        <th>開始年月日</th>
-        <th>終了年月日</th>
-        <th>イベント名</th>
-        <th>主催者</th>
-        <th>スタッフ数</th>
-        <th>サークル数</th>
-        <th>準備費用</th>
-        <th>合計売上</th>
-        <th>純利益</th>
-        <th>データの編集</th>
-        <th>データの削除</th>
+        @foreach ($eventContents as $contents => $content)
+          <th><div class="text-center">{{ $content }}</div></th>
+        @endforeach
+        <th><div class="text-center">データの編集</div></th>
+        <th><div class="text-center">データの削除</div></th>
       </tr>
     </thead>
 

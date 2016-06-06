@@ -11,68 +11,73 @@ use DB;
 use App\Models\Money;
 
 class MoneyController extends Controller {
-  /**
-   * Show the form for creating a new resource.
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function create(Request $request, $id) {
-    return view('money.create', compact('id'));
-  }
 
-  public function insert(Request $request) {
-    $inserts = new Money();
+    /*
+     * 金額情報の新規作成ページにアクセスするための関数
+     */
+    public function create($id) {
+        return view('money.create', compact('id'));
+    }
 
-    $eventName = DB::select('select * from events where id ='.$request['id']);
+    /*
+     * 金額情報の新規登録処理を実行するための関数
+     */
+    public function insert(Request $request) {
+        $inserts = new Money();
 
-    $rules = $this->validationRules();
-    $this->validate($request, $rules);
+        $eventName = DB::select('select * from events where id ='.$request['id']);
 
-    $inserts->insert($request);
+        $rules = $this->validationRules();
+        $this->validate($request, $rules);
 
-    \Session::flash('flash_message', $eventName[0]->name .'の金額情報を新規登録しました。');
-    return redirect('/list');
-  }
+        $inserts->insert($request);
 
-  public function updateConfirm($id) {
-    $moneyList = DB::select('select * from money where event_id ='.$id);
+        \Session::flash('flash_message', $eventName[0]->name .'の金額情報を新規登録しました。');
+        return redirect('/list');
+    }
 
-    return view('money.update', compact('moneyList'));
-  }
+    /*
+     * 金額情報の更新ページにアクセスするための関数
+     */
+    public function updateConfirm($id) {
+        $moneyList = DB::select('select * from money where event_id ='.$id);
 
-  /**
-   * Update the specified resource in storage.
-   *
-   * @param  \Illuminate\Http\Request  $request
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function update(Request $request, $id) {
-    $money = new Money();
+        return view('money.update', compact('moneyList'));
+    }
 
-    $moneyId = DB::select('select * from money where id ='.$request['id']);
-    $eventId = $moneyId[0]->event_id;
+    /*
+     * 金額情報の更新処理を実行するための関数
+     */
+    public function update(Request $request, $id) {
+        $money = new Money();
 
-    $eventName = DB::select('select * from events where id ='.$eventId);
+        $moneyId = DB::select('select * from money where id ='.$request['id']);
+        $eventId = $moneyId[0]->event_id;
 
-    $rules = $this->validationRules();
-    $this->validate($request, $rules);
+        $eventName = DB::select('select * from events where id ='.$eventId);
 
-    $money->updateData($request);
+        $rules = $this->validationRules();
+        $this->validate($request, $rules);
 
-    \Session::flash('flash_message', $eventName[0]->name .'の金額情報を更新しました。');
-    return redirect('/list');
-  }
+        $money->updateData($request);
 
-  public function validationRules() {
-    $rules = [
-      'hundred'       => 'required | integer',
-      'five_hundred'  => 'required | integer',
-      'thousand'      => 'required | integer',
-      'five_thousand' => 'required | integer',
-      'million'       => 'required | integer'
-    ];
+        \Session::flash('flash_message', $eventName[0]->name .'の金額情報を更新しました。');
+        return redirect('/list');
+    }
+
+    /*
+     * バリデーションルールを設定するための関数
+     */
+    public function validationRules() {
+        $rules = [
+            'hundred'       => 'required | integer',
+            'five_hundred'  => 'required | integer',
+            'thousand'      => 'required | integer',
+            'five_thousand' => 'required | integer',
+            'million'       => 'required | integer'
+        ];
 
     return $rules;
   }
+
 }

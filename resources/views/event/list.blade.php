@@ -14,6 +14,25 @@
 
   <hr>
 
+  {!! Form::open() !!}
+    <table class="table table-responsive table-bordered">
+      <tr>
+        <th>
+          <input type="radio" name="searchContents" value="startDay" id="startDay"><label for="startDay">開始日</label> &nbsp;
+          <input type="radio" name="searchContents" value="endDay" id="endDay"><label for="endDay">終了日</label> &nbsp;
+          <input type="radio" name="searchContents" value="name" id="name"><label for="name">イベント名</label> &nbsp;
+          <input type="radio" name="searchContents" value="host" id="host"><label for="host">主催者</label>
+        </th>
+        <td>
+          <input type="text" name="searchText">
+        </td>
+        <td>
+          <input type="submit" value="検索">
+        </td>
+      </tr>
+    </table>
+  {!! Form::close() !!}
+
   <div class="pull-right">
     {!! $events->render() !!}
   </div>

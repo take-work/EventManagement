@@ -27,6 +27,7 @@ Route::get('/list', [
          'middleware' => 'auth',
          'uses'       => 'EventListController@show'
        ]);
+Route::post('/list', 'EventListController@search');
 
 Route::get('/create', [
          'middleware' => 'auth',

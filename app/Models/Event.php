@@ -3,6 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\Staff;
+use App\Models\Circle;
+use App\Models\Money;
+
 use DB;
 
 class Event extends Model {
@@ -94,6 +99,35 @@ class Event extends Model {
         Event::delete('id', $id);
 
         return true;
+    }
+
+    /*
+     * それぞれのイベントに登録されているスタッフ数・サークル数・利益等を計算する関数
+     */
+    public function counter($events) {
+        $staff  = new Staff();
+        $circle = new Circle();
+        $money  = new Money();
+
+        foreach ($events as $id) {
+            $eventId = $id->id;
+            $eventPrice = $id->price;
+
+            $staffCount = $staff->count($eventId);
+            $staffCounter[$eventId] = $staffCount;
+
+            $circleCount = $circle->count($eventId);
+            $circleCounter[$eventId] = $circleCount;
+
+            $totalMoney = $money->totalMpney($eventId);
+            $moneyCounter[$eventId] = $totalMoney;
+
+            $moneyCalc = $money->calculater($totalMoney, $eventPrice);
+            $moneyList[$eventId] = $moneyCalc;
+        }
+
+        $counter = [$staffCounter, $circleCounter, $moneyCounter, $moneyList];
+        return $counter;
     }
 
     /*

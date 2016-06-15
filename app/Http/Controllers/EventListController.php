@@ -3,14 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Event;
-use App\Models\Staff;
-use App\Models\Circle;
-use App\Models\Money;
 
 class EventListController extends Controller {
 
@@ -18,30 +13,12 @@ class EventListController extends Controller {
      * イベント一覧ページにアクセスするための関数
      */
     public function show() {
-        $staff  = new Staff();
-        $circle = new Circle();
         $event  = new Event();
-        $money  = new Money();
 
         $eventContents = $this->eventContents();
         $events = $event->select();
 
-        foreach ($events as $id) {
-            $eventId = $id->id;
-            $eventPrice = $id->price;
-
-            $staffCount = $staff->count($eventId);
-            $staffCounter[$eventId] = $staffCount;
-
-            $circleCount = $circle->count($eventId);
-            $circleCounter[$eventId] = $circleCount;
-
-            $totalMoney = $money->totalMpney($eventId);
-            $moneyCounter[$eventId] = $totalMoney;
-
-            $moneyCalc = $money->calculater($totalMoney, $eventPrice);
-            $moneyList[$eventId] = $moneyCalc;
-        }
+        list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
 
         return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
     }
@@ -50,32 +27,14 @@ class EventListController extends Controller {
      * イベント一覧ページで検索されたときに呼び出される関数
      */
     public function search() {
-        $inputs = \Request::all();
-
-        $staff  = new Staff();
-        $circle = new Circle();
         $event  = new Event();
-        $money  = new Money();
+
+        $inputs = \Request::all();
 
         $eventContents = $this->eventContents();
         $events = $event->search($inputs);
 
-        foreach ($events as $id) {
-            $eventId = $id->id;
-            $eventPrice = $id->price;
-
-            $staffCount = $staff->count($eventId);
-            $staffCounter[$eventId] = $staffCount;
-
-            $circleCount = $circle->count($eventId);
-            $circleCounter[$eventId] = $circleCount;
-
-            $totalMoney = $money->totalMpney($eventId);
-            $moneyCounter[$eventId] = $totalMoney;
-
-            $moneyCalc = $money->calculater($totalMoney, $eventPrice);
-            $moneyList[$eventId] = $moneyCalc;
-        }
+        list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
 
         return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
     }

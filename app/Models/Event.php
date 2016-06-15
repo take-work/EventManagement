@@ -36,14 +36,13 @@ class Event extends Model {
      * events テーブルから検索されたときに検索結果を返す関数
      */
     public function search($inputs) {
-        $searchQuery = Event::query();
         $searchContent = $inputs['searchContents'];
         $searchText    = $inputs['searchText'];
 
-        if ($searchContent === "startDay") {
-            $searchQuery->where('startDay', 'like', '%'. $searchText .'%');
-            $events = $searchQuery->paginate(10);
-        }
+        $searchQuery = Event::query();
+        $searchQuery->where($searchContent, 'like', '%'. $searchText .'%');
+
+        $events = $searchQuery->paginate(10);
 
         return $events;
     }

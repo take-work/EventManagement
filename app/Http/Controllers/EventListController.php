@@ -29,8 +29,6 @@ class EventListController extends Controller {
     public function search(Request $request) {
         $event  = new Event();
 
-        $inputs = \Request::all();
-
         $eventContents = $this->eventContents();
         $events = $event->search($request);
 

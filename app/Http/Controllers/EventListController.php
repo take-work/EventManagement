@@ -58,7 +58,6 @@ class EventListController extends Controller {
         $money  = new Money();
 
         $eventContents = $this->eventContents();
-//        $events = $event->select();
         $events = $event->search($inputs);
 
         foreach ($events as $id) {

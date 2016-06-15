@@ -27,10 +27,11 @@
           <input type="text" name="searchText">
         </td>
         <td>
+          <input type="hidden" name="id">
           <input type="submit" value="検索">
         </td>
         <td>
-          <a href="{!! url('staffList/{id}') !!}"><input type="button" value="検索をリセットする"></a>
+          <a href="{!! url('staffList', $id) !!}"><input type="button" value="検索をリセットする"></a>
         </td>
       </tr>
     </table>

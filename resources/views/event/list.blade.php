@@ -29,6 +29,9 @@
         <td>
           <input type="submit" value="検索">
         </td>
+        <td>
+          <a href="{!! url('list') !!}"><input type="button" value="検索をリセットする"></a>
+        </td>
       </tr>
     </table>
   {!! Form::close() !!}

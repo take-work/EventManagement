@@ -55,6 +55,7 @@ Route::get('/staffList/{id}', [
          'middleware' => 'auth',
          'uses'       => 'StaffController@show'
 ]);
+Route::post('/staffList/{id}', 'StaffController@search');
 
 Route::get('/staffCreate/{id}', [
          'middleware' => 'auth',

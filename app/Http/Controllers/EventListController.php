@@ -47,6 +47,41 @@ class EventListController extends Controller {
     }
 
     /*
+     * イベント一覧ページで検索されたときに呼び出される関数
+     */
+    public function search() {
+        $inputs = \Request::all();
+
+        $staff  = new Staff();
+        $circle = new Circle();
+        $event  = new Event();
+        $money  = new Money();
+
+        $eventContents = $this->eventContents();
+//        $events = $event->select();
+        $events = $event->search($inputs);
+
+        foreach ($events as $id) {
+            $eventId = $id->id;
+            $eventPrice = $id->price;
+
+            $staffCount = $staff->count($eventId);
+            $staffCounter[$eventId] = $staffCount;
+
+            $circleCount = $circle->count($eventId);
+            $circleCounter[$eventId] = $circleCount;
+
+            $totalMoney = $money->totalMpney($eventId);
+            $moneyCounter[$eventId] = $totalMoney;
+
+            $moneyCalc = $money->calculater($totalMoney, $eventPrice);
+            $moneyList[$eventId] = $moneyCalc;
+        }
+
+        return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+    }
+
+    /*
      * イベントの新規作成ページにアクセスするための関数
      */
     public function create() {

@@ -35,9 +35,9 @@ class Event extends Model {
     /*
      * events テーブルから検索されたときに検索結果を返す関数
      */
-    public function search($inputs) {
-        $searchContent = $inputs['searchContents'];
-        $searchText    = $inputs['searchText'];
+    public function search($request) {
+        $searchContent = $request['searchContents'];
+        $searchText    = $request['searchText'];
 
         $searchQuery = Event::query();
         $searchQuery->where($searchContent, 'like', '%'. $searchText .'%');

@@ -26,13 +26,13 @@ class EventListController extends Controller {
     /*
      * イベント一覧ページで検索されたときに呼び出される関数
      */
-    public function search() {
+    public function search(Request $request) {
         $event  = new Event();
 
         $inputs = \Request::all();
 
         $eventContents = $this->eventContents();
-        $events = $event->search($inputs);
+        $events = $event->search($request);
 
         list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
 

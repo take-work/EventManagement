@@ -23,12 +23,10 @@ class StaffController extends Controller {
     /*
      * イベント一覧ページで検索されたときに呼び出される関数
      */
-    public function search() {
-        $inputs = \Request::all();
-
-        $id            = $inputs['id'];
-        $searchContent = $inputs['searchContents'];
-        $searchText    = $inputs['searchText'];
+    public function search(Request $request) {
+        $id            = $request['id'];
+        $searchContent = $request['searchContents'];
+        $searchText    = $request['searchText'];
 
         $searchQuery = Staff::query();
         $searchQuery->where('event_id', $id)

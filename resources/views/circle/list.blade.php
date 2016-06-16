@@ -19,7 +19,7 @@
     <table class="table table-responsive table-bordered">
       <tr>
         <th>
-          <input type="radio" name="searchContents" value="number" id="name"><label for="number">ナンバー</label> &nbsp;
+          <input type="radio" name="searchContents" value="number" id="number"><label for="number">ナンバー</label> &nbsp;
           <input type="radio" name="searchContents" value="space" id="space"><label for="space">スペース</label> &nbsp;
           <input type="radio" name="searchContents" value="circle_name" id="circle_name"><label for="circle_name">サークル名</label> &nbsp;
           <input type="radio" name="searchContents" value="host" id="host"><label for="host">代表者</label>

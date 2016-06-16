@@ -28,18 +28,12 @@ class CircleController extends Controller {
     public function search(Request $request) {
         $circle = new Circle();
 
-        $id            = $request['id'];
-        $searchContent = $request['searchContents'];
-        $searchText    = $request['searchText'];
-
         $rules = $this->searchValidationRules();
         $this->validate($request, $rules);
 
-        $searchQuery = Circle::query();
-        $searchQuery->where('event_id', $id)
-            ->where($searchContent, 'like', '%'. $searchText .'%');
+        $circles = $circle->search($request);
 
-        $circles = $searchQuery->paginate(20);
+        $id = $request['id'];
 
         $desk = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);

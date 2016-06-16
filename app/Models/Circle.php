@@ -25,6 +25,23 @@ class Circle extends Model {
     }
 
     /*
+     * circles テーブルから検索された時に検索結果を返す関数
+     */
+    public function search($request) {
+        $id            = $request['id'];
+        $searchContent = $request['searchContents'];
+        $searchText    = $request['searchText'];
+
+        $searchQuery = Circle::query();
+        $searchQuery->where('event_id', $id)
+            ->where($searchContent, 'like', '%'. $searchText .'%');
+
+        $circles = $searchQuery->paginate(20);
+
+        return $circles;
+    }
+
+    /*
      * イベント一覧ページでそのイベントに登録されているサークル数を出力するために数を数えている関数
      */
     public function count($eventId) {

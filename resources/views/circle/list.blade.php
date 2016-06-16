@@ -15,6 +15,29 @@
 
   <hr>
 
+  {!! Form::open() !!}
+    <table class="table table-responsive table-bordered">
+      <tr>
+        <th>
+          <input type="radio" name="searchContents" value="number" id="name"><label for="number">ナンバー</label> &nbsp;
+          <input type="radio" name="searchContents" value="space" id="space"><label for="space">スペース</label> &nbsp;
+          <input type="radio" name="searchContents" value="circle_name" id="circle_name"><label for="circle_name">サークル名</label> &nbsp;
+          <input type="radio" name="searchContents" value="host" id="host"><label for="host">代表者</label>
+        </th>
+        <td>
+          <input type="text" name="searchText">
+        </td>
+        <td>
+          <input type="hidden" name="id" value="{{ $id }}">
+          <input type="submit" value="検索">
+        </td>
+        <td>
+          <a href="{!! url('circleList', $id) !!}"><input type="button" value="検索をリセットする"></a>
+        </td>
+      </tr>
+    </table>
+  {!! Form::close() !!}
+
   <div class="pull-right">
     {!! $circles->render() !!}
   </div>

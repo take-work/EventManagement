@@ -29,6 +29,9 @@ class EventListController extends Controller {
     public function search(Request $request) {
         $event  = new Event();
 
+        $rules = $this->searchValidationRules();
+        $this->validate($request, $rules);
+
         $eventContents = $this->eventContents();
         $events = $event->search($request);
 
@@ -125,6 +128,18 @@ class EventListController extends Controller {
             'eventName' => 'required',
             'host'      => 'required',
             'price'     => 'required | integer'
+        ];
+
+        return $rules;
+    }
+
+    /*
+     * 検索時のバリデーションのルールを設定する関数
+     */
+    private function searchValidationRules() {
+        $rules = [
+            'searchContents' => 'required',
+            'searchText'     => 'required'
         ];
 
         return $rules;

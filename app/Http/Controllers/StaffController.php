@@ -30,6 +30,7 @@ class StaffController extends Controller {
 
         $rules = $this->searchValidationRules();
         $this->validate($request, $rules);
+
         $searchQuery = Staff::query();
         $searchQuery->where('event_id', $id)
                     ->where($searchContent, 'like', '%'. $searchText .'%')

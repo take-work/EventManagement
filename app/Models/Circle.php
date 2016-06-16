@@ -40,7 +40,8 @@ class Circle extends Model {
      * 必要な机の数を数えている関数
      */
     public function deskCounter($id) {
-        $circles = Circle::where('event_id', $id)->get();
+        $circles = Circle::where('event_id', $id)
+            ->get();
 
         $first = true;
         $desk = 0;
@@ -61,7 +62,8 @@ class Circle extends Model {
      * 必要な椅子の数を数えている関数
      */
     public function chairCounter($id) {
-        $circles = Circle::where('event_id', $id)->get();
+        $circles = Circle::where('event_id', $id)
+            ->get();
 
         $first = true;
         $chair = 0;

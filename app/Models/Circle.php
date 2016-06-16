@@ -15,6 +15,16 @@ class Circle extends Model {
     protected $table = 'circles';
 
     /*
+     * circles テーブルを select して結果を返す関数
+     */
+    public function select($id) {
+        $circles = Circle::where('event_id', $id)
+            ->paginate(20);
+
+        return $circles;
+    }
+
+    /*
      * イベント一覧ページでそのイベントに登録されているサークル数を出力するために数を数えている関数
      */
     public function count($eventId) {

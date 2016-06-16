@@ -89,6 +89,7 @@ Route::get('/circleList/{id}', [
          'middleware' => 'auth',
          'uses'       => 'CircleController@show'
 ]);
+Route::post('/circleList/{id}', 'CircleControlle@search');
 
 Route::get('/circleCreate/{id}', [
          'middleware' => 'auth',

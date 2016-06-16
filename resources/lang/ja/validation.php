@@ -133,7 +133,11 @@ return [
       // ユーザー登録
       'name'     => 'ユーザー名',
       'email'    => 'メールアドレス',
-      'password' => 'パスワード'
+      'password' => 'パスワード',
+
+      // 一覧ページ検索時
+      'searchContents' => '検索要項',
+      'searchText'     => '検索ワード',
     ],
 
 ];

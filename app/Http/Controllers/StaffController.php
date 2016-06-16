@@ -28,6 +28,8 @@ class StaffController extends Controller {
         $searchContent = $request['searchContents'];
         $searchText    = $request['searchText'];
 
+        $rules = $this->searchValidationRules();
+        $this->validate($request, $rules);
         $searchQuery = Staff::query();
         $searchQuery->where('event_id', $id)
                     ->where($searchContent, 'like', '%'. $searchText .'%')
@@ -127,6 +129,18 @@ class StaffController extends Controller {
             'mail'       => 'email',
             'experience' => 'required',
             'rank'       => 'required'
+        ];
+
+        return $rules;
+    }
+
+    /*
+     * 検索時に行うバリデーションの設定
+     */
+    private function searchValidationRules() {
+        $rules = [
+            'searchContents' => 'required',
+            'searchText'     => 'required'
         ];
 
         return $rules;

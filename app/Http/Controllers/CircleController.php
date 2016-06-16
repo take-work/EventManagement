@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
 use App\Models\Circle;
 
 class CircleController extends Controller {
@@ -34,7 +33,6 @@ class CircleController extends Controller {
         $circles = $circle->search($request);
 
         $id = $request['id'];
-
         $desk = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);
 
@@ -69,7 +67,8 @@ class CircleController extends Controller {
      * サークルの更新ページにアクセスするための関数
      */
     public function updateConfirm(Request $request, $id) {
-        $circles = DB::select('select * from circles where id ='.$id);
+        $circle = new Circle();
+        $circles = $circle->specificData($id);
 
         $circleContents = $this->circleContents();
 
@@ -87,17 +86,21 @@ class CircleController extends Controller {
 
         $circle->updateData($request);
 
-        $circles = Circle::where('id', $request['id'])->get();
+        $id = $request['id'];
+        $circles    = $circle->specificData($id);
+        $circleName = $circles[0]->circle_name;
+        $eventId         = $circles[0]->event_id;
 
-        \Session::flash('flash_message', $circles[0]->circle_name .'の情報を更新しました。');
-        return redirect('/circleList/'. $circles[0]->event_id);
+        \Session::flash('flash_message', $circleName .'の情報を更新しました。');
+        return redirect('/circleList/'. $eventId);
     }
 
     /*
      * サークルの削除確認ページにアクセスするための関数
      */
     public function deleteConfirm($id) {
-        $circles = Circle::where('id', $id)->get();
+        $circle = new Circle();
+        $circles = $circle->specificData($id);
 
         $circleContents = $this->circleContents();
 
@@ -109,7 +112,7 @@ class CircleController extends Controller {
      */
     public function delete($id) {
         $circle = new Circle();
-        $circles = Circle::where('id', $id)->get();
+        $circles = $circle->specificData($id);
 
         $name = $circles[0]->circle_name;
         $eventId = $circles[0]->event_id;

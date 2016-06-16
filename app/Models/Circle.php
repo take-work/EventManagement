@@ -42,6 +42,15 @@ class Circle extends Model {
     }
 
     /*
+     * circles テーブルから特定のデータを取りたい時に使用する関数
+     */
+    public function specificData($id) {
+        $circles = Circle::where('id', $id)->get();
+
+        return $circles;
+    }
+
+    /*
      * イベント一覧ページでそのイベントに登録されているサークル数を出力するために数を数えている関数
      */
     public function count($eventId) {

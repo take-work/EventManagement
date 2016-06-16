@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use DB;
@@ -17,6 +15,28 @@ class StaffController extends Controller {
      */
     public function show($id) {
         $staffs = Staff::where('event_id', $id)->orderBy('rank','asc')->paginate(20);
+        $staffContents = $this->staffContents();
+
+        return view('staff.list', compact('staffs', 'id', 'staffContents'));
+    }
+
+    /*
+     * イベント一覧ページで検索されたときに呼び出される関数
+     */
+    public function search() {
+        $inputs = \Request::all();
+
+        $id            = $inputs['id'];
+        $searchContent = $inputs['searchContents'];
+        $searchText    = $inputs['searchText'];
+
+        $searchQuery = Staff::query();
+        $searchQuery->where('event_id', $id)
+                    ->where($searchContent, 'like', '%'. $searchText .'%')
+                    ->orderBy('rank', 'asc');
+
+        $staffs = $searchQuery->paginate(20);
+
         $staffContents = $this->staffContents();
 
         return view('staff.list', compact('staffs', 'id', 'staffContents'));

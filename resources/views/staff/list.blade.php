@@ -27,7 +27,7 @@
           <input type="text" name="searchText">
         </td>
         <td>
-          <input type="hidden" name="id">
+          <input type="hidden" name="id" value="{{ $id }}">
           <input type="submit" value="検索">
         </td>
         <td>

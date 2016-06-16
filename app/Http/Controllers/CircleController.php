@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
 use DB;
 use App\Models\Circle;
 
@@ -18,6 +15,31 @@ class CircleController extends Controller {
     public function show($id) {
         $circle = new Circle();
         $circles = Circle::where('event_id', $id)->paginate(20);
+
+        $desk = $circle->deskCounter($id);
+        $chair = $circle->chairCounter($id);
+
+        return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
+    }
+
+    /*
+     * イベント一覧ページで検索されたときに呼び出される関数
+     */
+    public function search(Request $request) {
+        $circle = new Circle();
+
+        $id            = $request['id'];
+        $searchContent = $request['searchContents'];
+        $searchText    = $request['searchText'];
+
+        $rules = $this->searchValidationRules();
+        $this->validate($request, $rules);
+
+        $searchQuery = Circle::query();
+        $searchQuery->where('event_id', $id)
+            ->where($searchContent, 'like', '%'. $searchText .'%');
+
+        $circles = $searchQuery->paginate(20);
 
         $desk = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);
@@ -114,6 +136,18 @@ class CircleController extends Controller {
             'staff'        => 'integer',
             'desk'         => 'integer',
             'chair'        => 'integer'
+        ];
+
+        return $rules;
+    }
+
+    /*
+     * 検索時に行うバリデーションの設定
+     */
+    private function searchValidationRules() {
+        $rules = [
+            'searchContents' => 'required',
+            'searchText'     => 'required'
         ];
 
         return $rules;

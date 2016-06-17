@@ -27,24 +27,31 @@ Route::get('/list', [
          'middleware' => 'auth',
          'uses'       => 'EventController@show'
        ]);
+
 Route::post('/list', 'EventController@search');
+
 
 Route::get('/create', [
          'middleware' => 'auth',
          'uses'       => 'EventController@create'
        ]);
+
 Route::post('/create', 'EventController@insert');
+
 
 Route::get('/update/{id}', [
          'middleware' => 'auth',
          'uses'       => 'EventController@updateConfirm'
        ]);
+
 Route::post('/update/{id}', 'EventController@update');
+
 
 Route::get('/delete/{id}', [
          'middleware' => 'auth',
          'uses'       => 'EventController@deleteConfirm'
        ]);
+
 Route::post('/delete/{id}', 'EventController@delete');
 
 /*
@@ -54,32 +61,39 @@ Route::post('/delete/{id}', 'EventController@delete');
 Route::get('/staffList/{id}', [
          'middleware' => 'auth',
          'uses'       => 'StaffController@show'
-]);
+       ]);
+
 Route::post('/staffList/{id}', 'StaffController@search');
+
 
 Route::get('/staffCreate/{id}', [
          'middleware' => 'auth',
          'uses'       => 'StaffController@create'
-]);
+       ]);
+
 Route::post('/staffCreate/{id}', 'StaffController@insert');
+
 
 Route::get('/staffUpdate/{id}', [
          'middleware' => 'auth',
          'uses'       => 'StaffController@updateConfirm'
-]);
+       ]);
+
 Route::post('/staffUpdate/{id}', 'StaffController@update');
+
 
 Route::get('/staffDelete/{id}', [
          'middleware' => 'auth',
          'uses'       => 'StaffController@deleteConfirm'
-]);
+       ]);
 
 Route::post('/staffDelete/{id}', 'StaffController@delete');
+
 
 Route::get('/staffPdf/{id}', [
          'middleware' => 'auth',
          'uses'       => 'staffPDFController@pdfCreate'
-]);
+       ]);
 
 /*
  * サークル管理に関連するルート
@@ -88,31 +102,39 @@ Route::get('/staffPdf/{id}', [
 Route::get('/circleList/{id}', [
          'middleware' => 'auth',
          'uses'       => 'CircleController@show'
-]);
+       ]);
+
 Route::post('/circleList/{id}', 'CircleController@search');
+
 
 Route::get('/circleCreate/{id}', [
          'middleware' => 'auth',
          'uses'       => 'CircleController@create'
-]);
+       ]);
+
 Route::post('/circleCreate/{id}', 'CircleController@insert');
+
 
 Route::get('/circleUpdate/{id}', [
          'middleware' => 'auth',
          'uses'       => 'CircleController@updateConfirm'
-]);
+       ]);
+
 Route::post('/circleUpdate/{id}', 'CircleController@update');
+
 
 Route::get('/circleDelete/{id}', [
          'middleware' => 'auth',
          'uses'       => 'CircleController@deleteConfirm'
-]);
+       ]);
+
 Route::post('/circleDelete/{id}', 'CircleController@delete');
+
 
 Route::get('/circlePdf/{id}', [
          'middleware' => 'auth',
          'uses'       => 'circlePDFController@pdfCreate'
-]);
+       ]);
 
 /*
  * 金額管理に関連するルート
@@ -120,13 +142,16 @@ Route::get('/circlePdf/{id}', [
 Route::get('/moneyCreate/{id}', [
          'middleware' => 'auth',
          'uses'       => 'MoneyController@create'
-]);
+       ]);
+
 Route::post('/moneyCreate/{id}', 'MoneyController@insert');
+
 
 Route::get('/moneyUpdate/{id}', [
          'middleware' => 'auth',
          'uses'       => 'MoneyController@updateConfirm'
-]);
+       ]);
+
 Route::post('/moneyUpdate/{id}', 'MoneyController@update');
 
 /*

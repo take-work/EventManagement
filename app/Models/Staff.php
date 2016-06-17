@@ -116,9 +116,8 @@ class Staff extends Model {
      * スタッフ情報の削除処理を行う関数
      */
     public function deleteData($id) {
-        Staff::delete('id', $id);
-
-        return true;
+        DB::table('staffs')
+            ->delete($id);
     }
 
 }

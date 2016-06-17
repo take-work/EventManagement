@@ -95,7 +95,8 @@ class Event extends Model {
      * 削除処理を行う関数
      */
     public function deleteData($id) {
-        Event::delete('id', $id);
+        DB::table('events')
+            ->delete($id);
 
         return true;
     }

@@ -123,11 +123,7 @@
 
   </table>
 
-  <div class="pull-right">
-    {!! $staffs->render() !!}
-  </div>
-
   <hr>
-
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
+
 @endsection

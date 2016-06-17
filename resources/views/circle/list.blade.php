@@ -113,11 +113,7 @@
   @endforeach
   </table>
 
-  <div class="pull-right">
-    {!! $circles->render() !!}
-  </div>
-
   <hr>
-
   <a href="{!! url('list') !!}">イベント一覧に戻る</a><br><br>
+
 @endsection

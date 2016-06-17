@@ -132,7 +132,8 @@ class StaffController extends Controller {
     private function validationRules() {
         $rules = [
             'staffName'  => 'required',
-            'mail'       => 'email',
+            'mail'       => 'email | required_without:tel',
+            'tel'        => 'required_without:mail',
             'experience' => 'required',
             'rank'       => 'required'
         ];

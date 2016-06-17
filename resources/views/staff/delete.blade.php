@@ -25,7 +25,11 @@
   {!! Form::open() !!}
   @foreach($staffs as $staff)
     <tbody>
-      <tr>
+      @if ( $staff->experience == 1 )
+        <tr class="something info">
+      @else
+        <tr class="something warning">
+      @endif
         <td align="center">
           {{ $staff->name }}
         </td>

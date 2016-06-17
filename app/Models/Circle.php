@@ -33,7 +33,8 @@ class Circle extends Model {
         $searchText    = $request['searchText'];
 
         $searchQuery = Circle::query();
-        $searchQuery->where('event_id', $id)
+        $searchQuery
+            ->where('event_id', $id)
             ->where($searchContent, 'like', '%'. $searchText .'%');
 
         $circles = $searchQuery->paginate(20);
@@ -45,7 +46,8 @@ class Circle extends Model {
      * circles テーブルから特定のデータを取りたい時に使用する関数
      */
     public function specificData($id) {
-        $circles = Circle::where('id', $id)->get();
+        $circles = Circle::where('id', $id)
+            ->get();
 
         return $circles;
     }

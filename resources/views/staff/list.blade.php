@@ -17,25 +17,38 @@
 
   {!! Form::open() !!}
     <table class="table table-responsive table-bordered">
-      <tr>
-        <th>
-          <input type="radio" name="searchContents" value="name" id="name"><label for="name">スタッフ名</label> &nbsp;
-          <input type="radio" name="searchContents" value="position" id="position"><label for="position">担当 / 持ち場</label> &nbsp;
-          <input type="radio" name="searchContents" value="twitter" id="twitter"><label for="twitter">Twitter</label>
-        </th>
-        <td>
-          <input type="text" name="searchText">
-        </td>
-        <td>
-          <input type="hidden" name="id" value="{{ $id }}">
-          <input type="submit" value="検索">
-        </td>
-        <td>
-          <a href="{!! url('staffList', $id) !!}"><input type="button" value="検索をリセットする"></a>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <td align="center">検索要項</td>
+          <td align="center">検索ワード</td>
+          <td align="center">検索</td>
+          <td align="center">リセット</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td align="center">
+            <input type="radio" name="searchContents" value="name" id="name"><label for="name">スタッフ名</label> &nbsp;
+            <input type="radio" name="searchContents" value="position" id="position"><label for="position">担当 / 持ち場</label> &nbsp;
+            <input type="radio" name="searchContents" value="twitter" id="twitter"><label for="twitter">Twitter</label>
+          </td>
+          <td align="center">
+            <input type="text" name="searchText">
+          </td>
+          <td align="center">
+            <input type="hidden" name="id" value="{{ $id }}">
+            <input type="submit" value="検索する">
+          </td>
+          <td align="center">
+            <a href="{!! url('staffList', $id) !!}"><input type="button" value="検索をリセットする"></a>
+          </td>
+        </tr>
+      </tbody>
     </table>
   {!! Form::close() !!}
+
+  <hr>
 
   <div class="pull-right">
     {!! $staffs->render() !!}

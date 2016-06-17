@@ -26,20 +26,13 @@ class StaffController extends Controller {
      * イベント一覧ページで検索されたときに呼び出される関数
      */
     public function search(Request $request) {
-        $id            = $request['id'];
-        $searchContent = $request['searchContents'];
-        $searchText    = $request['searchText'];
+        $staff = new Staff();
 
         $rules = $this->searchValidationRules();
         $this->validate($request, $rules);
 
-        $searchQuery = Staff::query();
-        $searchQuery->where('event_id', $id)
-                    ->where($searchContent, 'like', '%'. $searchText .'%')
-                    ->orderBy('rank', 'asc');
-
-        $staffs = $searchQuery->paginate(20);
-
+        $staffs = $staff->search($request);
+        $id = $request['id'];
         $staffContents = $this->staffContents();
 
         return view('staff.list', compact('staffs', 'id', 'staffContents'));

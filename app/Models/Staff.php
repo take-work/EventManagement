@@ -26,6 +26,25 @@ class Staff extends Model {
     }
 
     /*
+     * スタッフ一覧ページから検索された時に結果を返す関数
+     */
+    public function search($request) {
+        $id            = $request['id'];
+        $searchContent = $request['searchContents'];
+        $searchText    = $request['searchText'];
+
+        $searchQuery = Staff::query();
+        $searchQuery
+            ->where('event_id', $id)
+            ->where($searchContent, 'like', '%'. $searchText .'%')
+            ->orderBy('rank', 'asc');
+
+        $staffs = $searchQuery->paginate(20);
+
+        return $staffs;
+    }
+
+    /*
      * イベント一覧ページで、そのイベントに登録されているスタッフの総数を出力するための関数
      */
     public function count($eventId) {

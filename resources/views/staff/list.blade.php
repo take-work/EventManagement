@@ -19,7 +19,7 @@
     <table class="table table-responsive table-bordered">
       <thead>
         <tr>
-          <td align="center">検索要項</td>
+          <td align="center">検索項目</td>
           <td align="center">検索ワード</td>
           <td align="center">検索</td>
           <td align="center">リセット</td>

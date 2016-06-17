@@ -18,7 +18,7 @@
     <table class="table table-responsive table-bordered">
       <thead>
         <tr>
-          <td align="center">検索要項</td>
+          <td align="center">検索項目</td>
           <td align="center">検索ワード</td>
           <td align="center">検索</td>
           <td align="center">リセット</td>
@@ -132,4 +132,5 @@
   <hr>
 
   <p>※ スタッフの管理は「スタッフ数」から、サークルの管理は「サークル数」から、金額の管理は「合計売上」から行えます。</p>
+
 @endsection

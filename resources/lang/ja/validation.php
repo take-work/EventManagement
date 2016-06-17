@@ -138,7 +138,7 @@ return [
       'password' => 'パスワード',
 
       // 一覧ページ検索時
-      'searchContents' => '検索要項',
+      'searchContents' => '検索項目',
       'searchText'     => '検索ワード',
     ],
 

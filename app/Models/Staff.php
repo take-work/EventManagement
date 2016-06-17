@@ -45,6 +45,16 @@ class Staff extends Model {
     }
 
     /*
+     * staffs テーブルから特定のデータを取りたい時に使用する関数
+     */
+    public function specificData($id) {
+        $staffs = Staff::where('id', $id)
+            ->get();
+
+        return $staffs;
+    }
+
+    /*
      * イベント一覧ページで、そのイベントに登録されているスタッフの総数を出力するための関数
      */
     public function count($eventId) {

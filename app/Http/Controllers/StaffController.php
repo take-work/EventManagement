@@ -66,14 +66,16 @@ class StaffController extends Controller {
      * スタッフの更新ページにアクセスするための関数
      */
     public function updateConfirm($id) {
-        $staffs = DB::select('select * from staffs where id ='.$id);
+        $staff = new Staff();
+        
+        $staffs = $staff->specificData($id);
         $staffContents = $this->staffContents();
 
         return view('staff.update', compact('staffs', 'staffContents'));
     }
 
     /*
-     * スタッフの更新処理を実行するための関数
+     * スタッフの更新処理を呼び出すための関数
      */
     public function update(Request $request) {
         $staff = new Staff();
@@ -81,12 +83,16 @@ class StaffController extends Controller {
         $rules = $this->validationRules();
         $this->validate($request, $rules);
 
-        $staffs = Staff::where('id', $request['id'])->get();
+        $id = $request['id'];
+        $staffName = $request['staffName'];
 
         $staff->updateData($request);
+        $staffs = $staff->specificData($id);
 
-        \Session::flash('flash_message', $request['staffName'] .'さんの情報を更新しました。');
-        return redirect('/staffList/'. $staffs[0]->event_id);
+        $eventId = $staffs[0]->event_id;
+
+        \Session::flash('flash_message', $staffName .'さんの情報を更新しました。');
+        return redirect('/staffList/'. $eventId);
     }
 
     /*

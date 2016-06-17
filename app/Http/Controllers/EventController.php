@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Event;
 
-class EventListController extends Controller {
+class EventController extends Controller {
 
     /*
      * イベント一覧ページにアクセスするための関数

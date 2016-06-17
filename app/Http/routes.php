@@ -25,27 +25,27 @@ Route::get('/home', function () {
 
 Route::get('/list', [
          'middleware' => 'auth',
-         'uses'       => 'EventListController@show'
+         'uses'       => 'EventController@show'
        ]);
-Route::post('/list', 'EventListController@search');
+Route::post('/list', 'EventController@search');
 
 Route::get('/create', [
          'middleware' => 'auth',
-         'uses'       => 'EventListController@create'
+         'uses'       => 'EventController@create'
        ]);
-Route::post('/create', 'EventListController@insert');
+Route::post('/create', 'EventController@insert');
 
 Route::get('/update/{id}', [
          'middleware' => 'auth',
-         'uses'       => 'EventListController@updateConfirm'
+         'uses'       => 'EventController@updateConfirm'
        ]);
-Route::post('/update/{id}', 'EventListController@update');
+Route::post('/update/{id}', 'EventController@update');
 
 Route::get('/delete/{id}', [
          'middleware' => 'auth',
-         'uses'       => 'EventListController@deleteConfirm'
+         'uses'       => 'EventController@deleteConfirm'
        ]);
-Route::post('/delete/{id}', 'EventListController@delete');
+Route::post('/delete/{id}', 'EventController@delete');
 
 /*
  * スタッフ管理に関連するルート

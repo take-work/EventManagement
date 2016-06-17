@@ -25,23 +25,25 @@
         </tr>
       </thead>
 
-      <tr>
-        <td align="center">
-          <input type="radio" name="searchContents" value="startDay" id="startDay"><label for="startDay">開始日</label> &nbsp;
-          <input type="radio" name="searchContents" value="endDay" id="endDay"><label for="endDay">終了日</label> &nbsp;
-          <input type="radio" name="searchContents" value="name" id="name"><label for="name">イベント名</label> &nbsp;
-          <input type="radio" name="searchContents" value="host" id="host"><label for="host">主催者</label>
-        </td>
-        <td align="center">
-          <input type="text" name="searchText">
-        </td>
-        <td align="center">
-          <input type="submit" value="検索する">
-        </td>
-        <td align="center">
-          <a href="{!! url('list') !!}"><input type="button" value="検索をリセットする"></a>
-        </td>
-      </tr>
+      <tbody>
+        <tr>
+          <td align="center">
+            <input type="radio" name="searchContents" value="startDay" id="startDay"><label for="startDay">開始日</label> &nbsp;
+            <input type="radio" name="searchContents" value="endDay" id="endDay"><label for="endDay">終了日</label> &nbsp;
+            <input type="radio" name="searchContents" value="name" id="name"><label for="name">イベント名</label> &nbsp;
+            <input type="radio" name="searchContents" value="host" id="host"><label for="host">主催者</label>
+          </td>
+          <td align="center">
+            <input type="text" name="searchText">
+          </td>
+          <td align="center">
+            <input type="submit" value="検索する">
+          </td>
+          <td align="center">
+            <a href="{!! url('list') !!}"><input type="button" value="検索をリセットする"></a>
+          </td>
+        </tr>
+      </tbody>
     </table>
   {!! Form::close() !!}
 

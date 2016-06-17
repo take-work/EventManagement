@@ -17,26 +17,39 @@
 
   {!! Form::open() !!}
     <table class="table table-responsive table-bordered">
-      <tr>
-        <th>
-          <input type="radio" name="searchContents" value="number" id="number"><label for="number">ナンバー</label> &nbsp;
-          <input type="radio" name="searchContents" value="space" id="space"><label for="space">スペース</label> &nbsp;
-          <input type="radio" name="searchContents" value="circle_name" id="circle_name"><label for="circle_name">サークル名</label> &nbsp;
-          <input type="radio" name="searchContents" value="host" id="host"><label for="host">代表者</label>
-        </th>
-        <td>
-          <input type="text" name="searchText">
-        </td>
-        <td>
-          <input type="hidden" name="id" value="{{ $id }}">
-          <input type="submit" value="検索">
-        </td>
-        <td>
-          <a href="{!! url('circleList', $id) !!}"><input type="button" value="検索をリセットする"></a>
-        </td>
-      </tr>
+      <thead>
+        <tr>
+          <td align="center">検索要項</td>
+          <td align="center">検索ワード</td>
+          <td align="center">検索</td>
+          <td align="center">リセット</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td align="center">
+            <input type="radio" name="searchContents" value="number" id="number"><label for="number">ナンバー</label> &nbsp;
+            <input type="radio" name="searchContents" value="space" id="space"><label for="space">スペース</label> &nbsp;
+            <input type="radio" name="searchContents" value="circle_name" id="circle_name"><label for="circle_name">サークル名</label> &nbsp;
+            <input type="radio" name="searchContents" value="host" id="host"><label for="host">代表者</label>
+          </td>
+          <td align="center">
+            <input type="text" name="searchText">
+          </td>
+          <td align="center">
+            <input type="hidden" name="id" value="{{ $id }}">
+            <input type="submit" value="検索する">
+          </td>
+          <td align="center">
+            <a href="{!! url('circleList', $id) !!}"><input type="button" value="検索をリセットする"></a>
+          </td>
+        </tr>
+      </tbody>
     </table>
   {!! Form::close() !!}
+
+  <hr>
 
   <div class="pull-right">
     {!! $circles->render() !!}

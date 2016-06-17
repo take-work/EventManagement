@@ -157,9 +157,8 @@ class Circle extends Model {
      * 削除処理を行う関数
      */
     public function deleteData($id) {
-        Circle::delete('id', $id);
-
-        return true;
+        DB::table('circles')
+            ->delete($id);
     }
 
 }

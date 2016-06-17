@@ -52,12 +52,12 @@ class CircleController extends Controller {
      * サークルの新規作成処理を実行するための関数
      */
     public function insert(Request $request) {
-        $inserts = new Circle();
+        $circle = new Circle();
 
         $rules = $this->validationRules();
         $this->validate($request, $rules);
 
-        $inserts->insert($request);
+        $circle->insert($request);
 
         \Session::flash('flash_message', '新サークル「'. $request['circleName'] .'」を新規登録しました。');
         return redirect('/circleList/'. $request['id']);

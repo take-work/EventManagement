@@ -99,19 +99,21 @@ class StaffController extends Controller {
      * スタッフの削除確認ページにアクセスするための関数
      */
     public function deleteConfirm($id) {
-        $staffs = Staff::where('id', $id)->get();
+        $staff = new Staff();
+
+        $staffs = $staff->specificData($id);
         $staffContents = $this->staffContents();
 
         return view('staff.delete', compact('staffs', 'staffContents'));
     }
 
     /*
-     * スタッフ情報の削除処理を実行するための関数
+     * スタッフ情報の削除処理を呼び出すための関数
      */
     public function delete($id) {
         $staff = new Staff();
 
-        $staffs = Staff::where('id', $id)->get();
+        $staffs = $staff->specificData($id);
 
         $name = $staffs[0]->name;
         $eventId = $staffs[0]->event_id;

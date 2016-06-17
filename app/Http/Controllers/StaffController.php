@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use DB;
 use App\Models\Staff;
+use DB;
 
 class StaffController extends Controller {
 
@@ -14,7 +14,9 @@ class StaffController extends Controller {
      * スタッフ一覧ページにアクセスするための関数
      */
     public function show($id) {
-        $staffs = Staff::where('event_id', $id)->orderBy('rank','asc')->paginate(20);
+        $staff = new Staff();
+
+        $staffs = $staff->select($id);
         $staffContents = $this->staffContents();
 
         return view('staff.list', compact('staffs', 'id', 'staffContents'));

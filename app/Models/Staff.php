@@ -15,6 +15,17 @@ class Staff extends Model {
     protected $table = 'staffs';
 
     /*
+     * staffs テーブルからイベント毎にデータを取得して結果を返す関数
+     */
+    public function select($id) {
+        $staffs = Staff::where('event_id', $id)
+            ->orderBy('rank', 'asc')
+            ->paginate(20);
+
+        return $staffs;
+    }
+
+    /*
      * イベント一覧ページで、そのイベントに登録されているスタッフの総数を出力するための関数
      */
     public function count($eventId) {

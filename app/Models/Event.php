@@ -97,8 +97,6 @@ class Event extends Model {
     public function deleteData($id) {
         DB::table('events')
             ->delete($id);
-
-        return true;
     }
 
     /*

@@ -47,7 +47,7 @@ class StaffController extends Controller {
     }
 
     /*
-     * スタッフの新規作成処理を実行するための関数
+     * スタッフの新規作成処理を呼び出すための関数
      */
     public function insert(Request $request) {
         $staff = new Staff();
@@ -55,10 +55,13 @@ class StaffController extends Controller {
         $rules = $this->validationRules();
         $this->validate($request, $rules);
 
+        $staffName = $request['staffName'];
+        $id        = $request['id'];
+
         $staff->insert($request);
 
-        \Session::flash('flash_message', '新スタッフ「'. $request['staffName'] .'」さんを新規登録しました。');
-        return redirect('/staffList/'. $request['id']);
+        \Session::flash('flash_message', '新スタッフ「'. $staffName .'」さんを新規登録しました。');
+        return redirect('/staffList/'. $id);
     }
 
     /*

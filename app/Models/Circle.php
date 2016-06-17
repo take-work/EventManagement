@@ -15,7 +15,7 @@ class Circle extends Model {
     protected $table = 'circles';
 
     /*
-     * circles テーブルを select して結果を返す関数
+     * circles テーブルからイベント毎にデータを取得して結果を返す関数
      */
     public function select($id) {
         $circles = Circle::where('event_id', $id)

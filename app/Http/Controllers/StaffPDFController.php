@@ -33,10 +33,12 @@ class StaffPDFController extends Controller {
       }
     }
     $firstPage = $pdfDocument->pages[0];
+    $secondPage = $pdfDocument->pages[1];
 
     $font = Font::fontWithPath('fonts/HanaMinA.ttf');
 
     $firstPage->setFont($font , 18);
+    $secondPage->setFont($font, 18);
 
     // 出力する文字と位置、文字コードの指定
     $getEvent = $this->getEvent($id);
@@ -47,6 +49,8 @@ class StaffPDFController extends Controller {
     $staffs = $this->getStaffs($id);
 
     $y = 345;
+    $staffCount = 0;
+
     foreach ($staffs as $staff) {
       $firstPage->setFont($font , 12);
 
@@ -60,6 +64,15 @@ class StaffPDFController extends Controller {
       $firstPage->drawText($staff->twitter, 620, $y, 'UTF-8');
 
       $y = $y - 28;
+      $staffCount++;
+
+      if ($staffCount == 11) {
+        $y = 345;
+      }
+
+      if ($staffCount >= 11) {
+        $secondPage->drawText($staff->name, 80, $y, 'UTF-8');
+      }
     }
 
     // ファイルとして保存、ブラウザに出力

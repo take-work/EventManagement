@@ -92,7 +92,7 @@ Route::post('/staffDelete/{id}', 'StaffController@delete');
 
 Route::get('/staffPdf/{id}', [
          'middleware' => 'auth',
-         'uses'       => 'staffPDFController@pdfCreate'
+         'uses'       => 'StaffPDFController@pdfCreate'
        ]);
 
 /*

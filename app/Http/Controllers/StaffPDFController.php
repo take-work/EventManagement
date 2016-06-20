@@ -88,7 +88,7 @@ class StaffPDFController extends Controller {
 
     private function getStaffs($id) {
         $staffs = new Staff();
-        $getStaffs = $staffs->select($id);
+        $getStaffs = $staffs->allSelect($id);
 
         return $getStaffs;
     }

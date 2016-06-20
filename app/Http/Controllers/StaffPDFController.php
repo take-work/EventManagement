@@ -15,7 +15,7 @@ use ZendPdf\Resource\Extractor;
 use DB;
 use App\Models\Event;
 
-class staffPDFController extends Controller {
+class StaffPDFController extends Controller {
 
   public function pdfCreate($id) {
     $pdfDocument = new PdfDocument();

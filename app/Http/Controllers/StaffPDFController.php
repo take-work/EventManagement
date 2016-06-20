@@ -9,7 +9,7 @@ use ZendPdf\Font;
 use ZendPdf\Resource\Extractor;
 
 use App\Models\Event;
-use DB;
+use App\Models\Staff;
 
 class StaffPDFController extends Controller {
 
@@ -43,12 +43,12 @@ class StaffPDFController extends Controller {
         $firstPage->drawText($getEvent[0]->startDay, 150, 432, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
 
-        $staffs = $this->getStaffs($id);
+        $getStaffs = $this->getStaffs($id);
 
         $y = 345;
         $staffCount = 0;
 
-        foreach ($staffs as $staff) {
+        foreach ($getStaffs as $staff) {
             $firstPage->setFont($font , 12);
 
             $firstPage->drawText($staff->name, 80, $y, 'UTF-8');
@@ -86,9 +86,10 @@ class StaffPDFController extends Controller {
     }
 
     public function getStaffs($id) {
-        $staffs = DB::select('select * from staffs where event_id = '. $id);
+        $staffs = new Staff();
+        $getStaffs = $staffs->select($id);
 
-        return $staffs;
+        return $getStaffs;
     }
 
 }

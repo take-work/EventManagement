@@ -57,16 +57,22 @@ class CirclePDFController extends Controller {
         $firstPage->drawText($getEvent[0]->startDay, 128, 692, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 347, 692, 'UTF-8');
 
+        $circleCount = 1;
+
         $firstY = 624;
+
         foreach ($getCircles as $circles) {
-            $firstPage->setFont($font, 12);
+            if ($circleCount <= 21) {
+                $firstPage->setFont($font, 12);
 
-            $firstPage->drawText($circles->number, 60, $firstY, 'UTF-8');
-            $firstPage->drawText($circles->space, 130, $firstY, 'UTF-8');
-            $firstPage->drawText($circles->circle_name, 250, $firstY, 'UTF-8');
-            $firstPage->drawText($circles->host, 400, $firstY, 'UTF-8');
+                $firstPage->drawText($circles->number, 60, $firstY, 'UTF-8');
+                $firstPage->drawText($circles->space, 130, $firstY, 'UTF-8');
+                $firstPage->drawText($circles->circle_name, 250, $firstY, 'UTF-8');
+                $firstPage->drawText($circles->host, 400, $firstY, 'UTF-8');
 
-            $firstY = $firstY - 27;
+                $firstY = $firstY - 27;
+            }
+            $circleCount++;
         }
 
         // ファイルとして保存、ブラウザに出力

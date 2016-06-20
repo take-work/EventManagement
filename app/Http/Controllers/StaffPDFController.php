@@ -2,18 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use ZendPdf\PdfDocument;
 use ZendPdf\Font;
-use ZendPdf\Page;
 use ZendPdf\Resource\Extractor;
 
-use DB;
 use App\Models\Event;
+use DB;
 
 class StaffPDFController extends Controller {
 

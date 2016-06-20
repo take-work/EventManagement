@@ -25,6 +25,17 @@ class Circle extends Model {
     }
 
     /*
+     * circles テーブルからイベント毎にデータを取得して結果を返す関数
+     * PDF ファイルの生成用に、paginate していない版も用意する。
+     */
+    public function allSelect($id) {
+        $circles = Circle::where('event_id', $id)
+            ->get();
+
+        return $circles;
+    }
+
+    /*
      * circles テーブルから検索された時に検索結果を返す関数
      */
     public function search($request) {

@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use ZendPdf\PdfDocument;
 use ZendPdf\Font;
-use ZendPdf\Page;
+use ZendPdf\Resource\Extractor;
 
-use DB;
 use App\Models\Event;
+use App\Models\Circle;
 
 class CirclePDFController extends Controller {
 
@@ -50,9 +47,10 @@ class CirclePDFController extends Controller {
     }
 
     public function getCircles($id) {
-        $circles = DB::select('select * from circles where event_id = '. $id);
+        $circles = new Circle();
+        $getCircle = $circles->allSelect($id);
 
-        return $circles;
+        return $getCircle;
     }
 
 }

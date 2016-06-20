@@ -15,10 +15,14 @@ class StaffPDFController extends Controller {
 
     public function pdfCreate($id) {
         $pdfDocument = new PdfDocument();
-        $extractor = new Extractor();
+        $extractor   = new Extractor();
 
-        // 1ページ目のPDF
+        $getEvent  = $this->getEvent($id);
+        $getStaffs = $this->getStaffs($id);
+
+        // 生成される PDF ファイルのフォーマットとフォントの指定をする。
         $files = ['PDF/staffList.pdf', 'PDF/staffListTwo.pdf'];
+        $font  = Font::fontWithPath('fonts/HanaMinA.ttf');
 
         foreach ($files as $file) {
             $pdf = PdfDocument::load($file);
@@ -32,18 +36,13 @@ class StaffPDFController extends Controller {
         $firstPage = $pdfDocument->pages[0];
         $secondPage = $pdfDocument->pages[1];
 
-        $font = Font::fontWithPath('fonts/HanaMinA.ttf');
-
         $firstPage->setFont($font , 18);
         $secondPage->setFont($font, 18);
 
-        // 出力する文字と位置、文字コードの指定
-        $getEvent = $this->getEvent($id);
+        // イベント情報を記載する。
         $firstPage->drawText($getEvent[0]->name, 150, 458, 'UTF-8');
         $firstPage->drawText($getEvent[0]->startDay, 150, 432, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
-
-        $getStaffs = $this->getStaffs($id);
 
         $y = 345;
         $staffCount = 0;
@@ -72,20 +71,20 @@ class StaffPDFController extends Controller {
             }
         }
 
-        // ファイルとして保存、ブラウザに出力
+        // ファイルとして保存、ブラウザに出力する。
         header ('Content-Type:', 'application/pdf');
         header ('Content-Disposition:', 'inline;');
         echo $pdfDocument->render();
     }
 
-    public function getEvent($id) {
+    private function getEvent($id) {
         $event = new Event();
         $getEvent = $event->select($id);
 
         return $getEvent;
     }
 
-    public function getStaffs($id) {
+    private function getStaffs($id) {
         $staffs = new Staff();
         $getStaffs = $staffs->select($id);
 

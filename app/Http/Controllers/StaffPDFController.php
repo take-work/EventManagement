@@ -37,7 +37,6 @@ class StaffPDFController extends Controller {
         $secondPage = $pdfDocument->pages[1];
 
         $firstPage->setFont($font , 18);
-        $secondPage->setFont($font, 12);
 
         // イベント情報を記載する。
         $firstPage->drawText($getEvent[0]->name, 150, 458, 'UTF-8');
@@ -67,8 +66,16 @@ class StaffPDFController extends Controller {
 
                 $firstY = $firstY - 28;
             } else {
+                $secondPage->setFont($font, 12);
+
                 $secondPage->drawText($staff->name, 80, $secondY, 'UTF-8');
-                $secondPage->drawText($staff->id, 215, $secondY, 'UTF-8');
+                $secondPage->drawText($staff->position, 215, $secondY, 'UTF-8');
+
+                $secondPage->setFont($font, 8);
+
+                $secondPage->drawText($staff->mail, 370, $secondY, 'UTF-8');
+                $secondPage->drawText($staff->tel, 535, $secondY, 'UTF-8');
+                $secondPage->drawText($staff->twitter, 620, $secondY, 'UTF-8');
 
                 $secondY = $secondY - 31;
             }

@@ -39,14 +39,14 @@ class CirclePDFController extends Controller {
         echo $pdf->render();
     }
 
-    public function getEvent($id) {
+    private function getEvent($id) {
         $event = new Event();
         $getEvent = $event->select($id);
 
         return $getEvent;
     }
 
-    public function getCircles($id) {
+    private function getCircles($id) {
         $circles = new Circle();
         $getCircle = $circles->allSelect($id);
 

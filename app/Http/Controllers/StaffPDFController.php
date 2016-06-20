@@ -46,10 +46,10 @@ class StaffPDFController extends Controller {
 
         $firstY = 345;
         $secondY = 495;
-        $staffCount = 0;
+        $staffCount = 1;
 
         foreach ($getStaffs as $staff) {
-            if ($staffCount < 11) {
+            if ($staffCount <= 11) {
                 $firstPage->setFont($font , 12);
 
                 $firstPage->drawText($staff->name, 80, $firstY, 'UTF-8');
@@ -61,7 +61,7 @@ class StaffPDFController extends Controller {
                 $firstPage->drawText($staff->tel, 535, $firstY, 'UTF-8');
                 $firstPage->drawText($staff->twitter, 620, $firstY, 'UTF-8');
 
-                if ($staffCount == 4) {
+                if ($staffCount == 5) {
                     $firstY = 238;
                 }
 

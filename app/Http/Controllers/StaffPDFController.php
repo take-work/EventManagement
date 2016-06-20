@@ -61,6 +61,10 @@ class StaffPDFController extends Controller {
                 $firstPage->drawText($staff->tel, 535, $firstY, 'UTF-8');
                 $firstPage->drawText($staff->twitter, 620, $firstY, 'UTF-8');
 
+                if ($staffCount == 4) {
+                    $firstY = 238;
+                }
+
                 $firstY = $firstY - 28;
             } else {
                 $secondPage->drawText($staff->name, 80, $secondY, 'UTF-8');

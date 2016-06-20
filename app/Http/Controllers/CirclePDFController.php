@@ -52,11 +52,19 @@ class CirclePDFController extends Controller {
         $firstPage = $pdfDocument->pages[0];
         $firstPage->setFont($font , 18);
 
+        // イベント情報を記載する。
         $firstPage->drawText($getEvent[0]->name, 128, 717, 'UTF-8');
         $firstPage->drawText($getEvent[0]->startDay, 128, 692, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 347, 692, 'UTF-8');
 
-        $circles = $this->getCircles($id);
+        foreach ($getCircles as $circles) {
+            $firstPage->setFont($font, 12);
+
+            $firstPage->drawText($circles->number, 60, 625, 'UTF-8');
+            $firstPage->drawText($circles->space, 130, 625, 'UTF-8');
+            $firstPage->drawText($circles->circle_name, 250, 625, 'UTF-8');
+            $firstPage->drawText($circles->host, 400, 625, 'UTF-8');
+        }
 
         // ファイルとして保存、ブラウザに出力
         header ('Content-Type:', 'application/pdf');

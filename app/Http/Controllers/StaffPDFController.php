@@ -20,9 +20,23 @@ class StaffPDFController extends Controller {
         $getEvent  = $this->getEvent($id);
         $getStaffs = $this->getStaffs($id);
 
-        // 生成される PDF ファイルのフォーマットとフォントの指定をする。
-        $files = ['PDF/staffList.pdf', 'PDF/staffListTwo.pdf'];
-        $font  = Font::fontWithPath('fonts/HanaMinA.ttf');
+        $fileOne = 'PDF/staffList.pdf';
+        $fileTwo = 'PDF/staffListTwo.pdf';
+
+        $staffNumber = count($getStaffs);
+
+        $files = [$fileOne];
+
+        for ($pageBorder = 1; $pageBorder < $staffNumber; $pageBorder++) {
+            if ($pageBorder == 12 || ($pageBorder - 12) % 14 == 0) {
+                /*
+                 * スタッフデータが12人以上26人以下の場合、2ページ目のPDFを追加する。
+                 * 27人目以降は14人毎にPDFのページを追加する。
+                 */
+
+                $files[] = $fileTwo;
+            }
+        }
 
         foreach ($files as $file) {
             $pdf = PdfDocument::load($file);
@@ -33,9 +47,9 @@ class StaffPDFController extends Controller {
             }
         }
 
-        $firstPage = $pdfDocument->pages[0];
-        $secondPage = $pdfDocument->pages[1];
+        $font  = Font::fontWithPath('fonts/HanaMinA.ttf');
 
+        $firstPage = $pdfDocument->pages[0];
         $firstPage->setFont($font , 18);
 
         // イベント情報を記載する。
@@ -43,9 +57,10 @@ class StaffPDFController extends Controller {
         $firstPage->drawText($getEvent[0]->startDay, 150, 432, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
 
-        $firstY = 345;
-        $secondY = 495;
         $staffCount = 1;
+        $pageCount  = 1;
+
+        $firstY  = 345;
 
         foreach ($getStaffs as $staff) {
             if ($staffCount <= 11) {
@@ -66,6 +81,13 @@ class StaffPDFController extends Controller {
 
                 $firstY = $firstY - 28;
             } else {
+                if ($staffCount == 12 || ($staffCount - 12) % 14 == 0) {
+                    $secondPage = $pdfDocument->pages[$pageCount];
+                    $secondY    = 495;
+
+                    $pageCount++;
+                }
+
                 $secondPage->setFont($font, 12);
 
                 $secondPage->drawText($staff->name, 80, $secondY, 'UTF-8');

@@ -14,19 +14,44 @@ use App\Models\Circle;
 class CirclePDFController extends Controller {
 
     public function pdfCreate($id) {
-        $pdf = new PdfDocument();
+        $pdfDocument = new PdfDocument();
+        $extractor   = new Extractor();
 
-        // 1ページ目のPDF
-        $pdf = PdfDocument::load('PDF/circleList.pdf');
-        $firstPage = $pdf->pages[0];
+        $getEvent   = $this->getEvent($id);
+        $getCircles = $this->getCircles($id);
+
+        $fileOne = 'PDF/circleList.pdf';
+        $fileTwo = 'PDF/circleListTwo.pdf';
+
+        $circleNumber = count($getCircles);
+
+        $files = [$fileOne];
+
+        for ($pageBorder = 1; $pageBorder < $circleNumber; $pageBorder++) {
+            if ($pageBorder == 21 || ($pageBorder - 21) % 25 == 0) {
+                /*
+                 * サークルデータが21組以上40組以下の場合、2ページ目のPDFを追加する。
+                 * 41組目以降は25組毎にPDFのページを追加する。
+                 */
+
+                $files[] = $fileTwo;
+            }
+        }
+
+        foreach ($files as $file) {
+            $pdf = PdfDocument::load($file);
+
+            foreach ($pdf->pages as $page) {
+                $pdfExtract = $extractor->clonePage($page);
+                $pdfDocument->pages[] = $pdfExtract;
+            }
+        }
 
         $font = Font::fontWithPath('fonts/HanaMinA.ttf');
 
-        // フォントと文字のサイズを指定
+        $firstPage = $pdfDocument->pages[0];
         $firstPage->setFont($font , 18);
 
-        // 出力する文字と位置、文字コードの指定
-        $getEvent = $this->getEvent($id);
         $firstPage->drawText($getEvent[0]->name, 128, 717, 'UTF-8');
         $firstPage->drawText($getEvent[0]->startDay, 128, 692, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 347, 692, 'UTF-8');
@@ -36,7 +61,7 @@ class CirclePDFController extends Controller {
         // ファイルとして保存、ブラウザに出力
         header ('Content-Type:', 'application/pdf');
         header ('Content-Disposition:', 'inline;');
-        echo $pdf->render();
+        echo $pdfDocument->render();
     }
 
     private function getEvent($id) {

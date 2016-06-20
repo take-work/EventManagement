@@ -133,7 +133,7 @@ Route::post('/circleDelete/{id}', 'CircleController@delete');
 
 Route::get('/circlePdf/{id}', [
          'middleware' => 'auth',
-         'uses'       => 'circlePDFController@pdfCreate'
+         'uses'       => 'CirclePDFController@pdfCreate'
        ]);
 
 /*

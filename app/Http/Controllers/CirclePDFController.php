@@ -14,7 +14,7 @@ use ZendPdf\Page;
 use DB;
 use App\Models\Event;
 
-class circlePDFController extends Controller {
+class CirclePDFController extends Controller {
 
   public function pdfCreate($id) {
     $pdf = new PdfDocument();

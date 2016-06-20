@@ -26,6 +26,18 @@ class Staff extends Model {
     }
 
     /*
+     * staffs テーブルからイベント毎にデータを取得して結果を返す関数
+     * PDF ファイルの生成用に、paginate していない版も用意する。
+     */
+    public function allSelect($id) {
+        $staffs = Staff::where('event_id', $id)
+            ->orderBy('rank', 'asc')
+            ->get();
+
+        return $staffs;
+    }
+
+    /*
      * スタッフ一覧ページから検索された時に結果を返す関数
      */
     public function search($request) {

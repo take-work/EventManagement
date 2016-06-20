@@ -37,38 +37,40 @@ class StaffPDFController extends Controller {
         $secondPage = $pdfDocument->pages[1];
 
         $firstPage->setFont($font , 18);
-        $secondPage->setFont($font, 18);
+        $secondPage->setFont($font, 12);
 
         // イベント情報を記載する。
         $firstPage->drawText($getEvent[0]->name, 150, 458, 'UTF-8');
         $firstPage->drawText($getEvent[0]->startDay, 150, 432, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
 
-        $y = 345;
+        $firstY = 345;
+        $secondY = 500;
         $staffCount = 0;
 
         foreach ($getStaffs as $staff) {
-            $firstPage->setFont($font , 12);
+            if ($staffCount < 11) {
+                $firstPage->setFont($font , 12);
 
-            $firstPage->drawText($staff->name, 80, $y, 'UTF-8');
-            $firstPage->drawText($staff->position, 215, $y, 'UTF-8');
+                $firstPage->drawText($staff->name, 80, $firstY, 'UTF-8');
+                $firstPage->drawText($staff->position, 215, $firstY, 'UTF-8');
 
-            $firstPage->setFont($font , 8);
+                $firstPage->setFont($font , 8);
 
-            $firstPage->drawText($staff->mail, 370, $y, 'UTF-8');
-            $firstPage->drawText($staff->tel, 535, $y, 'UTF-8');
-            $firstPage->drawText($staff->twitter, 620, $y, 'UTF-8');
+                $firstPage->drawText($staff->mail, 370, $firstY, 'UTF-8');
+                $firstPage->drawText($staff->tel, 535, $firstY, 'UTF-8');
+                $firstPage->drawText($staff->twitter, 620, $firstY, 'UTF-8');
 
-            $y = $y - 28;
+                $firstY = $firstY - 28;
+            } else {
+                $secondPage->drawText($staff->name, 80, $secondY, 'UTF-8');
+                $secondPage->drawText($staff->id, 215, $secondY, 'UTF-8');
+
+                $secondY = $secondY - 28;
+            }
+
             $staffCount++;
 
-            if ($staffCount == 11) {
-                $y = 345;
-            }
-
-            if ($staffCount >= 11) {
-                $secondPage->drawText($staff->name, 80, $y, 'UTF-8');
-            }
         }
 
         // ファイルとして保存、ブラウザに出力する。

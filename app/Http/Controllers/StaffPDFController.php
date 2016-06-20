@@ -45,7 +45,7 @@ class StaffPDFController extends Controller {
         $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
 
         $firstY = 345;
-        $secondY = 500;
+        $secondY = 495;
         $staffCount = 0;
 
         foreach ($getStaffs as $staff) {
@@ -66,7 +66,7 @@ class StaffPDFController extends Controller {
                 $secondPage->drawText($staff->name, 80, $secondY, 'UTF-8');
                 $secondPage->drawText($staff->id, 215, $secondY, 'UTF-8');
 
-                $secondY = $secondY - 28;
+                $secondY = $secondY - 31;
             }
 
             $staffCount++;

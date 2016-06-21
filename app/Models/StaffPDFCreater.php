@@ -111,4 +111,3 @@ class StaffPDFCreater extends Model {
         echo $pdfDocument->render();
     }
 }
-

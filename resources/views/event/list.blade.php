@@ -17,7 +17,7 @@
   {!! Form::open() !!}
     <table class="table table-responsive table-bordered">
       <thead>
-        <tr>
+        <tr class="active">
           <td align="center">検索項目</td>
           <td align="center">検索ワード</td>
           <td align="center">検索</td>

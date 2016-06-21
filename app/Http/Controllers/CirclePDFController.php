@@ -17,6 +17,9 @@ class CirclePDFController extends Controller {
         $pdfDocument = new PdfDocument();
         $extractor   = new Extractor();
 
+        // PDFのタイトルを設定する。
+        $pdfDocument->properties['Title'] = 'サークル一覧';
+
         $getEvent   = $this->getEvent($id);
         $getCircles = $this->getCircles($id);
 
@@ -93,7 +96,7 @@ class CirclePDFController extends Controller {
             $circleCount++;
         }
 
-        // ファイルとして保存、ブラウザに出力
+        // ファイルとして保存し、ブラウザに出力する。
         header ('Content-Type:', 'application/pdf');
         header ('Content-Disposition:', 'inline;');
         echo $pdfDocument->render();

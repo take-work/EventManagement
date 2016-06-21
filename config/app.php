@@ -200,7 +200,7 @@ return [
          * 追加したクラスエイリアス
          */
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        'HTML' => Collective\Html\HtmlFacade::class,
     ],
 
 ];

@@ -17,6 +17,9 @@ class StaffPDFController extends Controller {
         $pdfDocument = new PdfDocument();
         $extractor   = new Extractor();
 
+        // PDFのタイトルを設定する。
+        $pdfDocument->properties['Title'] = 'スタッフ一覧';
+
         $getEvent  = $this->getEvent($id);
         $getStaffs = $this->getStaffs($id);
 

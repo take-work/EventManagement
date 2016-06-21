@@ -89,7 +89,7 @@
         </td>
 
         <td align="center">
-          {{ $staff->twitter }}
+          {!! HTML::link('https://twitter.com/'.$staff->twitter, $staff->twitter) !!}
         </td>
 
         <td align="center">

@@ -25,7 +25,7 @@ class StaffPDFCreater extends Model {
         $files = [$fileOne];
 
         for ($pageBorder = 1; $pageBorder < $staffNumber; $pageBorder++) {
-            if ($pageBorder == 12 || ($pageBorder - 12) % 14 == 0) {
+            if ($pageBorder == 12 || ($pageBorder - 12) % 13 == 0) {
                 /*
                  * スタッフデータが12人以上26人以下の場合、2ページ目のPDFを追加する。
                  * 27人目以降は14人毎にPDFのページを追加する。

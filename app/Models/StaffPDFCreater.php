@@ -25,7 +25,7 @@ class StaffPDFCreater extends Model {
         $files = [$fileOne];
 
         for ($pageBorder = 1; $pageBorder < $staffNumber; $pageBorder++) {
-            if ($pageBorder == 12 || ($pageBorder - 12) % 13 == 0) {
+            if ($pageBorder == 12 || ($pageBorder - 12) % 14 == 0) {
                 /*
                  * スタッフデータが12人以上26人以下の場合、2ページ目のPDFを追加する。
                  * 27人目以降は14人毎にPDFのページを追加する。
@@ -54,7 +54,7 @@ class StaffPDFCreater extends Model {
         $firstPage->drawText($getEvent[0]->startDay, 150, 432, 'UTF-8');
         $firstPage->drawText($getEvent[0]->endDay, 415, 432, 'UTF-8');
 
-        $staffCount = 1;
+        $staffCount = 0;
         $pageCount  = 1;
 
         $firstY  = 345;

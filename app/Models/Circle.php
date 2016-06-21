@@ -48,7 +48,8 @@ class Circle extends Model {
             ->where('event_id', $id)
             ->where($searchContent, 'like', '%'. $searchText .'%');
 
-        $circles = $searchQuery->paginate(20);
+        $circles = $searchQuery
+            ->paginate(20);
 
         return $circles;
     }

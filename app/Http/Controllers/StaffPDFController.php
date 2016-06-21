@@ -12,6 +12,7 @@ class StaffPDFController extends Controller {
 
     public function pdfCreate($id) {
         $pdfCreater = new StaffPDFCreater();
+
         $getEvent  = $this->getEvent($id);
         $getStaffs = $this->getStaffs($id);
 
@@ -20,6 +21,7 @@ class StaffPDFController extends Controller {
 
     private function getEvent($id) {
         $event = new Event();
+
         $getEvent = $event->select($id);
 
         return $getEvent;
@@ -27,6 +29,7 @@ class StaffPDFController extends Controller {
 
     private function getStaffs($id) {
         $staffs = new Staff();
+
         $getStaffs = $staffs->allSelect($id);
 
         return $getStaffs;

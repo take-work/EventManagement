@@ -58,6 +58,7 @@ class CirclePDFController extends Controller {
         $firstPage->drawText($getEvent[0]->endDay, 347, 692, 'UTF-8');
 
         $circleCount = 1;
+        $pageCount   = 1;
 
         $firstY = 624;
 
@@ -71,7 +72,24 @@ class CirclePDFController extends Controller {
                 $firstPage->drawText($circles->host, 400, $firstY, 'UTF-8');
 
                 $firstY = $firstY - 27;
+            } else {
+                if ($circleCount == 22 || ($circleCount - 21) % 26 == 0) {
+                    $secondPage = $pdfDocument->pages[$pageCount];
+                    $secondY    = 737;
+
+                    $pageCount++;
+                }
+
+                $secondPage->setFont($font, 12);
+
+                $secondPage->drawText($circles->number, 60, $secondY, 'UTF-8');
+                $secondPage->drawText($circles->space, 130, $secondY, 'UTF-8');
+                $secondPage->drawText($circles->circle_name, 250, $secondY, 'UTF-8');
+                $secondPage->drawText($circles->host, 400, $secondY, 'UTF-8');
+
+                $secondY = $secondY - 27;
             }
+
             $circleCount++;
         }
 

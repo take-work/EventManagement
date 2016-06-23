@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use DB;
 
 class EventTest extends TestCase {
     /*
@@ -55,9 +56,12 @@ class EventTest extends TestCase {
         $faker = Faker\Factory::create('ja_JP');
         $eventName = $faker->unique()->name;
 
+        $query = DB::table('events')->get();
+        $id = $query[0]->id;
+
         // イベント情報を入力する。
         $this
-            ->visit('/update/1')
+            ->visit('/update/'.$id)
             ->see('イベント編集')
             ->type('20160101', 'startDay')
             ->type('20160102', 'endDay')
@@ -75,17 +79,18 @@ class EventTest extends TestCase {
     /*
      * イベント情報を削除できる。
      */
-    /*
     public function testDelete() {
+        $query = DB::table('events')->get();
+        $id = $query[0]->id;
+
         // イベント情報を削除する。
         $this
-            ->visit('/delete/141')
+            ->visit('/delete/'.$id)
             ->see('イベント削除確認')
             ->press('削除する')
             ->see('削除しました。');
 
         // 削除されているかチェックする。
-        $this->assertFalse($this->seeInDatabase('events', ['id' => 141]));
+        // $this->assertFalse($this->seeInDatabase('events', ['id' => $id]));
     }
-    */
 }

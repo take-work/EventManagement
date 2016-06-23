@@ -41,8 +41,33 @@ class EventTest extends TestCase {
             ->press('登録する')
             ->see('イベント「イベント名」を新規登録しました。');
 
-        // faker で生成されたイベント名が正しくデータベースに登録されているかチェックする。
+        // faker で生成された主催者名が正しくデータベースに登録されているかチェックする。
         $this
             ->seeInDatabase('events', ['host' => $host]);
+    }
+
+    /*
+     * イベント情報を更新できる。
+     */
+    public function testUpdate() {
+        // イベント名を生成する。
+        $faker = Faker\Factory::create('ja_JP');
+        $eventName = $faker->unique()->name;
+
+        // イベント情報を入力する。
+        $this
+            ->visit('/update/1')
+            ->see('イベント編集')
+            ->type('20160101', 'startDay')
+            ->type('20160102', 'endDay')
+            ->type($eventName, 'eventName')
+            ->type('主催者', 'host')
+            ->type('10000', 'price')
+            ->press('変更する')
+            ->see($eventName.'の情報を更新しました。');
+
+        // faker で生成されたイベント名が正しくデータベースに更新されているかチェックする。
+        $this
+            ->seeInDatabase('events', ['name' => $eventName]);
     }
 }

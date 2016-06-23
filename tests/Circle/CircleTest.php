@@ -14,7 +14,7 @@ class CircleTest extends TestCase {
     }
 
     /*
-     * /staffList にアクセスするとスタッフ一覧ページが開く。
+     * /circleList にアクセスするとサークル一覧ページが開く。
      */
     public function testCircleListAccess() {
         $this

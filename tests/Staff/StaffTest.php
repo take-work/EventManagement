@@ -2,7 +2,7 @@
 
 use App\User;
 
-class EventTest extends TestCase {
+class StaffTest extends TestCase {
     /*
      * 最初にログインする。
      */
@@ -11,5 +11,14 @@ class EventTest extends TestCase {
 
         $user = new User(['user' => 'take']);
         $this->be($user);
+    }
+
+    /*
+     * /staffList にアクセスするとスタッフ一覧ページが開く。
+     */
+    public function testStaffListAccess() {
+        $this
+            ->visit('/staffList/8')
+            ->see('スタッフ一覧');
     }
 }

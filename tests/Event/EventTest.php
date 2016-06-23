@@ -25,15 +25,24 @@ class EventTest extends TestCase {
      * イベント情報を新規登録できる。
      */
     public function testCreate() {
+        // 主催者名を生成する。
+        $faker = Faker\Factory::create('ja_JP');
+        $host = $faker->unique()->name;
+
+        // イベント情報を入力する。
         $this
             ->visit('/create')
             ->see('イベント情報入力')
             ->type('20160101', 'startDay')
             ->type('20160102', 'endDay')
             ->type('イベント名', 'eventName')
-            ->type('主催者', 'host')
+            ->type($host, 'host')
             ->type('10000', 'price')
             ->press('登録する')
             ->see('イベント「イベント名」を新規登録しました。');
+
+        // faker で生成されたイベント名が正しくデータベースに登録されているかチェックする。
+        $this
+            ->seeInDatabase('events', ['host' => $host]);
     }
 }

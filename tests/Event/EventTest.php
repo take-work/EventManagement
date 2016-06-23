@@ -13,13 +13,26 @@ class EventTest extends TestCase {
         $this->be($user);
     }
 
-	/**
+    /*
      * /list にアクセスするとイベント一覧ページが開く。
-     *
-     * @return void
      */
     public function testListAccess() {
         $this->visit('/list')
             ->see('イベント一覧');
+    }
+
+    /*
+     * イベント情報を新規登録できる。
+     */
+    public function testSelect() {
+        $this->visit('/create')
+            ->see('イベント情報入力')
+            ->type('20160101', 'startDay')
+            ->type('20160102', 'endDay')
+            ->type('イベント名', 'eventName')
+            ->type('主催者', 'host')
+            ->type('10000', 'price')
+            ->press('登録する')
+            ->see('イベント「イベント名」を新規登録しました。');
     }
 }

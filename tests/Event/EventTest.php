@@ -57,7 +57,7 @@ class EventTest extends TestCase {
 
         // イベント情報を入力する。
         $this
-            ->visit('/update/8')
+            ->visit('/update/1')
             ->see('イベント編集')
             ->type('20160101', 'startDay')
             ->type('20160102', 'endDay')

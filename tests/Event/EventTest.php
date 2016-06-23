@@ -17,7 +17,8 @@ class EventTest extends TestCase {
      * /list にアクセスするとイベント一覧ページが開く。
      */
     public function testListAccess() {
-        $this->visit('/list')
+        $this
+            ->visit('/list')
             ->see('イベント一覧');
     }
 

@@ -2,7 +2,7 @@
 
 use App\User;
 
-class EventTest extends TestCase {
+class CircleTest extends TestCase {
     /*
      * 最初にログインする。
      */
@@ -11,5 +11,14 @@ class EventTest extends TestCase {
 
         $user = new User(['user' => 'take']);
         $this->be($user);
+    }
+
+    /*
+     * /staffList にアクセスするとスタッフ一覧ページが開く。
+     */
+    public function testCircleListAccess() {
+        $this
+            ->visit('/circleList/8')
+            ->see('サークル一覧');
     }
 }

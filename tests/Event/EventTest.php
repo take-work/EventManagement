@@ -24,7 +24,7 @@ class EventTest extends TestCase {
     /*
      * イベント情報を新規登録できる。
      */
-    public function testSelect() {
+    public function testCreate() {
         $this
             ->visit('/create')
             ->see('イベント情報入力')

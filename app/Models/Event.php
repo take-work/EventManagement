@@ -29,7 +29,7 @@ class Event extends Model {
             $events = Event::where('id', $id)->get();
         }
 
-      return $events;
+        return $events;
     }
 
     /*
@@ -67,7 +67,7 @@ class Event extends Model {
                 'updated_at' => $now
             ]);
 
-      return true;
+        return true;
     }
 
     /*
@@ -125,6 +125,7 @@ class Event extends Model {
         }
 
         $counter = [$staffCounter, $circleCounter, $moneyCounter, $moneyList];
+
         return $counter;
     }
 
@@ -147,7 +148,9 @@ class Event extends Model {
         $startDay = $startYear .'/'. $startMonth .'/'. $startDays;
         $endDay   = $endYear .'/'. $endMonth .'/'. $endDays;
 
-        return array($startDay, $endDay);
+        $connectData = [$startDay, $endDay];
+
+        return $connectData;
     }
 
 }

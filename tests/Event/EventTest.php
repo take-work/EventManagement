@@ -18,7 +18,7 @@ class EventTest extends TestCase {
      *
      * @return void
      */
-    public function testBasicExample() {
+    public function testListAccess() {
         $this->visit('/list')
             ->see('イベント一覧');
     }

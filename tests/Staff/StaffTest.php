@@ -55,4 +55,33 @@ class StaffTest extends TestCase {
             ->seeInDatabase('staffs', ['name' => $staffName]);
     }
 
+    /*
+     * スタッフ情報を更新できる。
+     */
+    public function testStaffUpdate() {
+        // スタッフ名を生成する。
+        $faker = Faker\Factory::create('ja_JP');
+        $staffName = $faker->unique()->name;
+
+        $query = DB::table('staffs')->get();
+        $id = $query[0]->id;
+
+        $this
+            ->visit('/staffUpdate/'.$id)
+            ->see('スタッフ編集')
+            ->type($staffName, 'staffName')
+            ->type('担当/持ち場', 'position')
+            ->type('aaa@example.co.jp', 'mail')
+            ->type('000-0000-0000', 'tel')
+            ->type('twitter', 'twitter')
+            ->select('1', 'experience')
+            ->select('1', 'rank')
+            ->press('変更する')
+            ->see($staffName.'さんの情報を更新しました。');
+
+        // faker で生成されたスタッフ名が正しくデータベースに登録されているかチェックする。
+        $this
+        ->seeInDatabase('staffs', ['name' => $staffName]);
+    }
+
 }

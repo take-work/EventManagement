@@ -84,4 +84,28 @@ class StaffTest extends TestCase {
         ->seeInDatabase('staffs', ['name' => $staffName]);
     }
 
+    /*
+     * スタッフデータを削除できる。
+     */
+    public function testStaffDelete() {
+        $query = DB::table('staffs')->get();
+        $id    = $query[0]->id;
+        $name  = $query[0]->name;
+
+        // スタッフ情報を削除する。
+        $this
+            ->visit('/staffDelete/'.$id)
+            ->see('スタッフ削除確認')
+            ->press('削除する')
+            ->see($name.'さんの情報を削除しました。');
+
+       // データが削除されているかチェックする。
+       $search = DB::table('events')
+            ->where('id', $id)
+            ->get();
+
+       $this
+            ->assertEmpty($search);
+    }
+
 }

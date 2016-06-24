@@ -29,9 +29,7 @@ class StaffTest extends TestCase {
      * スタッフを新規登録できる。
      */
     public function testStaffCreate() {
-        // スタッフ名を生成する。
-        $faker = Faker\Factory::create('ja_JP');
-        $staffName = $faker->unique()->name;
+        $staffName = $this->createStaffName();
 
         $id = $this->eventIdGet();
 
@@ -57,9 +55,7 @@ class StaffTest extends TestCase {
      * スタッフ情報を更新できる。
      */
     public function testStaffUpdate() {
-        // スタッフ名を生成する。
-        $faker = Faker\Factory::create('ja_JP');
-        $staffName = $faker->unique()->name;
+        $staffName = $this->createStaffName();
 
         list($id, $name) = $this->staffDataGet();
 
@@ -125,6 +121,16 @@ class StaffTest extends TestCase {
        $staffData = [$id, $name];
 
        return $staffData;
+    }
+
+    /*
+     * faker でスタッフ名を生成する。
+     */
+    private function createStaffName() {
+        $faker = Faker\Factory::create('ja_JP');
+        $staffName = $faker->unique()->name;
+
+        return $staffName;
     }
 
 }

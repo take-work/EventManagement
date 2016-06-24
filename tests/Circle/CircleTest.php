@@ -58,8 +58,7 @@ class CircleTest extends TestCase {
         $faker = Faker\Factory::create('ja_JP');
         $name = $faker->unique()->name;
 
-        $query = DB::table('circles')->get();
-        $id = $query[0]->id;
+        list($id, $circleName) = $this->circleDataGet();
 
         $this
             ->visit('/circleUpdate/'.$id)
@@ -83,16 +82,14 @@ class CircleTest extends TestCase {
      * サークルを削除できる。
      */
     public function testCircleDelete() {
-        $query = DB::table('circles')->get();
-        $id = $query[0]->id;
-        $name = $query[0]->circle_name;
+        list($id, $circleName) = $this->circleDataGet();
 
         // スタッフ情報を削除する。
         $this
             ->visit('/circleDelete/'.$id)
             ->see('サークル削除確認')
             ->press('削除する')
-            ->see($name.'の情報を削除しました。');
+            ->see($circleName.'の情報を削除しました。');
 
         // データが削除されているかチェックする。
         $search = DB::table('circles')
@@ -111,6 +108,20 @@ class CircleTest extends TestCase {
         $id = $query[0]->id;
 
         return $id;
+    }
+
+    /*
+     * テストで使用するサークルのデータを取得する。
+     */
+    private function circleDataGet() {
+        $query = DB::table('circles')->get();
+
+        $id          = $query[0]->id;
+        $circleName  = $query[0]->circle_name;
+
+        $circleData = [$id, $circleName];
+
+        return $circleData;
     }
 
 }

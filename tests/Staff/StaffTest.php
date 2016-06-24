@@ -61,8 +61,7 @@ class StaffTest extends TestCase {
         $faker = Faker\Factory::create('ja_JP');
         $staffName = $faker->unique()->name;
 
-        $query = DB::table('staffs')->get();
-        $id = $query[0]->id;
+        list($id, $name) = $this->staffDataGet();
 
         $this
             ->visit('/staffUpdate/'.$id)
@@ -86,9 +85,7 @@ class StaffTest extends TestCase {
      * スタッフデータを削除できる。
      */
     public function testStaffDelete() {
-        $query = DB::table('staffs')->get();
-        $id    = $query[0]->id;
-        $name  = $query[0]->name;
+        list($id, $name) = $this->staffDataGet();
 
         // スタッフ情報を削除する。
         $this
@@ -114,6 +111,20 @@ class StaffTest extends TestCase {
         $id = $query[0]->id;
 
         return $id;
+    }
+
+    /*
+     * テストで使用するスタッフのデータを取得する。
+     */
+    private function staffDataGet() {
+       $query = DB::table('staffs')->get();
+
+       $id    = $query[0]->id;
+       $name  = $query[0]->name;
+
+       $staffData = [$id, $name];
+
+       return $staffData;
     }
 
 }

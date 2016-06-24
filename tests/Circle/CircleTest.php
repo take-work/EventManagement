@@ -78,4 +78,27 @@ class CircleTest extends TestCase {
             ->seeInDatabase('circles', ['host' => $name]);
     }
 
+    /*
+     * サークルを削除できる。
+     */
+    public function testCircleDelete() {
+        $query = DB::table('circles')->get();
+        $id = $query[0]->id;
+        $name = $query[0]->circle_name;
+
+        // スタッフ情報を削除する。
+        $this
+            ->visit('/circleDelete/'.$id)
+            ->see('サークル削除確認')
+            ->press('削除する')
+            ->see($name.'の情報を削除しました。');
+
+        // データが削除されているかチェックする。
+        $search = DB::table('circles')
+            ->where('id', $id)
+            ->get();
+
+        $this
+            ->assertEmpty($search);
+    }
 }

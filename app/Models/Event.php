@@ -97,6 +97,14 @@ class Event extends Model {
     public function deleteData($id) {
         DB::table('events')
             ->delete($id);
+
+        DB::table('staffs')
+            ->where('event_id', $id)
+            ->delete();
+
+        DB::table('circles')
+            ->where('event_id', $id)
+            ->delete();
     }
 
     /*

@@ -90,11 +90,25 @@ class EventTest extends TestCase {
             ->see('削除しました。');
 
         // データが削除されているかチェックする。
-        $search = DB::table('events')
+        $searchEvent = DB::table('events')
             ->where('id', $id)
             ->get();
 
+        $searchStaff = DB::table('staffs')
+            ->where('event_id', $id)
+            ->get();
+
+        $searchCircle = DB::table('circles')
+            ->where('event_id', $id)
+            ->get();
+
         $this
-            ->assertEmpty($search);
+            ->assertEmpty($searchEvent);
+
+        $this
+            ->assertEmpty($searchStaff);
+
+        $this
+            ->assertEmpty($searchCircle);
     }
 }

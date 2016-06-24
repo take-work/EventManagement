@@ -90,7 +90,7 @@ class StaffTest extends TestCase {
             ->see($name.'さんの情報を削除しました。');
 
        // データが削除されているかチェックする。
-       $search = DB::table('events')
+       $search = DB::table('staffs')
             ->where('id', $id)
             ->get();
 

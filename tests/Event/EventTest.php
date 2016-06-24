@@ -95,6 +95,7 @@ class EventTest extends TestCase {
             ->where('id', $id)
             ->get();
 
-        $this->assertEmpty($search);
+        $this
+            ->assertEmpty($search);
     }
 }

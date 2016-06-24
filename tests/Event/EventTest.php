@@ -1,7 +1,6 @@
 <?php
 
 use App\User;
-use DB;
 
 class EventTest extends TestCase {
     /*

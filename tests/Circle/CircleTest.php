@@ -21,4 +21,33 @@ class CircleTest extends TestCase {
             ->visit('/circleList/8')
             ->see('サークル一覧');
     }
+
+    /*
+     * サークルを新規登録できる。
+     */
+    public function testCircleCreate() {
+        $faker = Faker\Factory::create('ja_JP');
+        $name = $faker->unique()->name;
+
+        $query = DB::table('events')->get();
+        $id = $query[0]->id;
+
+        $this
+            ->visit('/circleCreate/'.$id)
+            ->see('サークル情報入力')
+            ->type('a-1', 'number')
+            ->type('a-2', 'space')
+            ->type('Aquars', 'circleName')
+            ->type($name, 'circleLeader')
+            ->type('1', 'staff')
+            ->type('1', 'desk')
+            ->type('1', 'chair')
+            ->press('登録する')
+            ->see('新サークル「Aquars」を新規登録しました。');
+
+        // faker で生成されたスタッフ名が正しくデータベースに登録されているかチェックする。
+        $this
+            ->seeInDatabase('circles', ['host' => $name]);
+    }
+
 }

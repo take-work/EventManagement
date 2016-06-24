@@ -45,7 +45,35 @@ class CircleTest extends TestCase {
             ->press('登録する')
             ->see('新サークル「Aquars」を新規登録しました。');
 
-        // faker で生成されたスタッフ名が正しくデータベースに登録されているかチェックする。
+        // faker で生成された代表名が正しくデータベースに登録されているかチェックする。
+        $this
+            ->seeInDatabase('circles', ['host' => $name]);
+    }
+
+    /*
+     * サークル情報を編集できる。
+     */
+    public function testCircleUpdate() {
+        $faker = Faker\Factory::create('ja_JP');
+        $name = $faker->unique()->name;
+
+        $query = DB::table('circles')->get();
+        $id = $query[0]->id;
+
+        $this
+            ->visit('/circleUpdate/'.$id)
+            ->see('サークル編集')
+            ->type('a-1', 'number')
+            ->type('a-2', 'space')
+            ->type('Aquars', 'circleName')
+            ->type($name, 'circleLeader')
+            ->type('1', 'staff')
+            ->type('1', 'desk')
+            ->type('1', 'chair')
+            ->press('更新する')
+            ->see('Aquarsの情報を更新しました。');
+
+        // faker で生成された代表者名が正しくデータベースに登録されているかチェックする。
         $this
             ->seeInDatabase('circles', ['host' => $name]);
     }

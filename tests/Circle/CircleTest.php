@@ -17,8 +17,10 @@ class CircleTest extends TestCase {
      * /circleList にアクセスするとサークル一覧ページが開く。
      */
     public function testCircleListAccess() {
+        $id = $this->eventIdGet();
+
         $this
-            ->visit('/circleList/8')
+            ->visit('/circleList/'.$id)
             ->see('サークル一覧');
     }
 
@@ -29,8 +31,7 @@ class CircleTest extends TestCase {
         $faker = Faker\Factory::create('ja_JP');
         $name = $faker->unique()->name;
 
-        $query = DB::table('events')->get();
-        $id = $query[0]->id;
+        $id = $this->eventIdGet();
 
         $this
             ->visit('/circleCreate/'.$id)
@@ -101,4 +102,15 @@ class CircleTest extends TestCase {
         $this
             ->assertEmpty($search);
     }
+
+    /*
+     * ページにアクセスするためのイベントIDを取得する。
+     */
+    private function eventIdGet() {
+        $query = DB::table('events')->get();
+        $id = $query[0]->id;
+
+        return $id;
+    }
+
 }

@@ -18,8 +18,7 @@ class StaffTest extends TestCase {
      * /staffList にアクセスするとスタッフ一覧ページが開く。
      */
     public function testStaffListAccess() {
-        $query = DB::table('events')->get();
-        $id = $query[0]->id;
+        $id = $this->eventIdGet();
 
         $this
             ->visit('/staffList/'.$id)
@@ -34,8 +33,7 @@ class StaffTest extends TestCase {
         $faker = Faker\Factory::create('ja_JP');
         $staffName = $faker->unique()->name;
 
-        $query = DB::table('events')->get();
-        $id = $query[0]->id;
+        $id = $this->eventIdGet();
 
         $this
             ->visit('/staffCreate/'.$id)
@@ -106,6 +104,16 @@ class StaffTest extends TestCase {
 
        $this
             ->assertEmpty($search);
+    }
+
+    /*
+     * ページにアクセスするためのイベントIDを取得する。
+     */
+    private function eventIdGet() {
+        $query = DB::table('events')->get();
+        $id = $query[0]->id;
+
+        return $id;
     }
 
 }

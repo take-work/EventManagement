@@ -28,8 +28,7 @@ class CircleTest extends TestCase {
      * サークルを新規登録できる。
      */
     public function testCircleCreate() {
-        $faker = Faker\Factory::create('ja_JP');
-        $name = $faker->unique()->name;
+        $name = $this->createName();
 
         $id = $this->eventIdGet();
 
@@ -55,8 +54,7 @@ class CircleTest extends TestCase {
      * サークル情報を編集できる。
      */
     public function testCircleUpdate() {
-        $faker = Faker\Factory::create('ja_JP');
-        $name = $faker->unique()->name;
+        $name = $this->createName();
 
         list($id, $circleName) = $this->circleDataGet();
 
@@ -122,6 +120,16 @@ class CircleTest extends TestCase {
         $circleData = [$id, $circleName];
 
         return $circleData;
+    }
+
+    /*
+     * faker で代表者名を生成する。
+     */
+    private function createName() {
+        $faker = Faker\Factory::create('ja_JP');
+        $name = $faker->unique()->name;
+
+        return $name;
     }
 
 }

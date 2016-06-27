@@ -117,23 +117,36 @@ class Event extends Model {
 
         $staffs  = $staff->fullSelect();
         $circles = $circle->fullSelect();
-        $$moneys = $money->fullSelect();
+        $moneys = $money->fullSelect();
 
         foreach ($events as $id) {
             $eventId = $id->id;
             $eventPrice = $id->price;
 
-            $staffCount = $staff->count($eventId);
-            $staffCounter[$eventId] = $staffCount;
+            if (! empty($staffs)) {
+                $staffCount = $staff->count($eventId);
+                $staffCounter[$eventId] = $staffCount;
+            } else {
+                $staffCounter[$eventId] = 0;
+            }
 
-            $circleCount = $circle->count($eventId);
-            $circleCounter[$eventId] = $circleCount;
+            if (! empty($circles)) {
+                $circleCount = $circle->count($eventId);
+                $circleCounter[$eventId] = $circleCount;
+            } else {
+                $circleCounter[$eventId] = 0;
+            }
 
-            $totalMoney = $money->totalMpney($eventId);
-            $moneyCounter[$eventId] = $totalMoney;
+            if (! empty($moneys)) {
+                $totalMoney = $money->totalMpney($eventId);
+                $moneyCounter[$eventId] = $totalMoney;
 
-            $moneyCalc = $money->calculater($totalMoney, $eventPrice);
-            $moneyList[$eventId] = $moneyCalc;
+                $moneyCalc = $money->calculater($totalMoney, $eventPrice);
+                $moneyList[$eventId] = $moneyCalc;
+            } else {
+                $moneyCounter[$eventId] = 0;
+                $moneyList[$eventId] = 0;
+            }
         }
 
         $counter = [$staffCounter, $circleCounter, $moneyCounter, $moneyList];

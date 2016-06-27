@@ -18,7 +18,7 @@ class EventController extends Controller {
         $eventContents = $this->eventContents();
         $events = $event->select();
 
-        if (empty($events)) {
+        if (! empty($events)) {
             // イベントデータが一つでも存在する場合
 
             list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);

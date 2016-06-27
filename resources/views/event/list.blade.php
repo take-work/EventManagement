@@ -95,7 +95,7 @@
 
         <td align="center">
           <a href="{!! url('/circleList', [$event->id]) !!}">
-            @if (! empty($circleCounter))
+            @if (! is_null($circleCounter))
               {{ $circleCounter[$event->id][0]->counter }}組
             @else
               <p>未設定</p>
@@ -108,7 +108,7 @@
         </td>
 
         <td align="center">
-          @if (! empty($moneyCounter))
+          @if (! is_null($moneyCounter))
             @if (! $moneyCounter[$event->id] == null )
               <a href="{!! url('/moneyUpdate', [$event->id]) !!}">￥{{ number_format($moneyCounter[$event->id]) }}</a>
             @else
@@ -120,7 +120,7 @@
         </td>
 
         <td align="center">
-          @if (! empty($moneyList))
+          @if (! is_null($moneyList))
             @if ( $moneyList[$event->id] < 0 )
               <font color="red"><b>￥{{ number_format($moneyList[$event->id]) }}</b></font>
             @elseif ( $moneyList[$event->id] > 0 )

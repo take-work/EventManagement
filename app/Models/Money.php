@@ -15,6 +15,16 @@ class Money extends Model {
     protected $table = 'money';
 
     /*
+     * money テーブルからイベント毎に、ではなく、全てのデータを取得して結果を返す関数
+     */
+    public function fullSelect() {
+        $moneys = DB::table('money')
+            ->get();
+
+            return $moneys;
+    }
+
+    /*
      * 金額情報の新規登録処理を行う関数
      */
     public function insert($inputs) {

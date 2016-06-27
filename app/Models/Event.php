@@ -115,6 +115,10 @@ class Event extends Model {
         $circle = new Circle();
         $money  = new Money();
 
+        $staffs  = $staff->fullSelect();
+        $circles = $circle->fullSelect();
+        $$moneys = $money->fullSelect();
+
         foreach ($events as $id) {
             $eventId = $id->id;
             $eventPrice = $id->price;

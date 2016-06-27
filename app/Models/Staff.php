@@ -34,6 +34,16 @@ class Staff extends Model {
             ->orderBy('rank', 'asc')
             ->get();
 
+            return $staffs;
+    }
+
+    /*
+     * staffs テーブルからイベント毎に、ではなく、全てのデータを取得して結果を返す関数
+     */
+    public function fullSelect() {
+        $staffs = DB::table('staffs')
+            ->get();
+
         return $staffs;
     }
 

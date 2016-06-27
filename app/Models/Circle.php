@@ -36,6 +36,16 @@ class Circle extends Model {
     }
 
     /*
+     * circles テーブルからイベント毎に、ではなく、全てのデータを取得して結果を返す関数
+     */
+    public function fullSelect() {
+        $circles = DB::table('circles')
+            ->get();
+
+        return $circles;
+    }
+
+    /*
      * circles テーブルから検索された時に検索結果を返す関数
      */
     public function search($request) {

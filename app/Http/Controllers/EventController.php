@@ -13,14 +13,22 @@ class EventController extends Controller {
      * イベント一覧ページにアクセスするための関数
      */
     public function show() {
-        $event  = new Event();
+        $event = new Event();
 
         $eventContents = $this->eventContents();
         $events = $event->select();
 
-        list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
+        if (empty($events)) {
+            // イベントデータが一つでも存在する場合
 
-        return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+            list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
+
+            return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+        } else {
+            // イベントデータが存在しない場合
+
+            return view('event.list', compact('events', 'eventContents'));
+        }
     }
 
     /*

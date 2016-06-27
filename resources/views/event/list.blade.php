@@ -84,11 +84,23 @@
         </td>
 
         <td align="center">
-          <a href="{!! url('/staffList', [$event->id]) !!}">{{ $staffCounter[$event->id][0]->counter }}</a>
+          <a href="{!! url('/staffList', [$event->id]) !!}">
+            @if (! empty($staffCounter))
+              {{ $staffCounter[$event->id][0]->counter }}人
+            @else
+              <p>未設定</p>
+            @endif
+          </a>
         </td>
 
         <td align="center">
-          <a href="{!! url('/circleList', [$event->id]) !!}">{{ $circleCounter[$event->id][0]->counter }}</a>
+          <a href="{!! url('/circleList', [$event->id]) !!}">
+            @if (! empty($circleCounter))
+              {{ $circleCounter[$event->id][0]->counter }}組
+            @else
+              <p>未設定</p>
+            @endif
+          </a>
         </td>
 
         <td align="center">
@@ -96,18 +108,26 @@
         </td>
 
         <td align="center">
-          @if (! $moneyCounter[$event->id] == null )
-            <a href="{!! url('/moneyUpdate', [$event->id]) !!}">￥{{ number_format($moneyCounter[$event->id]) }}</a>
-          @else 
+          @if (! empty($moneyCounter))
+            @if (! $moneyCounter[$event->id] == null )
+              <a href="{!! url('/moneyUpdate', [$event->id]) !!}">￥{{ number_format($moneyCounter[$event->id]) }}</a>
+            @else
+              <a href="{!! url('/moneyCreate', [$event->id]) !!}">￥0</a>
+            @endif
+          @else
             <a href="{!! url('/moneyCreate', [$event->id]) !!}">￥0</a>
           @endif
         </td>
 
         <td align="center">
-          @if ( $moneyList[$event->id] < 0 )
-            <font color="red"><b>￥{{ number_format($moneyList[$event->id]) }}</b></font>
-          @elseif ( $moneyList[$event->id] > 0 )
-            ￥{{ number_format($moneyList[$event->id]) }}
+          @if (! empty($moneyList))
+            @if ( $moneyList[$event->id] < 0 )
+              <font color="red"><b>￥{{ number_format($moneyList[$event->id]) }}</b></font>
+            @elseif ( $moneyList[$event->id] > 0 )
+              ￥{{ number_format($moneyList[$event->id]) }}
+            @else
+              <font color="#1f90ff">￥0</font>
+            @endif
           @else
             <font color="#1f90ff">￥0</font>
           @endif

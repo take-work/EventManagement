@@ -56,9 +56,15 @@
     <table class="table table-responsive table-bordered">
         <thead>
             <tr class="active">
-                @foreach ($eventContents as $contents => $content)
-                    <th><div class="text-center">{{ $content }}</div></th>
-                @endforeach
+                <th><div class="text-center">開始年月日</div></th>
+                <th><div class="text-center">終了年月日</div></th>
+                <th><div class="text-center">イベント名</div></th>
+                <th><div class="text-center">主催者</div></th>
+                <th><div class="text-center">スタッフ数</div></th>
+                <th><div class="text-center">サークル数</div></th>
+                <th><div class="text-center">準備費用</div></th>
+                <th><div class="text-center">合計金額</div></th>
+                <th><div class="text-center">純利益</div></th>
                 <th><div class="text-center">データの編集</div></th>
                 <th><div class="text-center">データの削除</div></th>
             </tr>

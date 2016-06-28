@@ -21,7 +21,6 @@ class EventController extends Controller {
         list($eventCheck, $staffCheck, $circleCheck, $moneyCheck) = $this->dataCheck();
 
         $events = $event->select();
-        $eventContents = $this->eventContents();
 
         if (! $eventCheck) {
             // イベントデータが一つでも存在する場合
@@ -30,14 +29,14 @@ class EventController extends Controller {
                 // スタッフ・サークル・金額情報が何もない場合
                 $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'moneyList'));
+                return view('event.list', compact('events', 'moneyList'));
 
             } elseif(! $staffCheck && $circleCheck && $moneyCheck) {
                 // スタッフデータだけがある場合
                 $staffCounter = $event->staffCounter($events);
                 $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'moneyList'));
+                return view('event.list', compact('events', 'staffCounter', 'moneyList'));
 
             } elseif(! $staffCheck && ! $circleCheck && $moneyCheck) {
                 // スタッフデータ・サークルデータだけがある場合
@@ -45,34 +44,34 @@ class EventController extends Controller {
                 $circleCounter = $event->circleCounter($events);
                 $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyList'));
+                return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyList'));
 
             } elseif(! $staffCheck && $circleCheck && ! $moneyCheck) {
                 // スタッフデータ・金額情報だけがある場合
                 $staffCounter = $event->staffCounter($events);
                 list($moneyCounter, $moneyList) = $event->moneyCounter($events);
 
-                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'moneyCounter', 'moneyList'));
+                return view('event.list', compact('events', 'staffCounter', 'moneyCounter', 'moneyList'));
 
             } elseif($staffCheck && ! $circleCheck && $moneyCheck) {
                 // サークルデータだけがある場合
                 $circleCounter = $event->circleCounter($events);
                 $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'circleCounter', 'moneyList'));
+                return view('event.list', compact('events', 'circleCounter', 'moneyList'));
 
             } elseif($staffCheck && ! $circleCheck && ! $moneyCheck) {
                 // サークルデータ・金額情報だけがある場合
                 $circleCounter = $event->circleCounter($events);
                 list($moneyCounter, $moneyList) = $event->moneyCounter($events);
 
-                return view('event.list', compact('events', 'eventContents', 'circleCounter', 'moneyCounter', 'moneyList'));
+                return view('event.list', compact('events', 'circleCounter', 'moneyCounter', 'moneyList'));
 
             } elseif($staffCheck && $circleCheck && ! $moneyCheck) {
                 // 金額情報だけがある場合
                 list($moneyCounter, $moneyList) = $event->moneyCounter($events);
 
-                return view('event.list', compact('events', 'eventContents', 'moneyCounter', 'moneyList'));
+                return view('event.list', compact('events', 'moneyCounter', 'moneyList'));
 
             } else {
                 // 全てのデータがある場合
@@ -80,14 +79,14 @@ class EventController extends Controller {
                 $circleCounter = $event->circleCounter($events);
                 list($moneyCounter, $moneyList) = $event->moneyCounter($events);
 
-                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+                return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
 
             }
 
         } else {
             // イベントデータが存在しない場合
 
-            return view('event.list', compact('events', 'eventContents'));
+            return view('event.list', compact('events'));
         }
     }
 
@@ -100,21 +99,18 @@ class EventController extends Controller {
         $rules = $this->searchValidationRules();
         $this->validate($request, $rules);
 
-        $eventContents = $this->eventContents();
         $events = $event->search($request);
 
         list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
 
-        return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+        return view('event.list', compact('events', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
     }
 
     /*
      * イベントの新規作成ページにアクセスするための関数
      */
     public function create() {
-        $inputContents = $this->inputContents();
-
-        return view('event.create', compact('inputContents'));
+        return view('event.create');
     }
 
     /*
@@ -139,9 +135,7 @@ class EventController extends Controller {
         $event = new Event();
         $events = $event->select($id);
 
-        $inputContents = $this->inputContents();
-
-        return view('event.update', compact('events', 'inputContents'));
+        return view('event.update', compact('events'));
     }
 
     /*
@@ -166,9 +160,7 @@ class EventController extends Controller {
         $event = new Event();
         $events = $event->select($id);
 
-        $inputContents = $this->inputContents();
-
-        return view('event.delete', compact('events', 'inputContents'));
+        return view('event.delete', compact('events'));
     }
 
     /*
@@ -211,40 +203,6 @@ class EventController extends Controller {
         ];
 
         return $rules;
-    }
-
-    /*
-     * イベント一覧ページで表示するテーブルの項目を渡す関数
-     */
-    private function eventContents() {
-        $eventContents = [
-            'startDay'  => '開始年月日',
-            'endDay'    => '終了年月日',
-            'eventName' => 'イベント名',
-            'host'      => '主催者',
-            'staffs'    => 'スタッフ数',
-            'circles'   => 'サークル数',
-            'price'     => '準備費用',
-            'moneyCalc' => '合計金額',
-            'moneyList' => '純利益'
-        ];
-
-        return $eventContents;
-    }
-
-    /*
-     * イベントの新規作成・更新・削除ページで表示するテーブルの項目を渡す関数
-     */
-    private function inputContents() {
-        $inputContents = [
-            'startDay'  => '開始年月日',
-            'endDay'    => '終了年月日',
-            'eventName' => 'イベント名',
-            'host'      => '主催者',
-            'price'     => '準備費用'
-        ];
-
-        return $inputContents;
     }
 
     /*

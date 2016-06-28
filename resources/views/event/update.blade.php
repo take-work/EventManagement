@@ -13,9 +13,11 @@
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
-        @foreach ($inputContents as $contents => $content)
-          <th><div class="text-center">{{ $content }}</div></th>
-        @endforeach
+        <th><div class="text-center">開始年月日</div></th>
+        <th><div class="text-center">終了年月日</div></th>
+        <th><div class="text-center">イベント名</div></th>
+        <th><div class="text-center">主催者</div></th>
+        <th><div class="text-center">準備費用</div></th>
         <th><div class="text-center">データの変更</div></th>
       </tr>
     </thead>

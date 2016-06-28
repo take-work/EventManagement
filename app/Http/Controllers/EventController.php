@@ -17,17 +17,10 @@ class EventController extends Controller {
      */
     public function show() {
         $event = new Event();
-        $staff = new Staff();
-        $circle = new Circle();
-        $money = new Money();
+
+        list($eventCheck, $staffCheck, $circleCheck, $moneyCheck) = $this->dataCheck();
 
         $events = $event->select();
-
-        $eventCheck = empty($event->fullSelect());
-        $staffCheck = empty($staff->fullSelect());
-        $circleCheck = empty($circle->fullSelect());
-        $moneyCheck = empty($money->fullSelect());
-
         $eventContents = $this->eventContents();
 
         if (! $eventCheck) {
@@ -254,4 +247,22 @@ class EventController extends Controller {
         return $inputContents;
     }
 
+    /*
+     * データが存在しているかどうかをチェックして結果を返す関数
+     */
+    private function dataCheck() {
+        $event = new Event();
+        $staff = new Staff();
+        $circle = new Circle();
+        $money = new Money();
+
+        $eventCheck = empty($event->fullSelect());
+        $staffCheck = empty($staff->fullSelect());
+        $circleCheck = empty($circle->fullSelect());
+        $moneyCheck = empty($money->fullSelect());
+
+        $dataCheck = [$eventCheck, $staffCheck, $circleCheck, $moneyCheck];
+
+        return $dataCheck;
+    }
 }

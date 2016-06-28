@@ -251,15 +251,15 @@ class EventController extends Controller {
      * データが存在しているかどうかをチェックして結果を返す関数
      */
     private function dataCheck() {
-        $event = new Event();
-        $staff = new Staff();
+        $event  = new Event();
+        $staff  = new Staff();
         $circle = new Circle();
-        $money = new Money();
+        $money  = new Money();
 
-        $eventCheck = empty($event->fullSelect());
-        $staffCheck = empty($staff->fullSelect());
+        $eventCheck  = empty($event->fullSelect());
+        $staffCheck  = empty($staff->fullSelect());
         $circleCheck = empty($circle->fullSelect());
-        $moneyCheck = empty($money->fullSelect());
+        $moneyCheck  = empty($money->fullSelect());
 
         $dataCheck = [$eventCheck, $staffCheck, $circleCheck, $moneyCheck];
 

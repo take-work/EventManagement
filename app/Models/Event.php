@@ -105,6 +105,10 @@ class Event extends Model {
         DB::table('circles')
             ->where('event_id', $id)
             ->delete();
+
+        DB::table('money')
+            ->where('event_id', $id)
+            ->delete();
     }
 
     /*

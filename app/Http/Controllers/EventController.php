@@ -38,21 +38,24 @@ class EventController extends Controller {
 
             if ($staffCheck && $circleCheck && $moneyCheck) {
                 // スタッフ・サークル・金額情報が何もない場合
+                $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents'));
+                return view('event.list', compact('events', 'eventContents', 'moneyList'));
 
             } elseif(! $staffCheck && $circleCheck && $moneyCheck) {
                 // スタッフデータだけがある場合
                 $staffCounter = $event->staffCounter($events);
+                $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'staffCounter'));
+                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'moneyList'));
 
             } elseif(! $staffCheck && ! $circleCheck && $moneyCheck) {
                 // スタッフデータ・サークルデータだけがある場合
                 $staffCounter = $event->staffCounter($events);
                 $circleCounter = $event->circleCounter($events);
+                $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter'));
+                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyList'));
 
             } elseif(! $staffCheck && $circleCheck && ! $moneyCheck) {
                 // スタッフデータ・金額情報だけがある場合
@@ -64,8 +67,9 @@ class EventController extends Controller {
             } elseif($staffCheck && ! $circleCheck && $moneyCheck) {
                 // サークルデータだけがある場合
                 $circleCounter = $event->circleCounter($events);
+                $moneyList = $event->moneyList($events);
 
-                return view('event.list', compact('events', 'eventContents', 'circleCounter'));
+                return view('event.list', compact('events', 'eventContents', 'circleCounter', 'moneyList'));
 
             } elseif($staffCheck && ! $circleCheck && ! $moneyCheck) {
                 // サークルデータ・金額情報だけがある場合

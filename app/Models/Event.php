@@ -166,6 +166,20 @@ class Event extends Model {
     }
 
     /*
+     * 金額情報が入力されていない場合に純利益を表示させるために値を渡す関数
+     */
+    public function moneyList($events) {
+        foreach ($events as $event) {
+            $eventId = $event->id;
+            $eventPrice = $event->price;
+
+            $moneyList[$eventId] = $eventPrice;
+        }
+
+        return $moneyList;
+    }
+
+    /*
      * それぞれのイベントに登録されているスタッフ数・サークル数・利益等を計算する関数
      */
     public function counter($events) {

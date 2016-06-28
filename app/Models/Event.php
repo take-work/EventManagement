@@ -33,6 +33,16 @@ class Event extends Model {
     }
 
     /*
+     * events テーブルから全てのデータを取得して結果を返す関数
+     */
+    public function fullSelect() {
+        $events = DB::table('events')
+            ->get();
+
+        return $events;
+    }
+
+    /*
      * events テーブルから検索されたときに検索結果を返す関数
      */
     public function search($request) {

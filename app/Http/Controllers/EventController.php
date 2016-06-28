@@ -22,14 +22,11 @@ class EventController extends Controller {
         $money = new Money();
 
         $events = $event->select();
-        $staffs  = $staff->fullSelect();
-        $circles = $circle->fullSelect();
-        $monies = $money->fullSelect();
 
-        $eventCheck = empty($events);
-        $staffCheck = empty($staffs);
-        $circleCheck = empty($circles);
-        $moneyCheck = empty($monies);
+        $eventCheck = empty($event->fullSelect());
+        $staffCheck = empty($staff->fullSelect());
+        $circleCheck = empty($circle->fullSelect());
+        $moneyCheck = empty($money->fullSelect());
 
         $eventContents = $this->eventContents();
 

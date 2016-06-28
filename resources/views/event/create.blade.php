@@ -10,6 +10,7 @@
   <h3>イベント情報入力</h3>
 @endsection
 
+{!! Form::open() !!}
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
@@ -22,7 +23,6 @@
       </tr>
     </thead>
 
-  {!! Form::open() !!}
     <tbody>
       <tr>
         <td align="center">

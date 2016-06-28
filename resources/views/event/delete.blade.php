@@ -12,6 +12,7 @@
   よろしければ「データの削除」から「削除する」ボタンをクリックしてください。</p>
 @endsection
 
+{!! Form::open() !!}
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
@@ -24,7 +25,6 @@
       </tr>
     </thead>
 
-  {!! Form::open() !!}
     <tbody>
       <tr>
         <td align="center">

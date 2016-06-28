@@ -10,6 +10,7 @@
   <h3>イベント編集</h3>
 @endsection
 
+{!! Form::open() !!}
   <table class="table table-responsive table-bordered">
     <thead>
       <tr class="active">
@@ -22,7 +23,6 @@
       </tr>
     </thead>
 
-  {!! Form::open() !!}
   @foreach($events as $event)
     <tbody>
       <tr>

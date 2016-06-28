@@ -108,6 +108,60 @@ class Event extends Model {
     }
 
     /*
+     * それぞれのイベントに登録されているスタッフ数を計算する関数
+     */
+    public function staffCounter($events) {
+        $staff = new Staff();
+
+        foreach ($events as $id) {
+            $eventId = $id->id;
+
+            $staffCount = $staff->count($eventId);
+            $staffCounter[$eventId] = $staffCount;
+        }
+
+        return $staffCounter;
+    }
+
+    /*
+     * それぞれのイベントに登録されているサークル数を計算する関数
+     */
+    public function circleCounter($events) {
+        $circle = new Circle();
+
+        foreach ($events as $id) {
+            $eventId = $id->id;
+
+            $circleCount = $circle->count($eventId);
+            $circleCounter[$eventId] = $circleCount;
+        }
+
+        return $circleCounter;
+    }
+
+    /*
+     * それぞれのイベントに登録されている金額を計算する関数
+     */
+    public function moneyCounter($events) {
+        $money = new Money();
+
+        foreach ($events as $id) {
+            $eventId = $id->id;
+            $eventPrice = $id->price;
+
+            $totalMoney = $money->totalMpney($eventId);
+            $moneyCount[$eventId] = $totalMoney;
+
+            $moneyCalc = $money->calculater($totalMoney, $eventPrice);
+            $moneyList[$eventId] = $moneyCalc;
+        }
+
+        $moneyCounter = [$moneyCount, $moneyList];
+
+        return $moneyCounter;
+    }
+
+    /*
      * それぞれのイベントに登録されているスタッフ数・サークル数・利益等を計算する関数
      */
     public function counter($events) {
@@ -124,20 +178,28 @@ class Event extends Model {
             $eventPrice = $id->price;
 
             if (! empty($staffs)) {
+                // スタッフ情報が存在する場合
+
                 $staffCount = $staff->count($eventId);
                 $staffCounter[$eventId] = $staffCount;
             } else {
+                // スタッフ情報が一つも存在しない場合
+
                 $staffCounter[$eventId] = 0;
             }
 
             if (! empty($circles)) {
+                // サークル情報が存在する場合
+
                 $circleCount = $circle->count($eventId);
                 $circleCounter[$eventId] = $circleCount;
             } else {
+                // サークル情報が一つも存在しない場合
+
                 $circleCounter[$eventId] = 0;
             }
 
-            if (! empty($moneys)) {
+            if (empty($moneys)) {
                 $totalMoney = $money->totalMpney($eventId);
                 $moneyCounter[$eventId] = $totalMoney;
 

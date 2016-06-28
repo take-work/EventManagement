@@ -102,6 +102,10 @@ class EventTest extends TestCase {
             ->where('event_id', $id)
             ->get();
 
+        $searchMoney = DB::table('money')
+            ->where('event_id', $id)
+            ->get();
+
         $this
             ->assertEmpty($searchEvent);
 
@@ -110,5 +114,8 @@ class EventTest extends TestCase {
 
         $this
             ->assertEmpty($searchCircle);
+
+        $this
+            ->assertEmpty($searchMoney);
     }
 }

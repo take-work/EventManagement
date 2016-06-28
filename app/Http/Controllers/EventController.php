@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Models\Event;
+use App\Models\Staff;
+use App\Models\Circle;
+use App\Models\Money;
 
 class EventController extends Controller {
 
@@ -14,16 +17,79 @@ class EventController extends Controller {
      */
     public function show() {
         $event = new Event();
+        $staff = new Staff();
+        $circle = new Circle();
+        $money = new Money();
+
+        $events = $event->select();
+        $staffs  = $staff->fullSelect();
+        $circles = $circle->fullSelect();
+        $monies = $money->fullSelect();
+
+        $eventCheck = empty($events);
+        $staffCheck = empty($staffs);
+        $circleCheck = empty($circles);
+        $moneyCheck = empty($monies);
 
         $eventContents = $this->eventContents();
-        $events = $event->select();
 
-        if (! empty($events)) {
+        if (! $eventCheck) {
             // イベントデータが一つでも存在する場合
 
-            list($staffCounter, $circleCounter, $moneyCounter, $moneyList) = $event->counter($events);
+            if ($staffCheck && $circleCheck && $moneyCheck) {
+                // スタッフ・サークル・金額情報が何もない場合
 
-            return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+                return view('event.list', compact('events', 'eventContents'));
+
+            } elseif(! $staffCheck && $circleCheck && $moneyCheck) {
+                // スタッフデータだけがある場合
+                $staffCounter = $event->staffCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'staffCounter'));
+
+            } elseif(! $staffCheck && ! $circleCheck && $moneyCheck) {
+                // スタッフデータ・サークルデータだけがある場合
+                $staffCounter = $event->staffCounter($events);
+                $circleCounter = $event->circleCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter'));
+
+            } elseif(! $staffCheck && $circleCheck && ! $moneyCheck) {
+                // スタッフデータ・金額情報だけがある場合
+                $staffCounter = $event->staffCounter($events);
+                list($moneyCounter, $moneyList) = $event->moneyCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'moneyCounter', 'moneyList'));
+
+            } elseif($staffCheck && ! $circleCheck && $moneyCheck) {
+                // サークルデータだけがある場合
+                $circleCounter = $event->circleCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'circleCounter'));
+
+            } elseif($staffCheck && ! $circleCheck && ! $moneyCheck) {
+                // サークルデータ・金額情報だけがある場合
+                $circleCounter = $event->circleCounter($events);
+                list($moneyCounter, $moneyList) = $event->moneyCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'circleCounter', 'moneyCounter', 'moneyList'));
+
+            } elseif($staffCheck && $circleCheck && ! $moneyCheck) {
+                // 金額情報だけがある場合
+                list($moneyCounter, $moneyList) = $event->moneyCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'moneyCounter', 'moneyList'));
+
+            } else {
+                // 全てのデータがある場合
+                $staffCounter = $event->staffCounter($events);
+                $circleCounter = $event->circleCounter($events);
+                list($moneyCounter, $moneyList) = $event->moneyCounter($events);
+
+                return view('event.list', compact('events', 'eventContents', 'staffCounter', 'circleCounter', 'moneyCounter', 'moneyList'));
+
+            }
+
         } else {
             // イベントデータが存在しない場合
 

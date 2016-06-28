@@ -88,7 +88,7 @@
                             @if (! empty($staffCounter))
                                 {{ $staffCounter[$event->id][0]->counter }}人
                             @else
-                                <p>未設定</p>
+                                <p>0人</p>
                             @endif
                         </a>
                     </td>
@@ -98,7 +98,7 @@
                             @if (! empty($circleCounter))
                                 {{ $circleCounter[$event->id][0]->counter }}組
                             @else
-                                <p>未設定</p>
+                                <p>0組</p>
                             @endif
                         </a>
                     </td>

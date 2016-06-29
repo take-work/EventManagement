@@ -24,15 +24,19 @@ class MoneyController extends Controller {
      */
     public function insert(Request $request) {
         $money = new Money();
+        $event = new Event();
 
-        $event = Event::where('id', $request['id'])->get();
+        $id = $request['id'];
+        $events = $event->select($id);
+
+        $eventName = $events[0]->name;
 
         $rules = $this->validationRules();
         $this->validate($request, $rules);
 
         $money->insert($request);
 
-        \Session::flash('flash_message', $eventName[0]->name .'の金額情報を新規登録しました。');
+        \Session::flash('flash_message', $eventName .'の金額情報を新規登録しました。');
         return redirect('/list');
     }
 
@@ -52,18 +56,20 @@ class MoneyController extends Controller {
      */
     public function update(Request $request, $id) {
         $money = new Money();
+        $event = new Event();
 
         $moneyData = $money->specificData($id);
         $eventId = $moneyData[0]->event_id;
 
-        $eventName = Event::where('id', $eventId)->get();
+        $events = $event->select($eventId);
+        $eventName = $events[0]->name;
 
         $rules = $this->validationRules();
         $this->validate($request, $rules);
 
         $money->updateData($request);
 
-        \Session::flash('flash_message', $eventName[0]->name .'の金額情報を更新しました。');
+        \Session::flash('flash_message', $eventName .'の金額情報を更新しました。');
         return redirect('/list');
     }
 

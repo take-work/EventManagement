@@ -62,7 +62,7 @@ class Event extends Model {
      * イベント情報の新規登録処理
      */
     public function insert($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         list ($startDay, $endDay) = $this->connectDate($inputs);
 

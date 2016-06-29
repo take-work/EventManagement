@@ -74,7 +74,6 @@ class Event extends Model {
                 'startDay'   => $startDay,
                 'endDay'     => $endDay,
                 'created_at' => $now,
-                'updated_at' => $now
             ]);
 
         return true;

@@ -15,6 +15,26 @@ class Money extends Model {
     protected $table = 'money';
 
     /*
+     * money テーブルからイベント毎にデータを取得して結果を返す関数
+     */
+    public function select($id) {
+        $money = Money::where('event_id', $id)
+            ->get();
+
+        return $money;
+    }
+
+    /*
+     * money テーブルからイベント毎ではなく、特定のデータを取得して結果を返す関数
+     */
+    public function specificData($id) {
+        $money = Money::where('id', $id)
+            ->get();
+
+        return $money;
+    }
+
+    /*
      * money テーブルからイベント毎に、ではなく、全てのデータを取得して結果を返す関数
      */
     public function fullSelect() {

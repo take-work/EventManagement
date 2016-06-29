@@ -23,14 +23,14 @@ class MoneyController extends Controller {
      * 金額情報の新規登録処理を実行するための関数
      */
     public function insert(Request $request) {
-        $inserts = new Money();
+        $money = new Money();
 
-        $eventName = Event::where('id', $request['id'])->get();
+        $event = Event::where('id', $request['id'])->get();
 
         $rules = $this->validationRules();
         $this->validate($request, $rules);
 
-        $inserts->insert($request);
+        $money->insert($request);
 
         \Session::flash('flash_message', $eventName[0]->name .'の金額情報を新規登録しました。');
         return redirect('/list');
@@ -40,7 +40,9 @@ class MoneyController extends Controller {
      * 金額情報の更新ページにアクセスするための関数
      */
     public function updateConfirm($id) {
-        $moneyList = Money::where('event_id', $id)->get();
+        $money = new Money();
+
+        $moneyList = $money->select($id);
 
         return view('money.update', compact('moneyList'));
     }
@@ -51,8 +53,8 @@ class MoneyController extends Controller {
     public function update(Request $request, $id) {
         $money = new Money();
 
-        $moneyId = Money::where('id', $request['id'])->get();
-        $eventId = $moneyId[0]->event_id;
+        $moneyData = $money->specificData($id);
+        $eventId = $moneyData[0]->event_id;
 
         $eventName = Event::where('id', $eventId)->get();
 

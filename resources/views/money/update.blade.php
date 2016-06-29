@@ -22,6 +22,7 @@
     <h3>金額情報編集</h3>
 @endsection
 
+    <p>最終更新日時：{{ $moneyList[0]->updated_at }}</p>
     {!! Form::open() !!}
         <table class="table table-responsive table-bordered">
             <tr>

@@ -134,7 +134,7 @@ class Circle extends Model {
      * 新規登録処理を行う関数
      */
     public function insert($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         DB::table('circles')
             ->insert([
@@ -147,7 +147,6 @@ class Circle extends Model {
                 'desk'        => $inputs['desk'],
                 'chair'       => $inputs['chair'],
                 'created_at'  => $now,
-                'updated_at'  => $now
             ]);
 
         return true;
@@ -157,7 +156,7 @@ class Circle extends Model {
      * 更新処理を行う関数
      */
     public function updateData($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         DB::table('circles')
             ->where('id', $inputs['id'])

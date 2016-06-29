@@ -93,7 +93,7 @@ class Staff extends Model {
      * スタッフの新規登録処理を行う関数
      */
     public function insert($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         DB::table('staffs')
             ->insert([
@@ -106,7 +106,6 @@ class Staff extends Model {
                 'experience' => $inputs['experience'],
                 'rank'       => $inputs['rank'],
                 'updated_at' => $now,
-                'created_at' => $now
         ]);
 
         return true;
@@ -116,7 +115,7 @@ class Staff extends Model {
      * スタッフ情報の更新処理を行う関数
      */
     public function updateData($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         DB::table('staffs')
             ->where('id', $inputs['id'])

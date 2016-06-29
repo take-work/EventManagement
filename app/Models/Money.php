@@ -28,7 +28,7 @@ class Money extends Model {
      * 金額情報の新規登録処理を行う関数
      */
     public function insert($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         DB::table('money')->insert([
             'event_id'      => $inputs['id'],
@@ -48,7 +48,7 @@ class Money extends Model {
      * 金額情報の更新処理を行う関数
      */
     public function updateData($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
 
         DB::table('money')
             ->where('id', $inputs['id'])

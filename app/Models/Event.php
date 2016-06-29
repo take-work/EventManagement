@@ -83,7 +83,7 @@ class Event extends Model {
      * イベント情報の更新処理
      */
     public function updateData($inputs) {
-        $now = date("Y-m-d");
+        $now = date("Y-m-d H:i:s");
         list ($startDay, $endDay) = $this->connectDate($inputs);
 
         DB::table('events')

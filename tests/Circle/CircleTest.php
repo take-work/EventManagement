@@ -11,6 +11,15 @@ class CircleTest extends TestCase {
 
         $user = new User(['user' => 'take']);
         $this->be($user);
+
+        DB::table('events')
+        ->insert([
+                'name'       => 'eventName',
+                'host'       => 'host',
+                'price'      => '10000',
+                'startDay'   => '2016/01/01',
+                'endDay'     => '2016/01/03',
+        ]);
     }
 
     /*

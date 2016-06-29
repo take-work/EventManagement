@@ -4,13 +4,22 @@ use App\User;
 
 class StaffTest extends TestCase {
     /*
-     * 最初にログインする。
+     * 最初にログインして、イベントデータを作成する。
      */
     public function setUp() {
         parent::setUp();
 
         $user = new User(['user' => 'take']);
         $this->be($user);
+
+        DB::table('events')
+            ->insert([
+                'name'       => 'eventName',
+                'host'       => 'host',
+                'price'      => '10000',
+                'startDay'   => '2016/01/01',
+                'endDay'     => '2016/01/03',
+            ]);
     }
 
     /*

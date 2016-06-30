@@ -15,8 +15,8 @@ class MoneyTest extends TestCase {
     }
 
     /*
-     * /moneyCreate にアクセスすると金額情報の登録ページが開いて、金額を新規登録できる。
-     * その後、初期費用(10000) - 登録した金額(1000) が計算出来ているか確認する。
+     * 金額が登録されていない状態で合計金額のリンクを踏むと /moneyCreate にアクセスして、金額を新規登録できる。
+     * その後、初期費用(10000) - 登録した金額(1600) が計算出来ているか確認する。
      */
     public function testMoneyCreate() {
         DB::table('events')
@@ -31,7 +31,9 @@ class MoneyTest extends TestCase {
         $id = $this->eventIdGet();
 
         $this
-            ->visit('/moneyCreate/'.$id)
+            ->visit('/list/')
+            ->click('￥0')
+            ->seePageIs('/moneyCreate/'.$id)
             ->see('金額情報入力')
             ->type('1', 'hundred')
             ->type('1', 'five_hundred')

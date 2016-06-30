@@ -86,6 +86,6 @@ class MoneyController extends Controller {
         ];
 
     return $rules;
-  }
+    }
 
 }

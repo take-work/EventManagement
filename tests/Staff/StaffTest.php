@@ -11,21 +11,21 @@ class StaffTest extends TestCase {
 
         $user = new User(['user' => 'take']);
         $this->be($user);
-
-        DB::table('events')
-            ->insert([
-                'name'       => 'eventName',
-                'host'       => 'host',
-                'price'      => '10000',
-                'startDay'   => '2016/01/01',
-                'endDay'     => '2016/01/03',
-            ]);
     }
 
     /*
      * /staffList にアクセスするとスタッフ一覧ページが開く。
      */
     public function testStaffListAccess() {
+        DB::table('events')
+            ->insert([
+                'name'       => 'eventName',
+                'host'       => 'host',
+                'price'      => '10000',
+                'startDay'   => '2016/01/01',
+                'endDay'     => '2016/01/04',
+            ]);
+
         $id = $this->eventIdGet();
 
         $this
@@ -105,6 +105,8 @@ class StaffTest extends TestCase {
 
        $this
             ->assertEmpty($search);
+
+       $this->deleteEvent();
     }
 
     /*
@@ -139,6 +141,15 @@ class StaffTest extends TestCase {
         $staffName = $faker->unique()->name;
 
         return $staffName;
+    }
+
+    /*
+     * テストが終了した後、挿入した events テーブルの情報を削除する。
+     */
+    private function deleteEvent() {
+        DB::table('events')
+            ->where('name', 'eventName')
+            ->delete();
     }
 
 }

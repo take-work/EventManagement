@@ -12,7 +12,13 @@ class MoneyTest extends TestCase {
 
         $user = new User(['user' => 'take']);
         $this->be($user);
+    }
 
+    /*
+     * /moneyCreate にアクセスすると金額情報の登録ページが開いて、金額を新規登録できる。
+     * その後、初期費用(10000) - 登録した金額(1000) が計算出来ているか確認する。
+     */
+    public function testStaffListAccess() {
         DB::table('events')
             ->insert([
                 'name'       => 'eventName',
@@ -21,13 +27,7 @@ class MoneyTest extends TestCase {
                 'startDay'   => '2016/01/01',
                 'endDay'     => '2016/01/03',
             ]);
-    }
 
-    /*
-     * /moneyCreate にアクセスすると金額情報の登録ページが開いて、金額を新規登録できる。
-     * その後、初期費用(10000) - 登録した金額(1000) が計算出来ているか確認する。
-     */
-    public function testStaffListAccess() {
         $id = $this->eventIdGet();
 
         $this
@@ -40,6 +40,8 @@ class MoneyTest extends TestCase {
             ->type('0', 'million')
             ->press('登録する')
             ->see('￥-9,000');
+
+        $this->deleteEvent();
     }
 
     /*
@@ -50,6 +52,15 @@ class MoneyTest extends TestCase {
         $id = $query[0]->id;
 
         return $id;
+    }
+
+    /*
+     * テストが終了した後、挿入した events テーブルの情報を削除する。
+     */
+    private function deleteEvent() {
+        DB::table('events')
+            ->where('name', 'eventName')
+            ->delete();
     }
 
 }

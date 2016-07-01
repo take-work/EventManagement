@@ -55,6 +55,14 @@ class Staff extends Model {
         $searchContent = $request['searchContents'];
         $searchText    = $request['searchText'];
 
+        // 検索結果を保存する。
+        DB::table('searchStaffs')
+            ->insert([
+                'event_id' => $id,
+                'content'  => $searchContent,
+                'text'     => $searchText,
+            ]);
+
         $searchQuery = Staff::query();
         $searchQuery
             ->where('event_id', $id)

@@ -35,7 +35,7 @@
                     <input type="button" value=" ＋ " onClick="plus(this.form.hundred)">
                 </td>
                 <th>
-                   <div class="text-center">データの登録</div>
+                   <div class="text-center">データの更新</div>
                 </th>
             </tr>
 
@@ -52,7 +52,7 @@
                 <td align="center" rowspan="4">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <input type="hidden" name="id" value="{{ $moneyList[0]->id }}">
-                    <input type="submit" value="登録する" style="width:100px; height:50px" />
+                    <input type="submit" value="更新する" style="width:100px; height:50px" />
                 </td>
             </tr>
 

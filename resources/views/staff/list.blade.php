@@ -14,7 +14,7 @@
     <a href="{!! url('staffPdf', [$id]) !!}" target="_brank"><button type="button" class="btn btn-primary">PDFで保存</button></a>&nbsp;
 
     @if (! empty($searchFlag))
-        <a href="{!! url('staffPdf', [$id]) !!}" target="_brank"><button type="button" class="btn btn-primary">検索結果をPDFで保存</button></a>
+        <a href="{!! url('searchStaffPdf', [$id]) !!}" target="_brank"><button type="button" class="btn btn-primary">検索結果をPDFで保存</button></a>
     @endif
 
     <hr>

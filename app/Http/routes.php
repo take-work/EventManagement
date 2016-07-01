@@ -95,6 +95,11 @@ Route::get('/staffPdf/{id}', [
          'uses'       => 'StaffPDFController@pdfCreate'
        ]);
 
+Route::get('/searchStaffPdf/{id}', [
+        'middleware' => 'auth',
+        'uses'       => 'StaffPDFController@searchPdfCreate'
+]);
+
 /*
  * サークル管理に関連するルート
  */

@@ -19,6 +19,15 @@ class StaffPDFController extends Controller {
         $pdfCreater->pdfCreate($getEvent, $getStaffs);
     }
 
+    public function searchPdfCreate($id) {
+        $pdfCreater = new StaffPDFCreater();
+
+        $getEvent  = $this->getEvent($id);
+        $getStaffs = $this->getStaffs($id);
+
+        $pdfCreater->pdfCreate($getEvent, $getStaffs);
+    }
+
     private function getEvent($id) {
         $event = new Event();
 

@@ -59,10 +59,11 @@ class MoneyTest extends TestCase {
             ->type('1', 'five_hundred')
             ->type('1', 'thousand')
             ->type('1', 'five_thousand')
-            ->type('1', 'million')
-            ->press('登録する')
+            ->type('1', 'million');
+/*
+            ->press('更新する')
             ->see('￥16,600');
-
+*/
         $this->deleteEvent();
     }
 

@@ -23,7 +23,7 @@ class StaffPDFController extends Controller {
         $pdfCreater = new StaffPDFCreater();
 
         $getEvent  = $this->getEvent($id);
-        $getStaffs = $this->getStaffs($id);
+        $getStaffs = $this->getSearchStaffs($id);
 
         $pdfCreater->pdfCreate($getEvent, $getStaffs);
     }
@@ -42,6 +42,18 @@ class StaffPDFController extends Controller {
         $getStaffs = $staffs->allSelect($id);
 
         return $getStaffs;
+    }
+
+    private function getSearchStaffs($id) {
+        $staff = new Staff();
+
+        $getSearch = $staff->searchStaffs($id);
+        $content = $getSearch['content'];
+        $text = $getSearch['text'];
+
+        $staffs = $staff->searchStaff($id, $content, $text);
+
+        return $staffs;
     }
 
 }

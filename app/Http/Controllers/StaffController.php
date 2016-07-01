@@ -34,7 +34,9 @@ class StaffController extends Controller {
         $id = $request['id'];
         $staffContents = $this->staffContents();
 
-        return view('staff.list', compact('staffs', 'id', 'staffContents'));
+        $searchFlag = true;
+
+        return view('staff.list', compact('staffs', 'id', 'staffContents', 'searchFlag'));
     }
 
     /*

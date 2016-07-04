@@ -36,7 +36,9 @@ class CircleController extends Controller {
         $desk = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);
 
-        return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
+        $searchFlag = true;
+
+        return view('circle.list', compact('circles', 'id', 'desk', 'chair', 'searchFlag'));
     }
 
     /*

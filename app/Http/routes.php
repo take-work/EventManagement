@@ -141,6 +141,11 @@ Route::get('/circlePdf/{id}', [
          'uses'       => 'CirclePDFController@pdfCreate'
        ]);
 
+Route::get('/searchCirclePdf/{id}', [
+        'middleware' => 'auth',
+        'uses'       => 'CirclePDFController@searchPdfCreate'
+]);
+
 /*
  * 金額管理に関連するルート
  */

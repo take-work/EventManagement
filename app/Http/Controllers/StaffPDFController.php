@@ -48,10 +48,10 @@ class StaffPDFController extends Controller {
         $staff = new Staff();
 
         $getSearch = $staff->getSearch($id);
-        $content = $getSearch['content'];
-        $text = $getSearch['text'];
+        $content = $getSearch->content;
+        $text = $getSearch->text;
 
-        $searchStaffs = $staff->searchStaff($id, $content, $text);
+        $searchStaffs = $staff->searchStaffs($id, $content, $text);
 
         return $searchStaffs;
     }

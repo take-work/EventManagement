@@ -53,6 +53,14 @@ class Circle extends Model {
         $searchContent = $request['searchContents'];
         $searchText    = $request['searchText'];
 
+        // 検索結果を保存する。
+        DB::table('searchCircles')
+            ->insert([
+                'event_id' => $id,
+                'content'  => $searchContent,
+                'text'     => $searchText,
+            ]);
+
         $searchQuery = Circle::query();
         $searchQuery
             ->where('event_id', $id)
@@ -62,6 +70,30 @@ class Circle extends Model {
             ->paginate(20);
 
         return $circles;
+    }
+
+    /*
+     * searchCircles テーブルからデータを取得する。
+     */
+    public function getSearch($id) {
+        $searchCircles = DB::table('searchCircles')
+            ->where('event_id', $id)
+            ->get();
+
+        $getSearch = end($searchCircles);
+
+        return $getSearch;
+    }
+
+    /*
+     * 検索結果から PDF を出力するために circles テーブルから検索結果を返す
+     */
+    public function searchCircles($id, $content, $text) {
+        $searchCircles = Circle::where('event_id', $id)
+            ->where($content, 'like', '%'. $text .'%')
+            ->get();
+
+        return $searchCircles;
     }
 
     /*

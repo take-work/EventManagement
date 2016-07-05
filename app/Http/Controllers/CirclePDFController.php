@@ -19,6 +19,15 @@ class CirclePDFController extends Controller {
         $circlePDFCreater->pdfCreate($getEvent, $getCircles);
     }
 
+    public function searchPdfCreate($id) {
+        $pdfCreater = new CirclePDFCreater();
+
+        $getEvent  = $this->getEvent($id);
+        $getSearchCircles = $this->getSearchCircles($id);
+
+        $pdfCreater->pdfCreate($getEvent, $getSearchCircles);
+    }
+
     private function getEvent($id) {
         $event = new Event();
 
@@ -33,6 +42,18 @@ class CirclePDFController extends Controller {
         $getCircle = $circles->allSelect($id);
 
         return $getCircle;
+    }
+
+    private function getSearchCircles($id) {
+        $circle = new Circle();
+
+        $getSearch = $circle->getSearch($id);
+        $content = $getSearch->content;
+        $text = $getSearch->text;
+
+        $searchCircles = $circle->searchCircles($id, $content, $text);
+
+        return $searchCircles;
     }
 
 }

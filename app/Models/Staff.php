@@ -56,11 +56,14 @@ class Staff extends Model {
         $searchText    = $request['searchText'];
 
         // 検索結果を保存する。
+        $now = date("Y-m-d H:i:s");
+
         DB::table('searchStaffs')
             ->insert([
-                'event_id' => $id,
-                'content'  => $searchContent,
-                'text'     => $searchText,
+                'event_id'   => $id,
+                'content'    => $searchContent,
+                'text'       => $searchText,
+                'created_at' => $now,
             ]);
 
         $searchQuery = Staff::query();

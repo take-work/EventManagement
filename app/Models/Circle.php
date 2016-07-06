@@ -86,6 +86,14 @@ class Circle extends Model {
     }
 
     /*
+     * searchCircles テーブルのデータを取得して削除する。
+     */
+    public function searchCirclesDelete() {
+        DB::table('searchCircles')
+            ->delete();
+    }
+
+    /*
      * 検索結果から PDF を出力するために circles テーブルから検索結果を返す
      */
     public function searchCircles($id, $content, $text) {

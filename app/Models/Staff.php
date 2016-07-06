@@ -78,7 +78,15 @@ class Staff extends Model {
     }
 
     /*
-     * searchStaffs テーブルからデータを取得する。
+     * searchStaffs テーブルのデータを取得して削除する。
+     */
+    public function searchStaffsDelete() {
+        DB::table('searchStaffs')
+            ->delete();
+    }
+
+    /*
+     * searchStaffs テーブルから特定のイベントに紐付いたデータを取得する。
      */
     public function getSearch($id) {
         $searchStaffs = DB::table('searchStaffs')

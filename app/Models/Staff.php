@@ -56,11 +56,14 @@ class Staff extends Model {
         $searchText    = $request['searchText'];
 
         // 検索結果を保存する。
+        $now = date("Y-m-d H:i:s");
+
         DB::table('searchStaffs')
             ->insert([
-                'event_id' => $id,
-                'content'  => $searchContent,
-                'text'     => $searchText,
+                'event_id'   => $id,
+                'content'    => $searchContent,
+                'text'       => $searchText,
+                'created_at' => $now,
             ]);
 
         $searchQuery = Staff::query();
@@ -75,7 +78,15 @@ class Staff extends Model {
     }
 
     /*
-     * searchStaffs テーブルからデータを取得する。
+     * searchStaffs テーブルのデータを取得して削除する。
+     */
+    public function searchStaffsDelete() {
+        DB::table('searchStaffs')
+            ->delete();
+    }
+
+    /*
+     * searchStaffs テーブルから特定のイベントに紐付いたデータを取得する。
      */
     public function getSearch($id) {
         $searchStaffs = DB::table('searchStaffs')

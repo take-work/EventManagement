@@ -45,13 +45,13 @@ class StaffPDFController extends Controller {
     }
 
     private function getSearchStaffs($id) {
-        $staff = new Staff();
+        $staffPDFCreater = new StaffPDFCreater();
 
-        $getSearch = $staff->getSearch($id);
+        $getSearch = $staffPDFCreater->getSearch($id);
         $content = $getSearch->content;
         $text = $getSearch->text;
 
-        $searchStaffs = $staff->searchStaffs($id, $content, $text);
+        $searchStaffs = $staffPDFCreater->searchStaffs($id, $content, $text);
 
         return $searchStaffs;
     }

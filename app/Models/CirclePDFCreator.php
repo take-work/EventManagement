@@ -10,7 +10,7 @@ use ZendPdf\PdfDocument;
 use ZendPdf\Font;
 use ZendPdf\Resource\Extractor;
 
-class CirclePDFCreater extends Model {
+class CirclePDFCreator extends Model {
 
     public function pdfCreate($getEvent, $getCircles) {
         $pdfDocument = new PdfDocument();

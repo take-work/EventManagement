@@ -10,7 +10,7 @@ use ZendPdf\PdfDocument;
 use ZendPdf\Font;
 use ZendPdf\Resource\Extractor;
 
-class StaffPDFCreater extends Model {
+class StaffPDFCreator extends Model {
 
     public function pdfCreate($getEvent, $getStaffs) {
         $pdfDocument = new PdfDocument();

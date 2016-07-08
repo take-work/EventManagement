@@ -4,28 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\StaffPDFCreater;
+use App\Models\StaffPDFCreator;
 use App\Models\Event;
 use App\Models\Staff;
 
 class StaffPDFController extends Controller {
 
     public function pdfCreate($id) {
-        $pdfCreater = new StaffPDFCreater();
+        $pdfCreator = new StaffPDFCreator();
 
         $getEvent  = $this->getEvent($id);
         $getStaffs = $this->getStaffs($id);
 
-        $pdfCreater->pdfCreate($getEvent, $getStaffs);
+        $pdfCreator->pdfCreate($getEvent, $getStaffs);
     }
 
     public function searchPdfCreate($id) {
-        $pdfCreater = new StaffPDFCreater();
+        $pdfCreator = new StaffPDFCreator();
 
         $getEvent  = $this->getEvent($id);
         $getSearchStaffs = $this->getSearchStaffs($id);
 
-        $pdfCreater->pdfCreate($getEvent, $getSearchStaffs);
+        $pdfCreator->pdfCreate($getEvent, $getSearchStaffs);
     }
 
     private function getEvent($id) {
@@ -45,13 +45,13 @@ class StaffPDFController extends Controller {
     }
 
     private function getSearchStaffs($id) {
-        $staff = new Staff();
+        $staffPDFCreator = new StaffPDFCreator();
 
-        $getSearch = $staff->getSearch($id);
+        $getSearch = $staffPDFCreator->getSearch($id);
         $content = $getSearch->content;
         $text = $getSearch->text;
 
-        $searchStaffs = $staff->searchStaffs($id, $content, $text);
+        $searchStaffs = $staffPDFCreator->searchStaffs($id, $content, $text);
 
         return $searchStaffs;
     }

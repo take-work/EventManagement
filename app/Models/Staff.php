@@ -86,30 +86,6 @@ class Staff extends Model {
     }
 
     /*
-     * searchStaffs テーブルから特定のイベントに紐付いたデータを取得する。
-     */
-    public function getSearch($id) {
-        $searchStaffs = DB::table('searchStaffs')
-            ->where('event_id', $id)
-            ->get();
-
-        $getSearch = end($searchStaffs);
-
-        return $getSearch;
-    }
-
-    /*
-     * 検索結果から PDF を出力するために staffs テーブルから検索結果を返す
-     */
-    public function searchStaffs($id, $content, $text) {
-        $searchStaff = Staff::where('event_id', $id)
-            ->where($content, 'like', '%'. $text .'%')
-            ->get();
-
-        return $searchStaff;
-    }
-
-    /*
      * staffs テーブルから特定のデータを取りたい時に使用する関数
      */
     public function specificData($id) {

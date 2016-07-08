@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use DB;
+
 use ZendPdf\PdfDocument;
 use ZendPdf\Font;
 use ZendPdf\Resource\Extractor;
@@ -99,6 +101,30 @@ class CirclePDFCreater extends Model {
         header ('Content-Disposition:', 'inline;');
         echo $pdfDocument->render();
 
+    }
+
+    /*
+     * searchCircles テーブルからデータを取得する。
+     */
+    public function getSearch($id) {
+        $searchCircles = DB::table('searchCircles')
+            ->where('event_id', $id)
+            ->get();
+
+        $getSearch = end($searchCircles);
+
+        return $getSearch;
+    }
+
+    /*
+     * 検索結果から PDF を出力するために circles テーブルから検索結果を返す
+     */
+    public function searchCircles($id, $content, $text) {
+        $searchCircles = Circle::where('event_id', $id)
+            ->where($content, 'like', '%'. $text .'%')
+            ->get();
+
+        return $searchCircles;
     }
 
 }

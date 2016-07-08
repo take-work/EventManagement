@@ -45,13 +45,13 @@ class CirclePDFController extends Controller {
     }
 
     private function getSearchCircles($id) {
-        $circle = new Circle();
+        $circlePDFCreater = new CirclePDFCreater();
 
-        $getSearch = $circle->getSearch($id);
+        $getSearch = $circlePDFCreater->getSearch($id);
         $content = $getSearch->content;
         $text = $getSearch->text;
 
-        $searchCircles = $circle->searchCircles($id, $content, $text);
+        $searchCircles = $circlePDFCreater->searchCircles($id, $content, $text);
 
         return $searchCircles;
     }

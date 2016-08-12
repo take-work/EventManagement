@@ -14,7 +14,13 @@
     <a href="{!! url('staffPdf', [$id]) !!}" target="_brank"><button type="button" class="btn btn-primary">PDFで保存</button></a>&nbsp;
 
     @if (! empty($searchFlag))
-        <a href="{!! url('searchStaffPdf', [$id]) !!}" target="_brank"><button type="button" class="btn btn-primary">検索結果をPDFで保存</button></a>
+        <br><br>
+        {!! Form::open(['url' => '/searchStaffPdf']) !!}
+            <input type="hidden" name="saveId" value="{{ $id }}">
+            <input type="hidden" name="saveContent" value="{{ $saveContent }}">
+            <input type="hidden" name="saveText" value="{{ $saveText }}">
+            <input type="submit" value="検索結果をPDFで保存" target="_brank" class="btn btn-primary">
+        {!! Form::close() !!}
     @endif
 
     <hr>

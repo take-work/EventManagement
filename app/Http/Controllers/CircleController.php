@@ -18,8 +18,6 @@ class CircleController extends Controller {
         $desk = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);
 
-        $circle->searchCirclesDelete();
-
         return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
     }
 
@@ -96,7 +94,7 @@ class CircleController extends Controller {
         $id = $request['id'];
         $circles    = $circle->specificData($id);
         $circleName = $circles[0]->circle_name;
-        $eventId         = $circles[0]->event_id;
+        $eventId    = $circles[0]->event_id;
 
         \Session::flash('flash_message', $circleName .'の情報を更新しました。');
         return redirect('/circleList/'. $eventId);

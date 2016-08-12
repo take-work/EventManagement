@@ -95,7 +95,7 @@ Route::get('/staffPdf/{id}', [
          'uses'       => 'StaffPDFController@pdfCreate'
        ]);
 
-Route::get('/searchStaffPdf/{id}', [
+Route::post('/searchStaffPdf', [
         'middleware' => 'auth',
         'uses'       => 'StaffPDFController@searchPdfCreate'
 ]);

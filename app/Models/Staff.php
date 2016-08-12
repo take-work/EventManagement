@@ -55,17 +55,6 @@ class Staff extends Model {
         $searchContent = $request['searchContents'];
         $searchText    = $request['searchText'];
 
-        // 検索結果を保存する。
-        $now = date("Y-m-d H:i:s");
-
-        DB::table('searchStaffs')
-            ->insert([
-                'event_id'   => $id,
-                'content'    => $searchContent,
-                'text'       => $searchText,
-                'created_at' => $now,
-            ]);
-
         $searchQuery = Staff::query();
         $searchQuery
             ->where('event_id', $id)
@@ -75,14 +64,6 @@ class Staff extends Model {
         $staffs = $searchQuery->paginate(20);
 
         return $staffs;
-    }
-
-    /*
-     * searchStaffs テーブルのデータを取得して削除する。
-     */
-    public function searchStaffsDelete() {
-        DB::table('searchStaffs')
-            ->delete();
     }
 
     /*

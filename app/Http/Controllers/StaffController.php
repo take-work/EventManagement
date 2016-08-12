@@ -33,12 +33,16 @@ class StaffController extends Controller {
         $this->validate($request, $rules);
 
         $staffs = $staff->search($request);
+
         $id = $request['id'];
         $staffContents = $this->staffContents();
 
+        $saveContent = $request['searchContents'];
+        $saveText    = $request['searchText'];
+
         $searchFlag = true;
 
-        return view('staff.list', compact('staffs', 'id', 'staffContents', 'searchFlag'));
+        return view('staff.list', compact('staffs', 'id', 'saveContent', 'saveText', 'staffContents', 'searchFlag'));
     }
 
     /*

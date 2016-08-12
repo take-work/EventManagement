@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\StaffPDFCreator;
 use App\Models\Event;
 use App\Models\Staff;
+use Illuminate\Http\Request;
 
 class StaffPDFController extends Controller {
 
@@ -19,11 +20,12 @@ class StaffPDFController extends Controller {
         $pdfCreator->pdfCreate($getEvent, $getStaffs);
     }
 
-    public function searchPdfCreate($id) {
+    public function searchPdfCreate(Request $request) {
         $pdfCreator = new StaffPDFCreator();
 
+        $id        = $request['saveId'];
         $getEvent  = $this->getEvent($id);
-        $getSearchStaffs = $this->getSearchStaffs($id);
+        $getSearchStaffs = $this->getSearchStaffs($request);
 
         $pdfCreator->pdfCreate($getEvent, $getSearchStaffs);
     }
@@ -44,12 +46,12 @@ class StaffPDFController extends Controller {
         return $getStaffs;
     }
 
-    private function getSearchStaffs($id) {
+    private function getSearchStaffs($request) {
         $staffPDFCreator = new StaffPDFCreator();
 
-        $getSearch = $staffPDFCreator->getSearch($id);
-        $content = $getSearch->content;
-        $text = $getSearch->text;
+        $id      = $request['saveId'];
+        $content = $request['saveContent'];
+        $text    = $request['saveText'];
 
         $searchStaffs = $staffPDFCreator->searchStaffs($id, $content, $text);
 

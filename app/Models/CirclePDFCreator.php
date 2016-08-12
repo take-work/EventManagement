@@ -104,19 +104,6 @@ class CirclePDFCreator extends Model {
     }
 
     /*
-     * searchCircles テーブルからデータを取得する。
-     */
-    public function getSearch($id) {
-        $searchCircles = DB::table('searchCircles')
-            ->where('event_id', $id)
-            ->get();
-
-        $getSearch = end($searchCircles);
-
-        return $getSearch;
-    }
-
-    /*
      * 検索結果から PDF を出力するために circles テーブルから検索結果を返す
      */
     public function searchCircles($id, $content, $text) {

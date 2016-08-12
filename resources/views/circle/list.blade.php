@@ -14,7 +14,13 @@
   <a href="{!! url('circlePdf', [$id]) !!}" target="_blank"><button type="button" class="btn btn-primary">PDFで保存</button></a> &nbsp;
 
     @if (! empty($searchFlag))
-        <a href="{!! url('searchCirclePdf', [$id]) !!}" target="_brank"><button type="button" class="btn btn-primary">検索結果をPDFで保存</button></a>
+        <br><br>
+        {!! Form::open(['url' => '/searchCirclePdf']) !!}
+            <input type="hidden" name="saveId" value="{{ $id }}">
+            <input type="hidden" name="saveContent" value="{{ $saveContent }}">
+            <input type="hidden" name="saveText" value="{{ $saveText }}">
+            <input type="submit" value="検索結果をPDFで保存" target="_brank" class="btn btn-primary">
+        {!! Form::close() !!}
     @endif
 
   <hr>
@@ -74,47 +80,47 @@
       </tr>
     </thead>
 
-  @foreach($circles as $circle)
-    <tbody>
-      <tr>
-        <td align="center">
-          {{ $circle->number }}
-        </td>
+    @foreach($circles as $circle)
+      <tbody>
+        <tr>
+          <td align="center">
+            {{ $circle->number }}
+          </td>
 
-        <td align="center">
-          {{ $circle->space }}
-        </td>
+          <td align="center">
+            {{ $circle->space }}
+          </td>
 
-        <td align="center">
-          {{ $circle->circle_name }}
-        </td>
+          <td align="center">
+            {{ $circle->circle_name }}
+          </td>
 
-        <td align="center">
-          {{ $circle->host }}
-        </td>
+          <td align="center">
+            {{ $circle->host }}
+          </td>
 
-        <td align="center">
-          {{ $circle->staff }}
-        </td>
+          <td align="center">
+            {{ $circle->staff }}
+          </td>
 
-        <td align="center">
-          {{ $circle->desk }}
-        </td>
+          <td align="center">
+            {{ $circle->desk }}
+          </td>
 
-        <td align="center">
-          {{ $circle->chair }}
-        </td>
+          <td align="center">
+            {{ $circle->chair }}
+          </td>
 
-        <td align="center" class="col-md-1">
-          <a href="{!! url('/circleUpdate', [$circle->id]) !!}"><input type="button" value="編集する"></a>
-        </td>
+          <td align="center" class="col-md-1">
+            <a href="{!! url('/circleUpdate', [$circle->id]) !!}"><input type="button" value="編集する"></a>
+          </td>
 
-        <td align="center" class="col-md-1">
-          <a href="{!! url('/circleDelete', [$circle->id]) !!}"><input type="button" value="削除する"></a>
-        </td>
-      </tr>
-    </tbody>
-  @endforeach
+          <td align="center" class="col-md-1">
+            <a href="{!! url('/circleDelete', [$circle->id]) !!}"><input type="button" value="削除する"></a>
+          </td>
+        </tr>
+      </tbody>
+    @endforeach
   </table>
 
   <hr>

@@ -34,13 +34,16 @@ class CircleController extends Controller {
 
         $circles = $circle->search($request);
 
-        $id = $request['id'];
-        $desk = $circle->deskCounter($id);
+        $id          = $request['id'];
+        $saveContent = $request['searchContents'];
+        $saveText    = $request['searchText'];
+
+        $desk  = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);
 
         $searchFlag = true;
 
-        return view('circle.list', compact('circles', 'id', 'desk', 'chair', 'searchFlag'));
+        return view('circle.list', compact('circles', 'id', 'saveContent', 'saveText', 'desk', 'chair', 'searchFlag'));
     }
 
     /*

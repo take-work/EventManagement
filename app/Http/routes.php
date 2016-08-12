@@ -141,7 +141,7 @@ Route::get('/circlePdf/{id}', [
          'uses'       => 'CirclePDFController@pdfCreate'
        ]);
 
-Route::get('/searchCirclePdf/{id}', [
+Route::post('/searchCirclePdf', [
         'middleware' => 'auth',
         'uses'       => 'CirclePDFController@searchPdfCreate'
 ]);

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CirclePDFCreator;
 use App\Models\Event;
 use App\Models\Circle;
+use Illuminate\Http\Request;
 
 class CirclePDFController extends Controller {
 
@@ -19,11 +20,12 @@ class CirclePDFController extends Controller {
         $circlePDFCreator->pdfCreate($getEvent, $getCircles);
     }
 
-    public function searchPdfCreate($id) {
+    public function searchPdfCreate(Request $request) {
         $pdfCreator = new CirclePDFCreator();
 
+        $id = $request['saveId'];
         $getEvent  = $this->getEvent($id);
-        $getSearchCircles = $this->getSearchCircles($id);
+        $getSearchCircles = $this->getSearchCircles($request);
 
         $pdfCreator->pdfCreate($getEvent, $getSearchCircles);
     }
@@ -44,12 +46,12 @@ class CirclePDFController extends Controller {
         return $getCircle;
     }
 
-    private function getSearchCircles($id) {
+    private function getSearchCircles($request) {
         $circlePDFCreator = new CirclePDFCreator();
 
-        $getSearch = $circlePDFCreator->getSearch($id);
-        $content = $getSearch->content;
-        $text = $getSearch->text;
+        $id = $request['saveId'];
+        $content = $request['saveContent'];
+        $text = $request['saveText'];
 
         $searchCircles = $circlePDFCreator->searchCircles($id, $content, $text);
 

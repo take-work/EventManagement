@@ -73,14 +73,6 @@ class Circle extends Model {
     }
 
     /*
-     * searchCircles テーブルのデータを取得して削除する。
-     */
-    public function searchCirclesDelete() {
-        DB::table('searchCircles')
-            ->delete();
-    }
-
-    /*
      * circles テーブルから特定のデータを取りたい時に使用する関数
      */
     public function specificData($id) {

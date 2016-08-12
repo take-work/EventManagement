@@ -18,8 +18,6 @@ class StaffController extends Controller {
         $staffs = $staff->select($id);
         $staffContents = $this->staffContents();
 
-        $staff->searchStaffsDelete();
-
         return view('staff.list', compact('staffs', 'id', 'staffContents'));
     }
 

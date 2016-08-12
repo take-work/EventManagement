@@ -18,8 +18,6 @@ class CircleController extends Controller {
         $desk = $circle->deskCounter($id);
         $chair = $circle->chairCounter($id);
 
-        $circle->searchCirclesDelete();
-
         return view('circle.list', compact('circles', 'id', 'desk', 'chair'));
     }
 
